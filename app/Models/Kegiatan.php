@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
+
+class Kegiatan extends Model
+{
+    use HasFactory, HasUlids;
+    protected $table = 'kegiatan';
+    protected $fillable = [
+        'nama_kegiatan',
+        'tanggal_kegiatan',
+        'deskripsi',
+        'lokasi',
+        'status_kegiatan',
+        'tanggal_mulai',
+        'tanggal_selesai',
+    ];
+
+    const STATUS_KEGIATAN = ['berjalan', 'selesai', 'dibatalkan'];
+}
