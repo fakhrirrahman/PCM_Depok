@@ -16,5 +16,9 @@ class Keuangan extends Model
         'keterangan',
         'kategori',
         'saldo',
+        'jumlah'
     ];
+
+    const JENIS_TRANSAKSI = ['Pemasukan', 'Pengeluaran'];
+    const KATEGORI = ['Pengembangan', 'Penggajian', 'Pengadaan'];
 }

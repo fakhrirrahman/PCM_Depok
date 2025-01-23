@@ -18,9 +18,9 @@ class Anggota extends Model
         'alamat',
         'telepon',
         'email',
-        'status',
         'jenis_kelamin',
-        'tanggal_lahir'
+        'tanggal_lahir',
+        'status'
     ];
 
     const STATUS = ['aktif', 'nonaktif'];

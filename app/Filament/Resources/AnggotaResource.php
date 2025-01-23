@@ -12,13 +12,18 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 
 
 class AnggotaResource extends Resource
 {
     protected static ?string $model = Anggota::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $pluralModelLabel = 'Anggota';
     public static function getNavigationGroup(): ?string
     {
         return 'Manajemen Organisasi';
@@ -28,21 +33,24 @@ class AnggotaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama')->required(),
-                Forms\Components\TextInput::make('email')->email()->required(),
-                Forms\Components\TextInput::make('telepon')->required(),
-                Forms\Components\Textarea::make('alamat')->required(),
-                Forms\Components\DatePicker::make('tanggal_lahir')->required(),
-                Forms\Components\Select::make('jenis_kelamin')
+                TextInput::make('nama')->required(),
+                TextInput::make('email')->email()->required(),
+                TextInput::make('telepon')->required(),
+                Textarea::make('alamat')->required(),
+                DatePicker::make('tanggal_lahir')->required(),
+                Select::make('jenis_kelamin')
                     ->options([
                         'L' => 'Laki-laki',
                         'P' => 'Perempuan',
                     ])->required(),
-                Forms\Components\Select::make('status')
+                Select::make('status')
                     ->options([
                         'Aktif' => 'Aktif',
                         'Nonaktif' => 'Nonaktif',
-                    ])->required(),
+                    ])
+                    ->default('Aktif')
+                    ->placeholder('Pilih status')
+                    ->required(),
             ]);
     }
 
@@ -55,7 +63,10 @@ class AnggotaResource extends Resource
                 Tables\Columns\TextColumn::make('telepon')->sortable(),
                 Tables\Columns\TextColumn::make('alamat')->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_lahir')->sortable(),
-                Tables\Columns\TextColumn::make('jenis_kelamin')->sortable(),
+                Tables\Columns\TextColumn::make('jenis_kelamin')
+                    ->formatStateUsing(function ($state) {
+                        return ['L' => 'Laki-laki', 'P' => 'Perempuan'][$state] ?? $state;
+                    })->sortable(),
                 Tables\Columns\TextColumn::make('status')->sortable(),
             ])
             ->filters([
