@@ -6,6 +6,7 @@ use App\Filament\Resources\DokumenResource\Pages;
 use App\Filament\Resources\DokumenResource\RelationManagers;
 use App\Models\Dokumen;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,7 +20,7 @@ class DokumenResource extends Resource
 {
     protected static ?string $model = Dokumen::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document'; // Ikon clipboard dengan dokumen
 
     protected static ?string $pluralModelLabel = 'Dokumen';
 
@@ -37,20 +38,19 @@ class DokumenResource extends Resource
                     ->required()
                     ->label('Nama Dokumen'),
 
-                Forms\Components\FileUpload::make('file')
-                    ->required()
+                SpatieMediaLibraryFileUpload::make(Dokumen::MEDIA_COLLECTION)
+                    ->collection(Dokumen::MEDIA_COLLECTION)
                     ->label('Dokumen File')
-                    ->disk('public') // Pastikan kamu menggunakan disk yang tepat di konfigurasi filesystem
-                    ->directory('dokumen') // Tentukan folder untuk menyimpan file, misalnya 'dokumen'
-                    ->image() // Jika hanya ingin menerima gambar, bisa gunakan `image()`
-                    ->maxSize(10240) // Maksimum ukuran file 10 MB, sesuaikan sesuai kebutuhan
-                    ->preserveFilenames(), // Agar nama file tetap dipertahankan
+                    ->columnSpanFull()
+                    ->reorderable()
+                    ->downloadable()
+                    ->preserveFilenames(), // Menggunakan nama asli file
 
                 Forms\Components\Hidden::make('diupload_oleh')
                     ->default(auth()->id()),
 
                 Forms\Components\Hidden::make('diupdate_oleh')
-                    ->default(now()),
+                    ->default(auth()->id()),
             ]);
     }
 
@@ -58,16 +58,21 @@ class DokumenResource extends Resource
     {
         return $table
             ->columns([
-
                 Tables\Columns\TextColumn::make('judul_dokumen')
                     ->label('Nama Dokumen')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('file')
-                    ->label('Dokumen File'),
-                Tables\Columns\TextColumn::make('creator.name'),
-
+                // Menampilkan file dengan tautan unduhan
+                Tables\Columns\TextColumn::make('dokumen_file')
+                    ->label('Dokumen File')
+                    ->getStateUsing(function ($record) {
+                        $media = $record->getFirstMedia(Dokumen::MEDIA_COLLECTION);
+                        $fileName = $media ? $media->file_name : 'No file';
+                        return $fileName;
+                    }),
+                Tables\Columns\TextColumn::make('creator.name')
+                    ->label('Diupload Oleh'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat Pada')
@@ -78,6 +83,8 @@ class DokumenResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -85,6 +92,7 @@ class DokumenResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {

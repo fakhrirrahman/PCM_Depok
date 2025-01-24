@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dokumen', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->id();
             $table->string('judul_dokumen');
-            $table->string('file');
             $table->string('diupload_oleh');
             $table->string('diupdate_oleh');
             $table->timestamps();
