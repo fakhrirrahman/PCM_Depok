@@ -1,7 +1,7 @@
 <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container position-relative d-flex align-items-center">
         <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto">
-            <h1 class="sitename">Fadel anjing</h1><span>.</span>
+            <h1 class="sitename">PCM Depok</h1><span>.</span>
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -31,7 +31,7 @@
         <div class="header-social-links">
             <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.instagram.com/pdmsleman/" class="instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
     </div>

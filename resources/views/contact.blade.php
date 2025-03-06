@@ -21,7 +21,7 @@
 <section id="contact" class="contact section">
     <div class="mb-5">
         <iframe style="width: 100%; height: 400px;"
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63252.241951403346!2d110.36559026953125!3d-7.761682799999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5929e00f4c75%3A0x9d860bf72f8a7d33!2sPimpinan%20Cabang%20Muhammadiyah%20Depok%20Sleman!5e0!3m2!1sid!2sid!4v1741247849890!5m2!1sid!2sid"
             frameborder="0" allowfullscreen=""></iframe>
     </div><!-- End Google Maps -->
 
@@ -35,7 +35,8 @@
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
                         <div>
                             <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <p>Ruko Gorongan, Jl. Perumnas No.1, Ngropoh, Condongcatur, Kec. Depok, Kabupaten Sleman,
+                                Daerah Istimewa Yogyakarta 55283</p>
                         </div>
                     </div>
                     <div class="info-item d-flex">
