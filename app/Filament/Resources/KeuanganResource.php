@@ -17,6 +17,8 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\Filter;
+
 
 class KeuanganResource extends Resource
 {
@@ -65,14 +67,23 @@ class KeuanganResource extends Resource
             ->columns([
 
                 TextColumn::make('tanggal_transaksi')->sortable()->searchable(),
-                TextColumn::make('jenis_transaksi')->sortable()->searchable(),
-                TextColumn::make('keterangan')->sortable()->searchable(),
-                TextColumn::make('jumlah')->sortable()->searchable(),
-                TextColumn::make('kategori')->sortable()->searchable(),
+                TextColumn::make('jenis_transaksi')->searchable(),
+                TextColumn::make('keterangan')->searchable(),
+                TextColumn::make('jumlah')->searchable(),
+                TextColumn::make('kategori')->searchable(),
                 TextColumn::make('saldo')->sortable()->searchable(),
             ])
             ->filters([
-                //
+                Filter::make('tanggal_transaksi')
+                    ->form([
+                        DatePicker::make('from')->label('Dari'),
+                        DatePicker::make('to')->label('Ke'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when($data['from'] ?? null, fn($q, $date) => $q->whereDate('tanggal_transaksi', '>=', $date))
+                            ->when($data['to'] ?? null, fn($q, $date) => $q->whereDate('tanggal_transaksi', '<=', $date));
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
