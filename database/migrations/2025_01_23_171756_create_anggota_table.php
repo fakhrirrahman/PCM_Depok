@@ -9,20 +9,28 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('anggota', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->id();
             $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('telepon');
-            $table->text('alamat');
+            $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->enum('status', ['aktif', 'nonaktif']);
+            $table->string('nbm')->unique();
+            $table->string('cabang');
+            $table->string('pdm');
+            $table->string('pwm');
+            $table->text('alamat');
+            $table->string('kabupaten_tinggal');
+            $table->string('provinsi_tinggal');
+            $table->string('kelurahan');
+            $table->string('profesi');
+            $table->string('no_hp');
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('nama');
             $table->string('jabatan');
-            $table->string('tingkat');
             $table->timestamps();
         });
     }

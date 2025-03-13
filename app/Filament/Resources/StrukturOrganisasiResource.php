@@ -30,9 +30,6 @@ class StrukturOrganisasiResource extends Resource
                 Forms\Components\TextInput::make('jabatan')
                     ->required()
                     ->label('Jabatan'),
-                Forms\Components\TextInput::make('tingkat')
-                    ->required()
-                    ->label('Tingkat'),
             ]);
     }
 
@@ -40,9 +37,8 @@ class StrukturOrganisasiResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama')->label('Nama'),
+                Tables\Columns\TextColumn::make('nama')->label('Nama')->searchable(),
                 Tables\Columns\TextColumn::make('jabatan')->label('Jabatan'),
-                Tables\Columns\TextColumn::make('tingkat')->label('Tingkat'),
             ])
             ->filters([])
             ->actions([

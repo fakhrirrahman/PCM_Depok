@@ -9,14 +9,14 @@ class CustomDashboard extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-home';
     protected static string $view = 'filament.pages.custom-dashboard';
-    protected static ?string $navigationLabel = '📊 Dashboard Utama';
+    protected static ?string $navigationLabel = 'Dashboard Utama';
     protected static ?string $title = '🎯 Dashboard Kinerja';
 
     protected function getHeaderActions(): array
     {
         return [
             Action::make('refresh')
-                ->label('🔄 Refresh Data')
+                ->label('Refresh Data')
                 ->icon('heroicon-m-arrow-path')
                 ->color('success')
                 ->action(fn() => $this->refreshPage())
