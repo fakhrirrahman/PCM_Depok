@@ -46,9 +46,9 @@ class KeuanganResource extends Resource
 
                     ->placeholder('Pilih jenis transaksi'),
                 TextInput::make('keterangan')->required()->placeholder('Masukkan keterangan'),
+                TextInput::make('jumlah')->required()->placeholder('Masukkan jumlah uang')
+                    ->type('number'),
 
-
-                TextInput::make('jumlah')->required()->placeholder('Masukkan jumlah uang'),
                 Select::make('kategori')
                     ->options([
                         'Pengembangan' => 'Pengembangan',
