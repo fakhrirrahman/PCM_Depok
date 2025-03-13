@@ -14,13 +14,12 @@
                 </li>
                 <li><a href="{{ url('/services') }}"
                         class="{{ request()->is('services') ? 'active' : '' }}">Services</a></li>
-                {{-- <li><a href="{{ url('/portfolio') }}"
-                        class="{{ request()->is('portfolio') ? 'active' : '' }}">Portfolio</a></li> --}}
                 <li><a href="{{ url('/pricing') }}" class="{{ request()->is('pricing') ? 'active' : '' }}">Pricing</a>
                 </li>
-                <li><a href="{{ url('/presensi') }}"
-                        class="{{ request()->is('presensi') ? 'active' : '' }}">presensi</a>
+                {{-- <li><a href="{{ url('/presensi') }}"
+                        class="{{ request()->is('presensi') ? 'active' : '' }}">presensi</a> --}}
                 </li>
+                <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') ? 'active' : '' }}">blog</a></li>
 
                 <li><a href="{{ url('/contact') }}" class="{{ request()->is('contact') ? 'active' : '' }}">Contact</a>
                 </li>

@@ -15,9 +15,12 @@ Route::get('/services', function () {
 Route::get('/pricing', function () {
     return view('pricing');
 })->name('pricing');
-Route::get('/presensi', function () {
-    return view('attendance');
-})->name('attendance');
+Route::get('/blog', function () {
+    return view('blog');
+})->name('blog');
+// Route::get('/presensi', function () {
+//     return view('attendance');
+// })->name('attendance');
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
 Route::post('/contact/submit', [ContactController::class, 'submitForm'])->name('contact.submit');

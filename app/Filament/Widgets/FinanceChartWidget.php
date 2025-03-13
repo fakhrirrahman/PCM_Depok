@@ -11,20 +11,23 @@ class FinanceChartWidget extends LineChartWidget
 
     protected function getData(): array
     {
-        // Inisialisasi array pemasukan dan pengeluaran untuk setiap bulan
+        // Inisialisasi array pemasukan dan pengeluaran untuk setiap bulan (12 bulan)
         $pemasukan = array_fill(0, 12, 0);
         $pengeluaran = array_fill(0, 12, 0);
 
-        // Ambil data keuangan dari database dan kelompokkan berdasarkan bulan
+        // Ambil data keuangan dari database dan kelompokkan berdasarkan bulan serta jenis transaksi
         $keuangan = Keuangan::selectRaw('MONTH(tanggal_transaksi) as bulan, jenis_transaksi, SUM(jumlah) as total')
             ->groupBy('bulan', 'jenis_transaksi')
             ->get();
 
+        // Loop melalui hasil query dan isi array pemasukan & pengeluaran berdasarkan bulan
         foreach ($keuangan as $item) {
+            $index = $item->bulan - 1; // Sesuaikan index agar sesuai dengan array (0-based)
+
             if ($item->jenis_transaksi === 'Pemasukan') {
-                $pemasukan[$item->bulan - 1] = $item->total;
+                $pemasukan[$index] = $item->total;
             } elseif ($item->jenis_transaksi === 'Pengeluaran') {
-                $pengeluaran[$item->bulan - 1] = $item->total;
+                $pengeluaran[$index] = $item->total;
             }
         }
 
@@ -57,7 +60,7 @@ class FinanceChartWidget extends LineChartWidget
                 'September',
                 'Oktober',
                 'November',
-                'Desember'
+                'Desember',
             ],
         ];
     }
