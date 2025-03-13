@@ -15,10 +15,8 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('nama_kegiatan');
             $table->text('deskripsi');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_selesai');
+            $table->date('tanggal');
             $table->string('lokasi');
-            $table->enum('status_kegiatan', ['berjalan', 'selesai', 'dibatalkan']);
             $table->timestamps();
         });
     }

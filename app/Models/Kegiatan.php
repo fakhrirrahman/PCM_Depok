@@ -15,10 +15,6 @@ class Kegiatan extends Model
         'tanggal_kegiatan',
         'deskripsi',
         'lokasi',
-        'status_kegiatan',
-        'tanggal_mulai',
-        'tanggal_selesai',
+        'tanggal',
     ];
-
-    const STATUS_KEGIATAN = ['berjalan', 'selesai', 'dibatalkan'];
 }
