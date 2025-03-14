@@ -12,22 +12,22 @@ return new class extends Migration
     public function up()
     {
         Schema::create('anggota', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->string('nama');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->string('nbm')->unique();
-            $table->string('cabang');
-            $table->string('pdm');
-            $table->string('pwm');
-            $table->text('alamat');
-            $table->string('kabupaten_tinggal');
-            $table->string('provinsi_tinggal');
-            $table->string('kelurahan');
-            $table->string('profesi');
-            $table->string('no_hp');
-            $table->string('email')->unique();
-            $table->timestamps();
+            $table->string('tahun_pembuatan')->nullable();
+            $table->string('nbm')->unique()->nullable();
+            $table->string('cabang')->nullable();
+            $table->string('pdm')->nullable();
+            $table->string('pwm')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('kabupaten_tinggal')->nullable();
+            $table->string('provinsi_tinggal')->nullable();
+            $table->string('kelurahan')->nullable();
+            $table->string('profesi')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('email')->unique()->nullable();
         });
     }
 

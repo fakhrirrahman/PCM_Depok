@@ -2,12 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\UserSeeder;
-use Database\Seeders\StrukturOrganisasiSeeder;
-
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,9 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $this->call([
-            UserSeeder::class,
-            StrukturOrganisasiSeeder::class,
-        ]);
+        $this->call(UserSeeder::class);
+        $this->call(StrukturOrganisasiSeeder::class);
+        $this->call(AnggotaSeeder::class);
     }
 }

@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
 class Anggota extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUlids;
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $table = 'anggota';
 
@@ -15,6 +19,7 @@ class Anggota extends Model
         'nama',
         'tempat_lahir',
         'tanggal_lahir',
+        'tahun_pembuatan',
         'nbm',
         'cabang',
         'pdm',
