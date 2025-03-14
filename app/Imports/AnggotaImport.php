@@ -19,6 +19,7 @@ class AnggotaImport implements ToModel, WithHeadingRow
             'tempat_lahir'     => $row['tempat_lahir'] ?? null,
             'tanggal_lahir'    => $row['tanggal_lahir'] ?? null,
             'nbm'              => $row['nbm'] ?? null,
+            'tahun_pembuatan'  => $row['tahun_pembuatan'] ?? null,
             'nbm_depan'        => $row['nbm_depan'] ?? null,
             'cabang'           => $row['cabang'] ?? null,
             'pdm'              => $row['pdm'] ?? null,

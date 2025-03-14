@@ -45,6 +45,7 @@ class AnggotaResource extends Resource
                 DatePicker::make('tanggal_lahir')->label('Tanggal Lahir'),
                 TextInput::make('nbm_depan')->placeholder('Masukkan NBM depan'),
                 TextInput::make('nbm')->placeholder('Masukkan NBM'),
+                TextInput::make('tahun_pembuatan')->placeholder('Masukkan tahun pembuatan'),
                 Select::make('cabang')
                     ->options([
                         'Depok' => 'Depok',
@@ -67,11 +68,19 @@ class AnggotaResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')->sortable()->searchable(),
+                TextColumn::make('tempat_lahir')->sortable()->searchable(),
+                TextColumn::make('tanggal_lahir')->sortable()->searchable(),
+                TextColumn::make('provinsi_tinggal')->sortable()->searchable(),
                 TextColumn::make('nbm_depan')->sortable()->searchable(),
                 TextColumn::make('nbm')->sortable()->searchable(),
+                TextColumn::make('tahun_pembuatan')->sortable()->searchable(),
                 TextColumn::make('cabang')->sortable()->searchable(),
                 TextColumn::make('pdm')->sortable(),
                 TextColumn::make('pwm')->sortable(),
+                TextColumn::make('alamat')->sortable(),
+                TextColumn::make('kabupaten_tinggal')->sortable(),
+                TextColumn::make('provinsi_tinggal')->sortable(),
+                TextColumn::make('kelurahan')->sortable(),
                 TextColumn::make('profesi')->sortable(),
                 TextColumn::make('no_hp')->sortable(),
                 TextColumn::make('email')->sortable(),
