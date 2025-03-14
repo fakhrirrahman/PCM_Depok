@@ -25,10 +25,10 @@ class AnggotaImport implements ToModel, WithHeadingRow
             'pwm'              => $row['pwm'] ?? null,
             'alamat'           => $row['alamat'] ?? null,
             'kabupaten_tinggal' => $row['kabupaten_tinggal'] ?? null,
-            'propinsi_tinggal"' => $row['propinsi_tinggal'] ?? null,
+            'provinsi_tinggal' => $row['propinsi_tinggal'] ?? null,
             'kelurahan'        => $row['kelurahan'] ?? null,
             'profesi'          => $row['profesi'] ?? null,
-            'no_hp'            => $row['no_hp'] ?? null,
+            'no_hp'            => $row['nohp'] ?? null,
             'email'            => $row['email'] ?? null,
         ]);
     }

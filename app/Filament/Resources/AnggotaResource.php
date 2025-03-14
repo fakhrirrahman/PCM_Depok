@@ -22,6 +22,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\AnggotaImport;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\AnggotaExport;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class AnggotaResource extends Resource
 {
@@ -86,23 +88,30 @@ class AnggotaResource extends Resource
             ->headerActions([
                 Action::make('import')
                     ->label('Import Anggota')
+                    ->icon('heroicon-m-arrow-up-tray')
                     ->form([
                         FileUpload::make('file')
-                            ->label('Pilih File Excel/CSV')
+                            ->label('Pilih File Excel')
                             ->acceptedFileTypes([
-                                'application/vnd.ms-excel', // .xls (Excel 97-2003)
-                                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx (Excel 2007+)
-                                'text/csv', // .csv
+                                'application/vnd.ms-excel',
+                                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                'text/csv',
                             ])
                             ->required(),
                     ])
                     ->action(function (array $data) {
-                        $filePath = storage_path('app/public/' . $data['file']); // Ambil path file yang disimpan sementara
-
+                        $filePath = storage_path('app/public/' . $data['file']);
                         Excel::import(new AnggotaImport, $filePath);
                     })
                     ->modalHeading('Import Data Anggota')
                     ->modalButton('Import'),
+
+                Action::make('export')
+                    ->label('Export Anggota')
+                    ->icon('heroicon-m-arrow-down-tray')
+                    ->action(function () {
+                        return Excel::download(new AnggotaExport, 'anggota.xlsx');
+                    }),
             ]);
     }
 
