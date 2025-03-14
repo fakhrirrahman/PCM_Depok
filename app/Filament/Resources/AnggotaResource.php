@@ -17,7 +17,11 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\FileUpload;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\AnggotaImport;
+use Filament\Tables\Actions\Action;
+use Illuminate\Support\Facades\Storage;
 
 class AnggotaResource extends Resource
 {
@@ -34,26 +38,26 @@ class AnggotaResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama')->required()->placeholder('Masukkan nama lengkap'),
-                TextInput::make('tempat_lahir')->required()->placeholder('Masukkan tempat lahir'),
-                DatePicker::make('tanggal_lahir')->required()->label('Tanggal Lahir'),
-                TextInput::make('nbm')->required()->unique()->placeholder('Masukkan NBM'),
+                TextInput::make('nama')->placeholder('Masukkan nama lengkap'),
+                TextInput::make('tempat_lahir')->placeholder('Masukkan tempat lahir'),
+                DatePicker::make('tanggal_lahir')->label('Tanggal Lahir'),
+                TextInput::make('nbm_depan')->placeholder('Masukkan NBM depan'),
+                TextInput::make('nbm')->placeholder('Masukkan NBM'),
                 Select::make('cabang')
                     ->options([
                         'Depok' => 'Depok',
                     ])
                     ->searchable()
-                    ->required()
                     ->placeholder('Pilih cabang'),
-                TextInput::make('pdm')->required()->placeholder('Masukkan PDM'),
-                TextInput::make('pwm')->required()->placeholder('Masukkan PWM'),
-                TextInput::make('alamat')->required()->placeholder('Masukkan alamat lengkap'),
-                TextInput::make('kabupaten_tinggal')->required()->placeholder('Masukkan kabupaten'),
-                TextInput::make('provinsi_tinggal')->required()->placeholder('Masukkan provinsi'),
-                TextInput::make('kelurahan')->required()->placeholder('Masukkan kelurahan'),
-                TextInput::make('profesi')->required()->placeholder('Masukkan profesi'),
-                TextInput::make('no_hp')->tel()->required()->placeholder('Masukkan No. HP'),
-                TextInput::make('email')->email()->required()->unique()->placeholder('Masukkan email'),
+                TextInput::make('pdm')->placeholder('Masukkan PDM'),
+                TextInput::make('pwm')->placeholder('Masukkan PWM'),
+                TextInput::make('alamat')->placeholder('Masukkan alamat lengkap'),
+                TextInput::make('kabupaten_tinggal')->placeholder('Masukkan kabupaten'),
+                TextInput::make('provinsi_tinggal')->placeholder('Masukkan provinsi'),
+                TextInput::make('kelurahan')->placeholder('Masukkan kelurahan'),
+                TextInput::make('profesi')->placeholder('Masukkan profesi'),
+                TextInput::make('no_hp')->tel()->placeholder('Masukkan No. HP'),
+                TextInput::make('email')->email()->placeholder('Masukkan email'),
             ]);
     }
     public static function table(Table $table): Table
@@ -61,19 +65,14 @@ class AnggotaResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')->sortable()->searchable(),
-                TextColumn::make('nbm')->sortable()->searchable()->label('NBM'),
+                TextColumn::make('nbm_depan')->sortable()->searchable(),
+                TextColumn::make('nbm')->sortable()->searchable(),
                 TextColumn::make('cabang')->sortable()->searchable(),
                 TextColumn::make('pdm')->sortable(),
                 TextColumn::make('pwm')->sortable(),
                 TextColumn::make('profesi')->sortable(),
                 TextColumn::make('no_hp')->sortable(),
                 TextColumn::make('email')->sortable(),
-            ])
-            ->filters([
-                Filter::make('cabang')
-                    ->query(fn(Builder $query, array $data): Builder => $query->where('cabang', $data['cabang'] ?? null)),
-                Filter::make('profesi')
-                    ->query(fn(Builder $query, array $data): Builder => $query->where('profesi', $data['profesi'] ?? null)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -83,6 +82,27 @@ class AnggotaResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ])
+            ->headerActions([
+                Action::make('import')
+                    ->label('Import Anggota')
+                    ->form([
+                        FileUpload::make('file')
+                            ->label('Pilih File Excel/CSV')
+                            ->acceptedFileTypes([
+                                'application/vnd.ms-excel', // .xls (Excel 97-2003)
+                                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx (Excel 2007+)
+                                'text/csv', // .csv
+                            ])
+                            ->required(),
+                    ])
+                    ->action(function (array $data) {
+                        $filePath = storage_path('app/public/' . $data['file']); // Ambil path file yang disimpan sementara
+
+                        Excel::import(new AnggotaImport, $filePath);
+                    })
+                    ->modalHeading('Import Data Anggota')
+                    ->modalButton('Import'),
             ]);
     }
 

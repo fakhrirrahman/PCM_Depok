@@ -11,6 +11,7 @@ class Anggota extends Model
     use HasFactory, HasUlids;
     protected $primaryKey = 'id';
     public $incrementing = false;
+    public $timestamps = false;
     protected $keyType = 'string';
 
     protected $table = 'anggota';
@@ -21,6 +22,7 @@ class Anggota extends Model
         'tanggal_lahir',
         'tahun_pembuatan',
         'nbm',
+        'nbm_depan',
         'cabang',
         'pdm',
         'pwm',
@@ -32,4 +34,15 @@ class Anggota extends Model
         'no_hp',
         'email',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($anggota) {
+            if (Anggota::where('nbm', $anggota->nbm)->exists()) {
+                return false;
+            }
+        });
+    }
 }
