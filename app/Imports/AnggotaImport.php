@@ -10,10 +10,6 @@ class AnggotaImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
-        if (Anggota::where('nbm', $row['nbm'])->exists()) {
-            return null;
-        }
-
         return new Anggota([
             'nama'             => $row['nama'] ?? null,
             'tempat_lahir'     => $row['tempat_lahir'] ?? null,

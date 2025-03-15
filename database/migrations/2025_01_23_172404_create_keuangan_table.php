@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('keuangan', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->date('tanggal_transaksi');
-            $table->string('keterangan');
-            $table->integer('jumlah');
-            $table->string('jenis_transaksi');
+            $table->enum('tipe', ['saldo', 'pemasukan', 'pengeluaran']);
             $table->string('kategori');
-            $table->string('saldo');
+            $table->bigInteger('jumlah');
+            $table->bigInteger('saldo_awal')->nullable();
+            $table->bigInteger('saldo_akhir')->nullable();
             $table->timestamps();
         });
     }

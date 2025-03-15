@@ -3,22 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
 class Keuangan extends Model
 {
     use HasFactory, HasUlids;
+
     protected $table = 'keuangan';
+    // protected $casts = [
+    //     'jumlah' => 'float',
+    //     'saldo_awal' => 'float',
+    //     'saldo_akhir' => 'float',
+    // ];
     protected $fillable = [
         'tanggal_transaksi',
-        'jenis_transaksi',
-        'keterangan',
+        'tipe',
         'kategori',
-        'saldo',
-        'jumlah'
+        'jumlah',
+        'saldo_awal',
+        'saldo_akhir',
     ];
-
-    const JENIS_TRANSAKSI = ['Pemasukan', 'Pengeluaran'];
-    const KATEGORI = ['Pengembangan', 'Penggajian', 'Pengadaan'];
 }

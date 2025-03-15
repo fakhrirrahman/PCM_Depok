@@ -3,21 +3,20 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\KeuanganResource\Pages;
-use App\Filament\Resources\KeuanganResource\RelationManagers;
 use App\Models\Keuangan;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\NumberInput;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\FileUpload;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\KeuanganImport;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 
 
 class KeuanganResource extends Resource
@@ -26,38 +25,36 @@ class KeuanganResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
     protected static ?string $pluralModelLabel = 'Keuangan';
+
     public static function getNavigationGroup(): ?string
     {
         return 'Manajemen Organisasi';
     }
 
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                DatePicker::make('tanggal_transaksi')->required(),
-                Select::make('jenis_transaksi')
+                Forms\Components\DatePicker::make('tanggal_transaksi')
+                    ->required(),
+                Forms\Components\Select::make('tipe')
                     ->options([
-                        'Pemasukan' => 'Pemasukan',
-                        'Pengeluaran' => 'Pengeluaran',
+                        'saldo' => 'Saldo',
+                        'pemasukan' => 'Pemasukan',
+                        'pengeluaran' => 'Pengeluaran',
                     ])
-                    ->required()
-
-                    ->placeholder('Pilih jenis transaksi'),
-                TextInput::make('keterangan')->required()->placeholder('Masukkan keterangan'),
-                TextInput::make('jumlah')->required()->placeholder('Masukkan jumlah uang')
-                    ->type('number'),
-
-                Select::make('kategori')
-                    ->options([
-                        'Pengembangan' => 'Pengembangan',
-                        'Penggajian' => 'Penggajian',
-                        'Pengadaan' => 'Pengadaan',
-                    ])
-                    ->required()
-                    ->placeholder('Pilih kategori'),
-                TextInput::make('saldo')->required()->placeholder('Masukkan sisa saldo'),
+                    ->required(),
+                Forms\Components\TextInput::make('kategori')
+                    ->required(),
+                Forms\Components\TextInput::make('jumlah')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\TextInput::make('saldo_awal')
+                    ->numeric()
+                    ->nullable(),
+                Forms\Components\TextInput::make('saldo_akhir')
+                    ->numeric()
+                    ->nullable(),
             ]);
     }
 
@@ -65,41 +62,37 @@ class KeuanganResource extends Resource
     {
         return $table
             ->columns([
-
-                TextColumn::make('tanggal_transaksi')->sortable()->searchable(),
-                TextColumn::make('jenis_transaksi')->searchable(),
-                TextColumn::make('keterangan')->searchable(),
-                TextColumn::make('jumlah')->searchable(),
-                TextColumn::make('kategori')->searchable(),
-                TextColumn::make('saldo')->sortable()->searchable(),
+                TextColumn::make('tanggal_transaksi')
+                    ->date(),
+                TextColumn::make('tipe')
+                    ->sortable(),
+                TextColumn::make('kategori')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('jumlah')
+                    ->sortable()
+                    ->money('IDR'),
+                TextColumn::make('saldo_awal')
+                    ->sortable()
+                    ->money('IDR'),
+                TextColumn::make('saldo_akhir')
+                    ->sortable()
+                    ->money('IDR'),
             ])
             ->filters([
-                Filter::make('tanggal_transaksi')
-                    ->form([
-                        DatePicker::make('from')->label('Dari'),
-                        DatePicker::make('to')->label('Ke'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when($data['from'] ?? null, fn($q, $date) => $q->whereDate('tanggal_transaksi', '>=', $date))
-                            ->when($data['to'] ?? null, fn($q, $date) => $q->whereDate('tanggal_transaksi', '<=', $date));
-                    }),
+                //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                DeleteBulkAction::make(),
             ]);
     }
-
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
