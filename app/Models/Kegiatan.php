@@ -12,9 +12,17 @@ class Kegiatan extends Model
     protected $table = 'kegiatan';
     protected $fillable = [
         'nama_kegiatan',
-        'tanggal_kegiatan',
+        'tanggal',
         'deskripsi',
         'lokasi',
-        'tanggal',
     ];
+
+    public function anggotaKegiatans()
+    {
+        return $this->hasMany(AnggotaKegiatan::class, 'kegiatan_id', 'id');
+    }
+    public function anggota()
+    {
+        return $this->belongsToMany(Anggota::class, 'anggota_kegiatan', 'kegiatan_id', 'anggota_id');
+    }
 }

@@ -6,22 +6,23 @@
 
         <nav id="navmenu" class="navmenu">
             <ul>
-                <li><a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Halaman Utama</a></li>
                 <li class="dropdown">
                     <a href="{{ url('/about') }}" class="{{ request()->is('about*') ? 'active' : '' }}">
-                        <span>About</span>
+                        <span>Tentang Kami</span>
                     </a>
                 </li>
-                <li><a href="{{ url('/services') }}"
-                        class="{{ request()->is('services') ? 'active' : '' }}">Services</a></li>
-                <li><a href="{{ url('/pricing') }}" class="{{ request()->is('pricing') ? 'active' : '' }}">Pricing</a>
+                <li><a href="{{ url('/services') }}" class="{{ request()->is('services') ? 'active' : '' }}">Anggota</a>
+                </li>
+                <li><a href="{{ url('/pricing') }}" class="{{ request()->is('pricing') ? 'active' : '' }}">Struktur
+                        Organisasi</a>
                 </li>
                 {{-- <li><a href="{{ url('/presensi') }}"
                         class="{{ request()->is('presensi') ? 'active' : '' }}">presensi</a> --}}
                 </li>
-                <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') ? 'active' : '' }}">blog</a></li>
+                <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') ? 'active' : '' }}">Kegiatan</a></li>
 
-                <li><a href="{{ url('/contact') }}" class="{{ request()->is('contact') ? 'active' : '' }}">Contact</a>
+                <li><a href="{{ url('/contact') }}" class="{{ request()->is('contact') ? 'active' : '' }}">Kontak</a>
                 </li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

@@ -45,4 +45,8 @@ class Anggota extends Model
             }
         });
     }
+    public function anggotaKegiatan()
+    {
+        return $this->hasMany(AnggotaKegiatan::class, 'anggota_id', 'id');
+    }
 }
