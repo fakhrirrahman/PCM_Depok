@@ -4,15 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
 class Anggota extends Model
 {
-    use HasFactory, HasUlids;
-    protected $primaryKey = 'id';
-    public $incrementing = false;
+    use HasFactory;
     public $timestamps = false;
-    protected $keyType = 'string';
 
     protected $table = 'anggota';
 

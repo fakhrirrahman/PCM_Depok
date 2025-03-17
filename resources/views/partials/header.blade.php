@@ -12,7 +12,7 @@
                         <span>Tentang Kami</span>
                     </a>
                 </li>
-                <li><a href="{{ url('/services') }}" class="{{ request()->is('services') ? 'active' : '' }}">Anggota</a>
+                <li><a href="{{ url('/anggota') }}" class="{{ request()->is('anggota') ? 'active' : '' }}">Anggota</a>
                 </li>
                 <li><a href="{{ url('/pricing') }}" class="{{ request()->is('pricing') ? 'active' : '' }}">Struktur
                         Organisasi</a>

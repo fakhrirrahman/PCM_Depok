@@ -3,7 +3,9 @@
 @section('title', 'Home')
 
 @section('content')
-
+@php
+use App\Models\Kegiatan;
+@endphp
 <!-- Hero Section -->
 <section id="hero" class="hero section dark-background">
 
@@ -98,154 +100,60 @@
 
 </section><!-- /About Section -->
 
-<!-- Services Section -->
-<section id="services" class="services section light-background">
+<!-- Blog Posts Section -->
+<section id="blog-posts" class="blog-posts section">
 
     <div class="container">
-
         <div class="row gy-4">
+            @foreach ( $kegiatans as $blog )
 
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-item item-cyan position-relative">
-                    <div class="icon">
-                        <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="none" stroke-width="0" fill="#f5f5f5"
-                                d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174">
-                            </path>
-                        </svg>
-                        <i class="bi bi-activity"></i>
+            <div class="col-lg-4">
+                <article class="position-relative h-100">
+                    <div class="post-img position-relative overflow-hidden" style="height: 250px;">
+                        <img src="{{ $blog->getFirstMediaUrl(Kegiatan::MEDIA_COLLECTION) ?: asset('default.png') }}"
+                            class="img-fluid w-100 h-100 object-fit-cover" alt="{{ $blog->title }}">
+                        <span
+                            class="post-date position-absolute bottom-0 end-0 bg-success text-white px-2 py-1 small">{{
+                            $blog->tanggal }}</span>
                     </div>
-                    <a href="service-details.html" class="stretched-link">
-                        <h3>Nesciunt Mete</h3>
-                    </a>
-                    <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure
-                        perferendis tempore et consequatur.</p>
-                </div>
-            </div><!-- End Service Item -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-item item-cyan position-relative">
-                    <div class="icon">
-                        <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="none" stroke-width="0" fill="#f5f5f5"
-                                d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174">
-                            </path>
-                        </svg>
-                        <i class="bi bi-activity"></i>
-                    </div>
-                    <a href="service-details.html" class="stretched-link">
-                        <h3>Nesciunt Mete</h3>
-                    </a>
-                    <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure
-                        perferendis tempore et consequatur.</p>
-                </div>
-            </div><!-- End Service Item -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-item item-cyan position-relative">
-                    <div class="icon">
-                        <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke="none" stroke-width="0" fill="#f5f5f5"
-                                d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174">
-                            </path>
-                        </svg>
-                        <i class="bi bi-activity"></i>
-                    </div>
-                    <a href="service-details.html" class="stretched-link">
-                        <h3>Nesciunt Mete</h3>
-                    </a>
-                    <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure
-                        perferendis tempore et consequatur.</p>
-                </div>
-            </div><!-- End Service Item -->
 
-            <!-- Repeat for other service items -->
+
+                    <div class="post-content d-flex flex-column">
+
+                        <h3 class="post-title">{{ $blog->nama_kegiatan}}</h3>
+
+                        <div class="meta d-flex align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
+                            </div>
+                            <span class="px-3 text-black-50">/</span>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                            </div>
+                        </div>
+
+                        <p>
+                            {{ Str::limit($blog->deskripsi, 120, '...') }}
+                        </p>
+
+                        <hr>
+
+                        <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
+                                class="bi bi-arrow-right"></i></a>
+
+                    </div>
+
+                </article>
+            </div><!-- End post list item -->
+
+            @endforeach
 
         </div>
-
-    </div>
-
-</section><!-- /Services Section -->
-
-{{--
-<!-- Portfolio Section -->
-<section id="portfolio" class="portfolio section">
-
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-    </div><!-- End Section Title -->
-
-    <div class="container">
-
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-app">App</li>
-                <li data-filter=".filter-product">Card</li>
-                <li data-filter=".filter-branding">Web</li>
-            </ul><!-- End Portfolio Filters -->
-
-            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                    <img src="{{ asset('Company/assets/img/masonry-portfolio/masonry-portfolio-1.jpg') }}"
-                        class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>App 1</h4>
-                        <p>Lorem ipsum, dolor sit</p>
-                        <a href="{{ asset('Company/assets/img/masonry-portfolio/masonry-portfolio-1.jpg') }}"
-                            title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                class="bi bi-zoom-in"></i></a>
-                        <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                class="bi bi-link-45deg"></i></a>
-                    </div>
-                </div><!-- End Portfolio Item -->
-
-                <!-- Repeat for other portfolio items -->
-
-            </div><!-- End Portfolio Container -->
-
+        <div class="d-flex justify-content-center mt-4">
+            {{-- {{ $blogs->links() }} --}}
         </div>
-
     </div>
 
-</section><!-- /Portfolio Section --> --}}
-
-<!-- Clients Section -->
-<section id="clients" class="clients section">
-
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Clients</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-    </div><!-- End Section Title -->
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row g-0 clients-wrap">
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="{{ asset('Company/assets/img/clients/client-1.png') }}" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="{{ asset('Company/assets/img/clients/client-1.png') }}" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="{{ asset('Company/assets/img/clients/client-1.png') }}" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="{{ asset('Company/assets/img/clients/client-1.png') }}" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <!-- Repeat for other client items -->
-
-        </div>
-
-
-    </div>
-
-
-</section><!-- /Clients Section -->
+</section><!-- /Blog Posts Section -->
 
 @endsection

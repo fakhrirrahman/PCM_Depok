@@ -1,26 +1,21 @@
 <?php
 
+use App\Http\Controllers\AnggotaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\KegiatanController;
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-Route::get('/services', function () {
-    return view('services');
-})->name('services');
-Route::get('/pricing', function () {
-    return view('pricing');
-})->name('pricing');
-Route::get('/blog', function () {
-    return view('blog');
-})->name('blog');
-// Route::get('/presensi', function () {
-//     return view('attendance');
-// })->name('attendance');
+Route::get('/', [KegiatanController::class, 'index'])->name('home');
+Route::get('/blog', [KegiatanController::class, 'blog'])->name('blog');
+Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota');
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
 Route::post('/contact/submit', [ContactController::class, 'submitForm'])->name('contact.submit');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/pricing', function () {
+    return view('pricing');
+})->name('pricing');
