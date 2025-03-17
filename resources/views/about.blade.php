@@ -61,35 +61,57 @@
 
 <section id="team" class="team py-5 bg-light">
     <div class="container" data-aos="fade-up">
-        <div class="section-title text-center mb-5">
+        <div class="section-title text-center mb-4">
             <h2>Meet Our Team</h2>
-            <p>Our team is composed of talented and dedicated professionals who are passionate about their work.</p>
+            <p>Our team is composed of talented and dedicated professionals.</p>
         </div>
-        <div class="row gy-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="team-member text-center p-4 shadow rounded">
-                    <img src="{{ asset('Company/assets/img/team/team-1.jpg') }}" class="img-fluid rounded-circle mb-3"
-                        alt="Team Member">
-                    <h4>John Doe</h4>
-                    <p>CEO & Founder</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-member text-center p-4 shadow rounded">
-                    <img src="{{ asset('Company/assets/img/team/team-2.jpg') }}" class="img-fluid rounded-circle mb-3"
-                        alt="Team Member">
-                    <h4>Jane Smith</h4>
-                    <p>Chief Marketing Officer</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="team-member text-center p-4 shadow rounded">
-                    <img src="{{ asset('Company/assets/img/team/team-3.jpg') }}" class="img-fluid rounded-circle mb-3"
-                        alt="Team Member">
-                    <h4>Michael Brown</h4>
-                    <p>Lead Developer</p>
-                </div>
-            </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Profesi</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Tahun Pembuatan</th>
+                        {{-- <th>NBM</th>
+                        <th>NBM Depan</th> --}}
+                        <th>Cabang</th>
+                        {{-- <th>PDM</th>
+                        <th>PWM</th> --}}
+                        <th>Alamat</th>
+                        <th>Kabupaten</th>
+                        <th>Provinsi</th>
+                        <th>Kelurahan</th>
+                        <th>No HP</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($anggota as $index => $member)
+                    <tr>
+                        <td>{{ $anggota->firstItem() + $index }}</td>
+                        <td>{{ $member->nama }}</td>
+                        <td>{{ $member->profesi }}</td>
+                        <td>{{ $member->tempat_lahir }}</td>
+                        <td>{{ $member->tanggal_lahir }}</td>
+                        <td>{{ $member->tahun_pembuatan }}</td>
+                        {{-- <td>{{ $member->nbm }}</td>
+                        <td>{{ $member->nbm_depan }}</td> --}}
+                        <td>{{ $member->cabang }}</td>
+                        {{-- <td>{{ $member->pdm }}</td>
+                        <td>{{ $member->pwm }}</td> --}}
+                        <td>{{ $member->alamat }}</td>
+                        <td>{{ $member->kabupaten_tinggal }}</td>
+                        <td>{{ $member->provinsi_tinggal }}</td>
+                        <td>{{ $member->kelurahan }}</td>
+                        <td>{{ $member->no_hp }}</td>
+                        <td>{{ $member->email }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

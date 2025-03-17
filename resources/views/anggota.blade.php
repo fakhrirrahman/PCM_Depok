@@ -22,6 +22,17 @@
             <h2>Meet Our Team</h2>
             <p>Our team is composed of talented and dedicated professionals.</p>
         </div>
+        <form method="GET" action="{{ route('anggota') }}" class="mb-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group shadow-sm">
+                        <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nama..."
+                            value="{{ request('search') }}">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
                 <thead class="table-dark">
@@ -71,7 +82,11 @@
             </table>
         </div>
         <div class="d-flex justify-content-center">
-            {{ $anggota->links('pagination::bootstrap-4') }}
+            <nav>
+                <ul class="pagination pagination-white">
+                    {{ $anggota->appends(['search' => request('search')])->links('pagination::bootstrap-4') }}
+                </ul>
+            </nav>
         </div>
     </div>
 </section>
