@@ -8,19 +8,21 @@
             <ul>
                 <li><a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Halaman Utama</a></li>
                 <li class="dropdown">
-                    <a href="{{ url('/about') }}" class="{{ request()->is('about*') ? 'active' : '' }}">
+                    <a href="{{ url('/tentang-kami') }}" class="{{ request()->is('tentang-kami*') ? 'active' : '' }}">
                         <span>Tentang Kami</span>
                     </a>
                 </li>
                 <li><a href="{{ url('/anggota') }}" class="{{ request()->is('anggota') ? 'active' : '' }}">Anggota</a>
                 </li>
-                <li><a href="{{ url('/pricing') }}" class="{{ request()->is('pricing') ? 'active' : '' }}">Struktur
+                <li><a href="{{ url('/struktur-anggota') }}"
+                        class="{{ request()->is('struktur-anggota') ? 'active' : '' }}">Struktur
                         Organisasi</a>
                 </li>
                 {{-- <li><a href="{{ url('/presensi') }}"
                         class="{{ request()->is('presensi') ? 'active' : '' }}">presensi</a> --}}
                 </li>
-                <li><a href="{{ url('/blog') }}" class="{{ request()->is('blog') ? 'active' : '' }}">Kegiatan</a></li>
+                <li><a href="{{ url('/kegiatan') }}"
+                        class="{{ request()->is('kegiatan') ? 'active' : '' }}">Kegiatan</a></li>
 
                 <li><a href="{{ url('/contact') }}" class="{{ request()->is('contact') ? 'active' : '' }}">Kontak</a>
                 </li>

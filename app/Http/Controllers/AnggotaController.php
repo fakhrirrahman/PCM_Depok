@@ -20,6 +20,6 @@ class AnggotaController extends Controller
     public function about()
     {
         $anggota = Anggota::paginate(10);
-        return view('about', compact('anggota'));
+        return view('tentang-kami', compact('anggota'));
     }
 }

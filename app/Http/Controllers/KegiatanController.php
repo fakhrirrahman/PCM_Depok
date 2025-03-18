@@ -13,10 +13,10 @@ class KegiatanController extends Controller
 
         return view('index', compact('kegiatans')); // Tampilkan data kegiatan
     }
-    public function blog()
+    public function kegiatan()
     {
         $kegiatans = Kegiatan::with('anggota')->latest()->get(); // Ambil data kegiatan
 
-        return view('blog', compact('kegiatans')); // Tampilkan data kegiatan
+        return view('kegiatan', compact('kegiatans'));
     }
 }

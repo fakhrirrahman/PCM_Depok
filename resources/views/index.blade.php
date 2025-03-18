@@ -14,21 +14,20 @@ use App\Models\Kegiatan;
         <div class="carousel-item active">
             <img src="{{ asset('Company/assets/img/hero-carousel/hero-carousel-1.jpg') }}" alt="">
             <div class="container">
-                <h2>We are professional</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
+                <h2>Pimpinan Cabang Muhammadiyah Depok.</h2>
+                <p>Pimpinan Cabang Muhammadiyah (PCM) Depok berkomitmen dalam dakwah Islam berkemajuan, menggerakkan
+                    pendidikan, sosial, dan pemberdayaan masyarakat untuk kesejahteraan umat.</p>
             </div>
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
             <img src="{{ asset('Company/assets/img/hero-carousel/hero-carousel-2.jpg') }}" alt="">
             <div class="container">
-                <h2>At vero eos et accusamus</h2>
-                <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-                    placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
-                    quibusdam et aut officiis debitis aut.</p>
-                <a href="about.html" class="btn-get-started">Read More</a>
+                <h2>Pimpinan Cabang Muhammadiyah Depok</h2>
+                <p>Pimpinan Cabang Muhammadiyah (PCM) Depok berperan aktif dalam membangun masyarakat yang berkemajuan,
+                    mengedepankan nilai-nilai Islam dalam pendidikan, sosial, dan dakwah. Dengan semangat kebersamaan,
+                    PCM Depok terus berupaya menghadirkan solusi dan kontribusi nyata bagi umat demi mewujudkan
+                    kesejahteraan dan keadilan sosial.</p>
             </div>
         </div><!-- End Carousel Item -->
 
