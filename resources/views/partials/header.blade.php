@@ -14,8 +14,8 @@
                 </li>
                 <li><a href="{{ url('/anggota') }}" class="{{ request()->is('anggota') ? 'active' : '' }}">Anggota</a>
                 </li>
-                <li><a href="{{ url('/struktur-anggota') }}"
-                        class="{{ request()->is('struktur-anggota') ? 'active' : '' }}">Struktur
+                <li><a href="{{ url('/struktur-organisasi') }}"
+                        class="{{ request()->is('struktur-organisasi') ? 'active' : '' }}">Struktur
                         Organisasi</a>
                 </li>
                 {{-- <li><a href="{{ url('/presensi') }}"

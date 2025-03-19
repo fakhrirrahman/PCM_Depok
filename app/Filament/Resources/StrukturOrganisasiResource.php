@@ -14,6 +14,8 @@ class StrukturOrganisasiResource extends Resource
     protected static ?string $model = StrukturOrganisasi::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
+    protected static ?string $pluralModelLabel = 'Struktur Organisasi';
+
 
     public static function getNavigationGroup(): ?string
     {

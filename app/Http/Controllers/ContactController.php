@@ -30,6 +30,6 @@ class ContactController extends Controller
         // Kirim email
         Mail::to('fakhrirrahman7@gmail.com')->send(new ContactMail($request->all()));
 
-        return redirect()->route('contact')->with('success', 'Your message has been sent successfully.');
+        return redirect()->back()->with('success', 'Pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.');
     }
 }

@@ -11,17 +11,11 @@ class StrukturOrganisasi extends Model
 {
     use HasFactory, HasUlids;
     protected $table = 'struktur_organisasi';
+
+    public $timestamps = false;
     protected $fillable = [
         'nama',
         'jabatan',
 
     ];
-
-    public static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->id = (string) Str::ulid(); // Auto-generate ULID
-        });
-    }
 }

@@ -76,8 +76,8 @@ class KegiatanResource extends Resource
                 SpatieMediaLibraryImageColumn::make(Kegiatan::MEDIA_COLLECTION)
                     ->collection(Kegiatan::MEDIA_COLLECTION)
                     ->label('Gambar')
-                    ->size(60) // Ukuran gambar
-                    ->defaultImageUrl(url('/default.png')),
+                    ->size(60)
+                    ->defaultImageUrl(asset('storage/default.png')),
                 TextColumn::make('anggota.nama')
                     ->label('Anggota')
                     ->badge()

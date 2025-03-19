@@ -15,8 +15,15 @@ class KegiatanController extends Controller
     }
     public function kegiatan()
     {
-        $kegiatans = Kegiatan::with('anggota')->latest()->get(); // Ambil data kegiatan
+        $kegiatans = Kegiatan::with('anggota')->paginate(9); // Ambil data kegiatan
 
         return view('kegiatan', compact('kegiatans'));
+    }
+
+    public function show($id)
+    {
+        $kegiatan = Kegiatan::with('anggota')->find($id);
+
+        return view('pageKegiatan', compact('kegiatan'));
     }
 }

@@ -18,9 +18,11 @@ class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left';
 
-    protected static ?string $navigationGroup = 'Manajemen Karyawan';
+    protected static ?string $navigationGroup = 'Komunikasi';
+    protected static ?string $pluralModelLabel = 'Pesan';
+
 
     public static function form(Form $form): Form
     {
@@ -67,6 +69,7 @@ class ContactResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

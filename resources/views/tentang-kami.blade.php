@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'About Us')
+@section('title', 'Tentang Kami')
 
 @section('content')
 <!-- Page Title -->
 <div class="page-title accent-background">
     <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">About</h1>
+        <h1 class="mb-2 mb-lg-0">Tentang Kami</h1>
         <nav class="breadcrumbs">
             <ol>
-                <li><a href="{{route ('home')}}">Home</a></li>
-                <li class="current">About</li>
+                <li><a href="{{route ('home')}}">Halaman Utama</a></li>
+                <li class="current">Tentang Kami</li>
             </ol>
         </nav>
     </div>
@@ -116,129 +116,27 @@
     </div>
 </section>
 
-<!-- Skills Section -->
-<section id="skills" class="skills section">
-
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Our Skills</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-    </div><!-- End Section Title -->
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row skills-content skills-animation">
-
-            <div class="col-lg-6">
-
-                <div class="progress">
-                    <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                            aria-valuemax="100"></div>
-                    </div>
-                </div><!-- End Skills Item -->
-
-                <div class="progress">
-                    <span class="skill"><span>CSS</span> <i class="val">90%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                            aria-valuemax="100"></div>
-                    </div>
-                </div><!-- End Skills Item -->
-
-                <div class="progress">
-                    <span class="skill"><span>JavaScript</span> <i class="val">75%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
-                    </div>
-                </div><!-- End Skills Item -->
-
-            </div>
-
-            <div class="col-lg-6">
-
-                <div class="progress">
-                    <span class="skill"><span>PHP</span> <i class="val">80%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                            aria-valuemax="100"></div>
-                    </div>
-                </div><!-- End Skills Item -->
-
-                <div class="progress">
-                    <span class="skill"><span>WordPress/CMS</span> <i class="val">90%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                            aria-valuemax="100"></div>
-                    </div>
-                </div><!-- End Skills Item -->
-
-                <div class="progress">
-                    <span class="skill"><span>Photoshop</span> <i class="val">55%</i></span>
-                    <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0"
-                            aria-valuemax="100"></div>
-                    </div>
-                </div><!-- End Skills Item -->
-
-            </div>
-
+<!-- Section Visi & Misi -->
+<section id="visi-misi" class="py-5">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title text-center mb-4">
+            <h2>Visi & Misi</h2>
         </div>
-
-    </div>
-
-</section><!-- /Skills Section -->
-
-<!-- Clients Section -->
-<section id="clients" class="clients section">
-
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Clients</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-    </div><!-- End Section Title -->
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row g-0 clients-wrap">
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="Company/assets/img/clients/client-1.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="Company/assets/img/clients/client-2.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="Company/assets/img/clients/client-3.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="Company/assets/img/clients/client-4.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="Company/assets/img/clients/client-5.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="Company/assets/img/clients/client-6.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="Company/assets/img/clients/client-7.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
-            <div class="col-xl-3 col-md-4 client-logo">
-                <img src="Company/assets/img/clients/client-8.png" class="img-fluid" alt="">
-            </div><!-- End Client Item -->
-
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Visi</h3>
+                <p>Mewujudkan organisasi yang inovatif, berdaya saing, dan berkontribusi positif bagi masyarakat.</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Misi</h3>
+                <ul>
+                    <li>Mengembangkan sumber daya manusia yang kompeten dan profesional.</li>
+                    <li>Mendorong inovasi dan kreativitas dalam setiap aspek organisasi.</li>
+                    <li>Membangun kerja sama yang kuat dengan berbagai pihak untuk mencapai tujuan bersama.</li>
+                    <li>Meningkatkan kesejahteraan anggota melalui berbagai program dan kegiatan.</li>
+                </ul>
+            </div>
         </div>
-
     </div>
-
-</section><!-- /Clients Section -->
+</section>
 @endsection

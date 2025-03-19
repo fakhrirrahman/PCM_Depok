@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Our Services')
+@section('title', 'Kontak')
 
 @section('content')
 
 <!-- Page Title -->
 <div class="page-title accent-background">
     <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Contact</h1>
+        <h1 class="mb-2 mb-lg-0">Kontak</h1>
         <nav class="breadcrumbs">
             <ol>
-                <li><a href="{{ url('/') }}">Home</a></li>
-                <li class="current">Contact</li>
+                <li><a href="{{ url('/') }}">Halaman Utama</a></li>
+                <li class="current">Kontak</li>
             </ol>
         </nav>
     </div>
@@ -55,8 +55,15 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-8">
+                <!-- Alert Success -->
+                @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
                 <form action="{{ route('contact.submit') }}" method="post" class="php-email-form">
                     @csrf
 

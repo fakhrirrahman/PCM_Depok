@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Our Services')
+@section('title', 'Kegiatan')
 
 @section('content')
 
@@ -11,11 +11,11 @@ use App\Models\Kegiatan;
 <!-- Page Title -->
 <div class="page-title accent-background">
   <div class="container d-lg-flex justify-content-between align-items-center">
-    <h1 class="mb-2 mb-lg-0">Blog</h1>
+    <h1 class="mb-2 mb-lg-0">Kegiatan</h1>
     <nav class="breadcrumbs">
       <ol>
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li class="current">Blog</li>
+        <li><a href="{{ url('/') }}">Halaman Utama</a></li>
+        <li class="current">Kegiatan</li>
       </ol>
     </nav>
   </div>
@@ -58,8 +58,10 @@ use App\Models\Kegiatan;
 
             <hr>
 
-            <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('kegiatan.show', $blog->id) }}" class="readmore stretched-link">
+              <span>Read More</span><i class="bi bi-arrow-right"></i>
+            </a>
+
 
           </div>
 
@@ -78,22 +80,48 @@ use App\Models\Kegiatan;
 
 <!-- Blog Pagination Section -->
 <section id="blog-pagination" class="blog-pagination section">
-
   <div class="container">
     <div class="d-flex justify-content-center">
-      <ul>
-        <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-        <li><a href="#" class="active">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li>...</li>
-        <li><a href="#">10</a></li>
-        <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-      </ul>
+      <nav>
+        <ul class="pagination">
+          {{-- Tombol Previous --}}
+          @if ($kegiatans->onFirstPage())
+          <li class="page-item disabled">
+            <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+          </li>
+          @else
+          <li class="page-item">
+            <a class="page-link" href="{{ $kegiatans->previousPageUrl() }}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+          @endif
+
+          {{-- Nomor Halaman --}}
+          @foreach ($kegiatans->links()->elements[0] as $page => $url)
+          @if ($page == $kegiatans->currentPage())
+          <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
+          @else
+          <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
+          @endif
+          @endforeach
+
+          {{-- Tombol Next --}}
+          @if ($kegiatans->hasMorePages())
+          <li class="page-item">
+            <a class="page-link" href="{{ $kegiatans->nextPageUrl() }}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+          @else
+          <li class="page-item disabled">
+            <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+          </li>
+          @endif
+        </ul>
+      </nav>
     </div>
   </div>
-
 </section><!-- /Blog Pagination Section -->
 
 @endsection

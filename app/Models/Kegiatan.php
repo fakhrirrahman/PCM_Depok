@@ -30,12 +30,6 @@ class Kegiatan extends Model implements HasMedia
         return $this->belongsToMany(Anggota::class, 'anggota_kegiatan', 'kegiatan_id', 'anggota_id');
     }
 
-    // public function registerMediaCollections(): void
-    // {
-    //     $this->addMediaCollection(self::MEDIA_COLLECTION)
-    //         ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/jpg']);
-    // }
-
     public function getFirstMediaUrlAttribute(): string
     {
         return $this->getFirstMediaUrl(self::MEDIA_COLLECTION);
