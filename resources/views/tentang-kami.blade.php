@@ -58,12 +58,34 @@
     </div>
 
 </section><!-- /About Section -->
+<section id="visi-misi" class="py-5">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title text-center mb-4">
+            <h2>Visi & Misi</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Visi</h3>
+                <p>Mewujudkan organisasi yang inovatif, berdaya saing, dan berkontribusi positif bagi masyarakat.</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Misi</h3>
+                <ul>
+                    <li>Mengembangkan sumber daya manusia yang kompeten dan profesional.</li>
+                    <li>Mendorong inovasi dan kreativitas dalam setiap aspek organisasi.</li>
+                    <li>Membangun kerja sama yang kuat dengan berbagai pihak untuk mencapai tujuan bersama.</li>
+                    <li>Meningkatkan kesejahteraan anggota melalui berbagai program dan kegiatan.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section id="team" class="team py-5 bg-light">
     <div class="container" data-aos="fade-up">
         <div class="section-title text-center mb-4">
-            <h2>Meet Our Team</h2>
-            <p>Our team is composed of talented and dedicated professionals.</p>
+            <h2>Beberapa Anggota Pada PCM Depok</h2>
+            <p>Kami mempunyai anggota yang banyak datanya bisa dilihat pada daftar anggota</p>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
@@ -117,26 +139,5 @@
 </section>
 
 <!-- Section Visi & Misi -->
-<section id="visi-misi" class="py-5">
-    <div class="container" data-aos="fade-up">
-        <div class="section-title text-center mb-4">
-            <h2>Visi & Misi</h2>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Visi</h3>
-                <p>Mewujudkan organisasi yang inovatif, berdaya saing, dan berkontribusi positif bagi masyarakat.</p>
-            </div>
-            <div class="col-md-6">
-                <h3>Misi</h3>
-                <ul>
-                    <li>Mengembangkan sumber daya manusia yang kompeten dan profesional.</li>
-                    <li>Mendorong inovasi dan kreativitas dalam setiap aspek organisasi.</li>
-                    <li>Membangun kerja sama yang kuat dengan berbagai pihak untuk mencapai tujuan bersama.</li>
-                    <li>Meningkatkan kesejahteraan anggota melalui berbagai program dan kegiatan.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+
 @endsection
