@@ -17,7 +17,7 @@ class VisiMisiResource extends Resource
 {
     protected static ?string $model = VisiMisi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
     protected static ?string $pluralModelLabel = 'Visi Misi';
 
 
