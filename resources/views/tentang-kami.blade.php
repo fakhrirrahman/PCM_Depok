@@ -28,27 +28,29 @@
             </div>
 
             <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
-                <h2 class="inner-title">Consequatur eius et magnam</h2>
+                <h2 class="inner-title">Pimpinan Cabang Muhammadiyah Depok</h2>
                 <div class="our-story">
-                    <h4>Est 1988</h4>
-                    <h3>Our Story</h3>
-                    <p>Inventore aliquam beatae at et id alias. Ipsa dolores amet consequuntur minima quia maxime autem.
-                        Quidem id sed ratione. Tenetur provident autem in reiciendis rerum at dolor. Aliquam consectetur
-                        laudantium temporibus dicta minus dolor.</p>
+                    <p>Sejak berdiri, Muhammadiyah Depok terus berkomitmen untuk membangun masyarakat yang berkemajuan,
+                        berlandaskan nilai-nilai Islam yang rahmatan lil ‘alamin. Dengan semangat dakwah dan pendidikan,
+                        kami berusaha menghadirkan solusi nyata bagi umat dan bangsa.</p>
                     <ul>
-                        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commo</span>
+                        <li><i class="bi bi-check-circle"></i> <span>Membangun generasi unggul dan berakhlak
+                                mulia</span>
                         </li>
-                        <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in</span>
+                        <li><i class="bi bi-check-circle"></i> <span>Mengembangkan pendidikan berbasis Islam dan
+                                teknologi</span>
                         </li>
-                        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
+                        <li><i class="bi bi-check-circle"></i> <span>Mewujudkan kesejahteraan sosial melalui gerakan
+                                filantropi</span></li>
                     </ul>
-                    <p>Vitae autem velit excepturi fugit. Animi ad non. Eligendi et non nesciunt suscipit repellendus
-                        porro in quo eveniet. Molestias in maxime doloremque.</p>
+                    <p>Kami percaya bahwa perubahan dimulai dari langkah kecil yang dilakukan dengan penuh keikhlasan
+                        dan kesungguhan. Mari bersama membangun Depok yang lebih baik melalui semangat persyarikatan dan
+                        gotong royong.</p>
 
                     <div class="watch-video d-flex align-items-center position-relative">
                         <i class="bi bi-play-circle"></i>
-                        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox stretched-link">Watch
-                            Video</a>
+                        <a href="https://www.youtube.com/watch?v=UnOuI5kht2k&ab_channel=arifranu"
+                            class="glightbox stretched-link">Video profil</a>
                     </div>
                 </div>
             </div>

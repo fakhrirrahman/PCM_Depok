@@ -29,12 +29,12 @@
         <div class="row gy-5 gx-lg-5">
             <div class="col-lg-4">
                 <div class="info">
-                    <h3>Get in touch</h3>
+                    <h3>Hubungi kami</h3>
                     <p>Silakan hubungi kami untuk pertanyaan atau informasi lebih lanjut.</p>
                     <div class="info-item d-flex">
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
                         <div>
-                            <h4>Location:</h4>
+                            <h4>Lokasi:</h4>
                             <p>Ruko Gorongan, Jl. Perumnas No.1, Ngropoh, Condongcatur, Kec. Depok, Kabupaten Sleman,
                                 Daerah Istimewa Yogyakarta 55283</p>
                         </div>
@@ -49,7 +49,7 @@
                     <div class="info-item d-flex">
                         <i class="bi bi-phone flex-shrink-0"></i>
                         <div>
-                            <h4>Call:</h4>
+                            <h4>Telepon:</h4>
                             <p>+1 5589 55488 55</p>
                         </div>
                     </div>
@@ -69,9 +69,9 @@
 
                     <!-- Nama -->
                     <div class="form-group">
-                        <label for="name">Your Name</label>
+                        <label for="name">Nama Kamu</label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            id="name" placeholder="Your Name" value="{{ old('name') }}" required minlength="3"
+                            id="name" placeholder="Nama Kamu" value="{{ old('name') }}" required minlength="3"
                             maxlength="100">
                         @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -80,9 +80,9 @@
 
                     <!-- Email -->
                     <div class="form-group mt-3">
-                        <label for="email">Your Email</label>
+                        <label for="email">Email Kamu</label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            id="email" placeholder="Your Email" value="{{ old('email') }}" required>
+                            id="email" placeholder="Email Kamul" value="{{ old('email') }}" required>
                         @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -100,9 +100,9 @@
 
                     <!-- Pesan -->
                     <div class="form-group mt-3">
-                        <label for="message">Message</label>
+                        <label for="message">Pesan</label>
                         <textarea class="form-control @error('message') is-invalid @enderror" name="message"
-                            id="message" placeholder="Your Message" required>{{ old('message') }}</textarea>
+                            id="message" placeholder="Pesan" required>{{ old('message') }}</textarea>
                         @error('message')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
