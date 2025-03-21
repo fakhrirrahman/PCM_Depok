@@ -16,7 +16,6 @@ class ContactController extends Controller
 
     public function submitForm(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
@@ -27,8 +26,7 @@ class ContactController extends Controller
         // Simpan data ke database
         Contact::create($request->all());
 
-        // Kirim email
-        Mail::to('fakhrirrahman7@gmail.com')->send(new ContactMail($request->all()));
+        Mail::to('pcmdepok@gmail.com')->send(new ContactMail($request->all()));
 
         return redirect()->back()->with('success', 'Pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.');
     }
