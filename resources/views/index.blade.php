@@ -105,6 +105,10 @@ use App\Models\Kegiatan;
 
     <div class="container">
         <div class="row gy-4">
+            <div class="section-title text-center mb-4">
+                <h2>kegiatan terbaru kami</h2>
+                <p>kami melakukan banyak kegiatan selengkapnya pada halaman kegiatan.</p>
+            </div>
             @foreach ( $kegiatans as $blog )
 
             <div class="col-lg-4">

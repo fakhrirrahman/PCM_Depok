@@ -115,7 +115,7 @@
                 <tbody>
                     @foreach($anggota as $index => $member)
                     <tr>
-                        <td>{{ $anggota->firstItem() + $index }}</td>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $member->nama }}</td>
                         <td>{{ $member->profesi }}</td>
                         <td>{{ $member->tempat_lahir }}</td>

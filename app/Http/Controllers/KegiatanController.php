@@ -9,13 +9,12 @@ class KegiatanController extends Controller
 {
     public function index()
     {
-        $kegiatans = Kegiatan::with('anggota')->paginate(3); // Ambil data kegiatan
-
-        return view('index', compact('kegiatans')); // Tampilkan data kegiatan
+        $kegiatans = Kegiatan::with('anggota')->latest()->take(3)->get();
+        return view('index', compact('kegiatans'));
     }
     public function kegiatan()
     {
-        $kegiatans = Kegiatan::with('anggota')->paginate(9); // Ambil data kegiatan
+        $kegiatans = Kegiatan::with('anggota')->paginate(9);
 
         return view('kegiatan', compact('kegiatans'));
     }

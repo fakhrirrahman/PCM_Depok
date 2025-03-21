@@ -44,11 +44,11 @@ use App\Models\Kegiatan;
 
             <div class="meta d-flex align-items-center">
               <div class="d-flex align-items-center">
-                <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
+                <i class="bi bi-person"></i> <span class="ps-2">Admin</span>
               </div>
               <span class="px-3 text-black-50">/</span>
               <div class="d-flex align-items-center">
-                <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                <i class="bi bi-folder2"></i> <span class="ps-2">Kegiatan PCM Depok</span>
               </div>
             </div>
 
@@ -59,7 +59,7 @@ use App\Models\Kegiatan;
             <hr>
 
             <a href="{{ route('kegiatan.show', $blog->id) }}" class="readmore stretched-link">
-              <span>Read More</span><i class="bi bi-arrow-right"></i>
+              <span>Selengkapnya</span><i class="bi bi-arrow-right"></i>
             </a>
 
 

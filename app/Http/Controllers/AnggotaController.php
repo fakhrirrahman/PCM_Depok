@@ -19,7 +19,7 @@ class AnggotaController extends Controller
 
     public function about()
     {
-        $anggota = Anggota::paginate(10);
+        $anggota = Anggota::whereNotNull('nama')->orderBy('id', 'desc')->take(10)->get();
         return view('tentang-kami', compact('anggota'));
     }
 }

@@ -19,8 +19,8 @@
 <section id="team" class="team py-5 bg-light">
     <div class="container" data-aos="fade-up">
         <div class="section-title text-center mb-4">
-            <h2>Meet Our Team</h2>
-            <p>Our team is composed of talented and dedicated professionals.</p>
+            <h2>Anggota PCM Depok</h2>
+            <p>Kami mempunyai anggota yang banyak datanya bisa dilihat pada selengkapnya</p>
         </div>
         <form method="GET" action="{{ route('anggota') }}" class="mb-4">
             <div class="row justify-content-center">
