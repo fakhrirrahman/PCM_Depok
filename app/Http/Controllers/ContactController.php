@@ -23,7 +23,6 @@ class ContactController extends Controller
             'message' => 'required|string',
         ]);
 
-        // Simpan data ke database
         Contact::create($request->all());
 
         Mail::to('pcmdepok@gmail.com')->send(new ContactMail($request->all()));

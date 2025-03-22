@@ -12,24 +12,13 @@ class AnggotaKegiatan extends Model
     use HasFactory, HasUlids;
 
     protected $table = 'anggota_kegiatan';
-    public $incrementing = false; // ULID harus non-increment
-    protected $keyType = 'string'; // ULID adalah string
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'anggota_id',
         'kegiatan_id',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (!$model->id) {
-                $model->id = (string) Str::ulid(); // Generate ULID untuk id
-            }
-        });
-    }
 
     public function anggota()
     {

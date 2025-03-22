@@ -12,11 +12,7 @@ class Keuangan extends Model
     use HasFactory, HasUlids;
 
     protected $table = 'keuangan';
-    // protected $casts = [
-    //     'jumlah' => 'float',
-    //     'saldo_awal' => 'float',
-    //     'saldo_akhir' => 'float',
-    // ];
+
     protected $fillable = [
         'tanggal_transaksi',
         'tipe',

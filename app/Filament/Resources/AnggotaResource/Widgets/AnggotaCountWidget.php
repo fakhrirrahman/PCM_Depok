@@ -25,7 +25,7 @@ class AnggotaCountWidget extends BaseWidget
             Stat::make('Total Data Pimpinan', StrukturOrganisasi::count())
                 ->description('Jumlah total pimpinan saat ini')
                 ->color('primary')
-                ->icon('heroicon-m-building-office'), // Ikon gedung kantor di Filament 3
+                ->icon('heroicon-m-building-office'),
         ];
     }
 }

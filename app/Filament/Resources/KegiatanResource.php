@@ -57,10 +57,10 @@ class KegiatanResource extends Resource
                     SpatieMediaLibraryFileUpload::make(Kegiatan::MEDIA_COLLECTION)
                         ->collection(Kegiatan::MEDIA_COLLECTION)
                         ->maxFiles(5)
-                        ->maxSize(1024) // Set max file size to 1MB
+                        ->maxSize(1024)
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
                         ->downloadable()
-                        ->columnSpan(1) // Mengecilkan ukuran form upload
+                        ->columnSpan(1) 
                         ->reorderable(),
                 ]),
         ]);

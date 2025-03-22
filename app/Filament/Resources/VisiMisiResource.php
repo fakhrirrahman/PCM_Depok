@@ -32,8 +32,8 @@ class VisiMisiResource extends Resource
             ->schema([
                 Forms\Components\Textarea::make('visi')
                     ->label('Visi')
-                    ->rows(3) // Menambah tinggi textarea
-                    ->columnSpanFull(), // Jika ingin textarea memenuhi lebar form
+                    ->rows(3)
+                    ->columnSpanFull(),
 
                 Forms\Components\Textarea::make('misi')
                     ->label('Misi')
