@@ -31,9 +31,15 @@ class VisiMisiResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Textarea::make('visi')
-                    ->label('Visi'),
+                    ->label('Visi')
+                    ->rows(3) // Menambah tinggi textarea
+                    ->columnSpanFull(), // Jika ingin textarea memenuhi lebar form
+
                 Forms\Components\Textarea::make('misi')
-                    ->label('Misi'),
+                    ->label('Misi')
+                    ->rows(3)
+                    ->columnSpanFull(),
+
             ]);
     }
 
@@ -41,13 +47,22 @@ class VisiMisiResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('visi')->label('Visi')->searchable(),
-                Tables\Columns\TextColumn::make('misi')->label('Misi'),
+                Tables\Columns\TextColumn::make('visi')
+                    ->label('Visi')
+                    ->limit(100) // Memperbesar batas karakter yang ditampilkan
+                    ->wrap() // Agar teks bisa turun ke bawah jika panjang
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('misi')
+                    ->label('Misi')
+                    ->limit(100) // Memperbesar batas karakter
+                    ->wrap(),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('visi_misi', function (Blueprint $table) {
             $table->id();
-            $table->string('visi')->nullable();
-            $table->string('misi')->nullable();
+            $table->text('visi')->nullable();
+            $table->text('misi')->nullable();
             $table->timestamps();
         });
     }

@@ -77,7 +77,7 @@
                     @foreach($visimisi as $vm)
                     @if(!empty($vm->visi))
                     @php $lastVisi = $vm->visi; @endphp
-                    <li>{{ $lastVisi }}</li>
+                    <p>{{ $lastVisi }}</p>
                     @endif
                     @endforeach
                 </ul>
