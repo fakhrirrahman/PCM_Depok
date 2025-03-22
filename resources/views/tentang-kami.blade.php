@@ -60,6 +60,7 @@
     </div>
 
 </section><!-- /About Section -->
+
 <section id="visi-misi" class="py-5">
     <div class="container" data-aos="fade-up">
         <div class="section-title text-center mb-4">
@@ -68,16 +69,39 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>Visi</h3>
-                <p>Mewujudkan organisasi yang inovatif, berdaya saing, dan berkontribusi positif bagi masyarakat.</p>
+                <ul>
+                    @php
+                    $lastVisi = null;
+                    @endphp
+
+                    @foreach($visimisi as $vm)
+                    @if(!empty($vm->visi))
+                    @php $lastVisi = $vm->visi; @endphp
+                    <li>{{ $lastVisi }}</li>
+                    @endif
+                    @endforeach
+                </ul>
             </div>
+
+
             <div class="col-md-6">
                 <h3>Misi</h3>
                 <ul>
-                    <li>Mengembangkan sumber daya manusia yang kompeten dan profesional.</li>
-                    <li>Mendorong inovasi dan kreativitas dalam setiap aspek organisasi.</li>
-                    <li>Membangun kerja sama yang kuat dengan berbagai pihak untuk mencapai tujuan bersama.</li>
-                    <li>Meningkatkan kesejahteraan anggota melalui berbagai program dan kegiatan.</li>
+                    @php
+                    $lastMisi = null;
+                    @endphp
+
+                    @foreach($visimisi as $vm)
+                    @if(!empty($vm->misi))
+                    @php $lastMisi = $vm->misi; @endphp
+                    @endif
+
+                    @if($lastMisi !== null)
+                    <li>{{ $lastMisi }}</li>
+                    @endif
+                    @endforeach
                 </ul>
+
             </div>
         </div>
     </div>

@@ -142,7 +142,7 @@ use App\Models\Kegiatan;
 
                         <hr>
 
-                        <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
+                        <a href="blog-details.html" class="readmore stretched-link"><span>Selengkapnya</span><i
                                 class="bi bi-arrow-right"></i></a>
 
                     </div>

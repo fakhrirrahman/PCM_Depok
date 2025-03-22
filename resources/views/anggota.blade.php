@@ -81,13 +81,14 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center">
-            <nav>
+        <div class="d-flex justify-content-center flex-wrap responsive">
+            <nav class="w-100 text-center overflow-auto">
                 <ul class="pagination pagination-white">
                     {{ $anggota->appends(['search' => request('search')])->links('pagination::bootstrap-4') }}
                 </ul>
             </nav>
         </div>
+
     </div>
 </section>
 
