@@ -7,55 +7,18 @@
 use App\Models\Kegiatan;
 @endphp
 <!-- Hero Section -->
-<section id="hero" class="hero section dark-background">
-
-    <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-
-        <div class="carousel-item active">
-            <img src="{{ asset('Company/assets/img/hero-carousel/hero-carousel-1.jpg') }}" alt="">
-            <div class="container">
-                <h2>Pimpinan Cabang Muhammadiyah Depok.</h2>
-                <p>Pimpinan Cabang Muhammadiyah (PCM) Depok berkomitmen dalam dakwah Islam berkemajuan, menggerakkan
-                    pendidikan, sosial, dan pemberdayaan masyarakat untuk kesejahteraan umat.</p>
-            </div>
-        </div><!-- End Carousel Item -->
-
-        {{-- <div class="carousel-item">
-            <img src="{{ asset('Company/assets/img/hero-carousel/hero-carousel-2.jpg') }}" alt="">
-            <div class="container">
-                <h2>Pimpinan Cabang Muhammadiyah Depok</h2>
-                <p>Pimpinan Cabang Muhammadiyah (PCM) Depok berperan aktif dalam membangun masyarakat yang berkemajuan,
-                    mengedepankan nilai-nilai Islam dalam pendidikan, sosial, dan dakwah. Dengan semangat kebersamaan,
-                    PCM Depok terus berupaya menghadirkan solusi dan kontribusi nyata bagi umat demi mewujudkan
-                    kesejahteraan dan keadilan sosial.</p>
-            </div>
-        </div><!-- End Carousel Item -->
-
-        <div class="carousel-item">
-            <img src="{{ asset('Company/assets/img/hero-carousel/hero-carousel-3.jpg') }}" alt="">
-            <div class="container">
-                <h2>Temporibus autem quibusdam</h2>
-                <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                    aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt omnis iste
-                    natus error sit voluptatem accusantium.</p>
-                <a href="about.html" class="btn-get-started">Read More</a>
-            </div>
-        </div><!-- End Carousel Item --> --}}
-
-        {{-- <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-        </a>
-
-        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-        </a> --}}
-
-        {{-- <ol class="carousel-indicators"></ol> --}}
-
+<!-- Page Title -->
+<div class="page-title accent-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Halaman Utama</h1>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a href="{{ url('/') }}">Halaman Utama</a></li>
+                <li class="current">Halaman Utama</li>
+            </ol>
+        </nav>
     </div>
-
-</section><!-- /Hero Section -->
-
+</div><!-- End Page Title -->
 <!-- About Section -->
 <section id="about" class="about section">
 
@@ -64,7 +27,7 @@ use App\Models\Kegiatan;
         <div class="row position-relative">
 
             <div class="col-lg-7 about-img" data-aos="zoom-out" data-aos-delay="200"><img
-                    src="{{ asset('Company/assets/img/about.jpg') }}"></div>
+                    src="{{ asset('Company/assets/img/about.webp') }}"></div>
 
             <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
                 <h2 class="inner-title">Pimpinan Cabang Muhammadiyah Depok</h2>
@@ -128,11 +91,11 @@ use App\Models\Kegiatan;
 
                         <div class="meta d-flex align-items-center">
                             <div class="d-flex align-items-center">
-                                <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
+                                <i class="bi bi-person"></i> <span class="ps-2">Admin</span>
                             </div>
                             <span class="px-3 text-black-50">/</span>
                             <div class="d-flex align-items-center">
-                                <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                                <i class="bi bi-folder2"></i> <span class="ps-2">Kegiatan terbaru</span>
                             </div>
                         </div>
 
