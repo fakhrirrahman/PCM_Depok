@@ -9,4 +9,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateKegiatan extends CreateRecord
 {
     protected static string $resource = KegiatanResource::class;
+    public function getTitle(): string|\Illuminate\Contracts\Support\Htmlable
+    {
+        return 'Tambah Kegiatan'; // Ubah teks di sini
+    }
 }

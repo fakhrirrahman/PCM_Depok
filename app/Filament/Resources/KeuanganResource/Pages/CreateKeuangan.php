@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateKeuangan extends CreateRecord
 {
     protected static string $resource = KeuanganResource::class;
+
+    public function getTitle(): string|\Illuminate\Contracts\Support\Htmlable
+    {
+        return 'Tambah Keuangan'; // Ubah teks di sini
+    }
 }

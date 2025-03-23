@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateContact extends CreateRecord
 {
     protected static string $resource = ContactResource::class;
+
+    public function getTitle(): string|\Illuminate\Contracts\Support\Htmlable
+    {
+        return 'Tambah Pesan'; // Ubah teks di sini
+    }
 }

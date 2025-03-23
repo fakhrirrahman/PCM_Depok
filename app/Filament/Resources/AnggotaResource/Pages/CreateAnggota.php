@@ -6,7 +6,12 @@ use App\Filament\Resources\AnggotaResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
+
 class CreateAnggota extends CreateRecord
 {
     protected static string $resource = AnggotaResource::class;
+    public function getTitle(): string|\Illuminate\Contracts\Support\Htmlable
+    {
+        return 'Tambah Anggota'; // Ubah teks di sini
+    }
 }

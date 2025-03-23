@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->favicon(url: asset('Company/assets/img/logo.jpeg'))
             ->brandName('PCM Depok.')
             ->colors([
                 'primary' => Color::Amber,
@@ -39,11 +40,6 @@ class AdminPanelProvider extends PanelProvider
                 CustomDashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-                AnggotaCountWidget::class,
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
-            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

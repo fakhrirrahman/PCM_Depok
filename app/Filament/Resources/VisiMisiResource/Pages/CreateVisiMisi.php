@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateVisiMisi extends CreateRecord
 {
     protected static string $resource = VisiMisiResource::class;
+
+    public function getTitle(): string|\Illuminate\Contracts\Support\Htmlable
+    {
+        return 'Tambah Visi Misi'; // Ubah teks di sini
+    }
 }

@@ -43,14 +43,14 @@
                         <i class="bi bi-envelope flex-shrink-0"></i>
                         <div>
                             <h4>Email:</h4>
-                            <p>info@example.com</p>
+                            <p>lazismudepokslemanyk@gmail.com</p>
                         </div>
                     </div>
                     <div class="info-item d-flex">
                         <i class="bi bi-phone flex-shrink-0"></i>
                         <div>
                             <h4>Telepon:</h4>
-                            <p>+1 5589 55488 55</p>
+                            <p>082310652531</p>
                         </div>
                     </div>
                 </div>
