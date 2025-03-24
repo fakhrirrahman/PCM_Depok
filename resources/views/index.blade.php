@@ -3,10 +3,6 @@
 @section('title', 'Halaman Utama')
 
 @section('content')
-@php
-use App\Models\Kegiatan;
-@endphp
-<!-- Hero Section -->
 <!-- Page Title -->
 <div class="page-title accent-background">
     <div class="container d-lg-flex justify-content-between align-items-center">
@@ -77,8 +73,10 @@ use App\Models\Kegiatan;
             <div class="col-lg-4">
                 <article class="position-relative h-100">
                     <div class="post-img position-relative overflow-hidden" style="height: 250px;">
-                        <img src="{{ $blog->getFirstMediaUrl(Kegiatan::MEDIA_COLLECTION) ?: asset('default.png') }}"
-                            class="img-fluid w-100 h-100 object-fit-cover" alt="{{ $blog->title }}">
+
+                        @foreach ($blog->mediaUrls as $mediaUrl)
+                        <img src={{$mediaUrl}} class="img-fluid w-100 h-100 object-fit-cover" alt="{{ $blog->title }}">
+                        @endforeach
                         <span
                             class="post-date position-absolute bottom-0 end-0 bg-success text-white px-2 py-1 small">{{
                             $blog->tanggal }}</span>
