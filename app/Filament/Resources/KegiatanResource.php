@@ -60,7 +60,7 @@ class KegiatanResource extends Resource
                         ->maxSize(1024)
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
                         ->downloadable()
-                        ->columnSpan(1) 
+                        ->columnSpan(1)
                         ->reorderable(),
                 ]),
         ]);
