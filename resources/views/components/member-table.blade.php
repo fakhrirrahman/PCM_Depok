@@ -1,101 +1,76 @@
-<!-- Contact Section -->
-<section id="contact" class="contact section">
-    <div class="mb-5">
-        <iframe style="width: 100%; height: 400px;"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63252.241951403346!2d110.36559026953125!3d-7.761682799999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5929e00f4c75%3A0x9d860bf72f8a7d33!2sPimpinan%20Cabang%20Muhammadiyah%20Depok%20Sleman!5e0!3m2!1sid!2sid!4v1741247849890!5m2!1sid!2sid"
-            frameborder="0" allowfullscreen=""></iframe>
-    </div><!-- End Google Maps -->
-
-    <div class="container" data-aos="fade">
-        <div class="row gy-5 gx-lg-5">
-            <div class="col-lg-4">
-                <div class="info">
-                    <h3>Hubungi kami</h3>
-                    <p>Silakan hubungi kami untuk pertanyaan atau informasi lebih lanjut.</p>
-                    <div class="info-item d-flex">
-                        <i class="bi bi-geo-alt flex-shrink-0"></i>
-                        <div>
-                            <h4>Lokasi:</h4>
-                            <p>Ruko Gorongan, Jl. Perumnas No.1, Ngropoh, Condongcatur, Kec. Depok, Kabupaten Sleman,
-                                Daerah Istimewa Yogyakarta 55283</p>
-                        </div>
-                    </div>
-                    <div class="info-item d-flex">
-                        <i class="bi bi-envelope flex-shrink-0"></i>
-                        <div>
-                            <h4>Email:</h4>
-                            <p>lazismudepokslemanyk@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="info-item d-flex">
-                        <i class="bi bi-phone flex-shrink-0"></i>
-                        <div>
-                            <h4>Telepon:</h4>
-                            <p>082310652531</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <!-- Alert Success -->
-                @if(session()->has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Success!</strong> {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
-
-                <form action="{{ route('contact.submit') }}" method="post" class="php-email-form">
-                    @csrf
-
-                    <!-- Nama -->
-                    <div class="form-group">
-                        <label for="name">Nama Kamu</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            id="name" placeholder="Nama Kamu" value="{{ old('name') }}" required minlength="3"
-                            maxlength="100">
-                        @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Email -->
-                    <div class="form-group mt-3">
-                        <label for="email">Email Kamu</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            id="email" placeholder="Email Kamul" value="{{ old('email') }}" required>
-                        @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Subject -->
-                    <div class="form-group mt-3">
-                        <label for="subject">Subject</label>
-                        <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject"
-                            id="subject" placeholder="Subject" value="{{ old('subject') }}" required>
-                        @error('subject')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Pesan -->
-                    <div class="form-group mt-3">
-                        <label for="message">Pesan</label>
-                        <textarea class="form-control @error('message') is-invalid @enderror" name="message"
-                            id="message" placeholder="Pesan" required>{{ old('message') }}</textarea>
-                        @error('message')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <!-- Submit -->
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </div>
-
-                </form>
-            </div>
+<section id="team" class="team py-5 bg-light">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title text-center mb-4">
+            <h2>Anggota PCM Depok</h2>
+            <p>Kami mempunyai anggota yang banyak datanya bisa dilihat pada selengkapnya</p>
         </div>
+        <form method="GET" action="{{ route('anggota') }}" class="mb-4">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group shadow-sm">
+                        <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nama..."
+                            value="{{ request('search') }}">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Profesi</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Tahun Pembuatan</th>
+                        {{-- <th>NBM</th>
+                        <th>NBM Depan</th> --}}
+                        <th>Cabang</th>
+                        {{-- <th>PDM</th>
+                        <th>PWM</th> --}}
+                        <th>Alamat</th>
+                        <th>Kabupaten</th>
+                        <th>Provinsi</th>
+                        <th>Kelurahan</th>
+                        <th>No HP</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($anggota as $index => $member)
+                    <tr>
+                        <td>{{ $anggota->firstItem() + $index }}</td>
+                        <td>{{ $member->nama }}</td>
+                        <td>{{ $member->profesi }}</td>
+                        <td>{{ $member->tempat_lahir }}</td>
+                        <td>{{ $member->tanggal_lahir }}</td>
+                        <td>{{ $member->tahun_pembuatan }}</td>
+                        {{-- <td>{{ $member->nbm }}</td>
+                        <td>{{ $member->nbm_depan }}</td> --}}
+                        <td>{{ $member->cabang }}</td>
+                        {{-- <td>{{ $member->pdm }}</td>
+                        <td>{{ $member->pwm }}</td> --}}
+                        <td>{{ $member->alamat }}</td>
+                        <td>{{ $member->kabupaten_tinggal }}</td>
+                        <td>{{ $member->provinsi_tinggal }}</td>
+                        <td>{{ $member->kelurahan }}</td>
+                        <td>{{ $member->no_hp }}</td>
+                        <td>{{ $member->email }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center flex-wrap responsive">
+            <nav class="w-100 text-center overflow-auto">
+                <ul class="pagination pagination-white justify-content-center">
+                    {!! $anggota->appends(['search' => request('search')])->links('pagination::bootstrap-4') !!}
+                </ul>
+            </nav>
+        </div>
+
+
     </div>
-</section><!-- /Contact Section -->
+</section>
