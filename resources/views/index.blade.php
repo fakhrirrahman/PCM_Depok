@@ -103,8 +103,9 @@
 
                         <hr>
 
-                        <a href="blog-details.html" class="readmore stretched-link"><span>Selengkapnya</span><i
-                                class="bi bi-arrow-right"></i></a>
+                        <a href="{{ route('kegiatan.show', $blog->id) }}" class="readmore stretched-link">
+                            <span>Selengkapnya</span><i class="bi bi-arrow-right"></i>
+                        </a>
 
                     </div>
 
