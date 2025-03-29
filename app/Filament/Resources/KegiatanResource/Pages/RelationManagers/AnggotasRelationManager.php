@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\KegiatanResource\RelationManagers;
+namespace App\Filament\Resources\KegiatanResource\Pages\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
