@@ -33,7 +33,8 @@
         <div class="header-social-links">
             <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/pdmsleman/" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.instagram.com/muhammadiyah_depok?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                class="instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
     </div>

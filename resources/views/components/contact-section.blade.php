@@ -1,22 +1,3 @@
-@extends('layouts.app')
-
-@section('title', 'Kontak')
-
-@section('content')
-
-<!-- Page Title -->
-<div class="page-title accent-background">
-    <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Kontak</h1>
-        <nav class="breadcrumbs">
-            <ol>
-                <li><a href="{{ url('/') }}">Halaman Utama</a></li>
-                <li class="current">Kontak</li>
-            </ol>
-        </nav>
-    </div>
-</div><!-- End Page Title -->
-
 <!-- Contact Section -->
 <section id="contact" class="contact section">
     <div class="mb-5">
@@ -118,5 +99,3 @@
         </div>
     </div>
 </section><!-- /Contact Section -->
-
-@endsection

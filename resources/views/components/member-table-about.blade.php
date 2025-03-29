@@ -1,38 +1,9 @@
-@extends('layouts.app')
-
-@section('title', 'Anggota')
-
-@section('content')
-<!-- Page Title -->
-<div class="page-title accent-background">
-    <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Anggota</h1>
-        <nav class="breadcrumbs">
-            <ol>
-                <li><a href="{{route ('home')}}">Halaman Utama</a></li>
-                <li class="current">Anggota</li>
-            </ol>
-        </nav>
-    </div>
-</div><!-- End Page Title -->
-
 <section id="team" class="team py-5 bg-light">
     <div class="container" data-aos="fade-up">
         <div class="section-title text-center mb-4">
-            <h2>Anggota PCM Depok</h2>
-            <p>Kami mempunyai anggota yang banyak datanya bisa dilihat pada selengkapnya</p>
+            <h2>Beberapa Anggota Pada PCM Depok</h2>
+            <p>Kami mempunyai anggota yang banyak datanya bisa dilihat pada daftar anggota</p>
         </div>
-        <form method="GET" action="{{ route('anggota') }}" class="mb-4">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="input-group shadow-sm">
-                        <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nama..."
-                            value="{{ request('search') }}">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
-                    </div>
-                </div>
-            </div>
-        </form>
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
                 <thead class="table-dark">
@@ -59,7 +30,7 @@
                 <tbody>
                     @foreach($anggota as $index => $member)
                     <tr>
-                        <td>{{ $anggota->firstItem() + $index }}</td>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $member->nama }}</td>
                         <td>{{ $member->profesi }}</td>
                         <td>{{ $member->tempat_lahir }}</td>
@@ -81,17 +52,5 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center flex-wrap responsive">
-            <nav class="w-100 text-center overflow-auto">
-                <ul class="pagination pagination-white justify-content-center">
-                    {!! $anggota->appends(['search' => request('search')])->links('pagination::bootstrap-4') !!}
-                </ul>
-            </nav>
-        </div>
-
-
     </div>
 </section>
-
-
-@endsection

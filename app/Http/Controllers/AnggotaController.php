@@ -15,13 +15,13 @@ class AnggotaController extends Controller
             $query->where('nama', 'like', '%' . $request->search . '%');
         }
         $anggota = $query->paginate(10)->appends(['search' => $request->search]);
-        return view('anggota', compact('anggota'));
+        return view('pages.anggota', compact('anggota'));
     }
 
     public function about()
     {
         $anggota = Anggota::whereNotNull('nama')->orderBy('id', 'desc')->take(10)->get();
         $visimisi = VisiMisi::all();
-        return view('tentang-kami', compact('anggota', 'visimisi'));
+        return view('pages.tentang-kami', compact('anggota', 'visimisi'));
     }
 }
