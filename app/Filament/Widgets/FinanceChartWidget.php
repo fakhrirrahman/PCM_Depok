@@ -4,37 +4,57 @@ namespace App\Filament\Widgets;
 
 use App\Models\Keuangan;
 use Filament\Widgets\LineChartWidget;
+use Illuminate\Support\Carbon;
 
 class FinanceChartWidget extends LineChartWidget
 {
-    protected static ?string $heading = 'Grafik Keuangan';
+    protected static ?string $heading = 'Grafik Keuangan Bulanan';
 
     protected function getData(): array
     {
-        $data = Keuangan::selectRaw('DATE(tanggal_transaksi) as date, SUM(jumlah) as total, tipe')
-            ->groupBy('date', 'tipe')
-            ->orderBy('date', 'asc')
+        // Ambil data dan format bulan sebagai key
+        $data = Keuangan::selectRaw("DATE_FORMAT(tanggal_transaksi, '%Y-%m') as bulan, SUM(jumlah) as total, tipe")
+            ->groupBy('bulan', 'tipe')
+            ->orderBy('bulan', 'asc')
             ->get();
 
-        $dates = $data->pluck('date')->unique()->values();
+        // Ambil semua bulan unik
+        $bulanKeys = $data->pluck('bulan')->unique()->values();
 
-        $pemasukan = $dates->map(fn($date) => $data->where('date', $date)->where('tipe', 'pemasukan')->sum('total'));
-        $pengeluaran = $dates->map(fn($date) => $data->where('date', $date)->where('tipe', 'pengeluaran')->sum('total'));
+        // Ubah ke format yang lebih ramah (contoh: April 2025)
+        $labels = $bulanKeys->map(function ($bulan) {
+            return Carbon::createFromFormat('Y-m', $bulan)->translatedFormat('F Y');
+        });
+
+        // Ambil data masing-masing tipe
+        $pemasukan = $bulanKeys->map(
+            fn($bulan) =>
+            $data->where('bulan', $bulan)->where('tipe', 'pemasukan')->sum('total')
+        );
+
+        $pengeluaran = $bulanKeys->map(
+            fn($bulan) =>
+            $data->where('bulan', $bulan)->where('tipe', 'pengeluaran')->sum('total')
+        );
 
         return [
-            'labels' => $dates->toArray(),
+            'labels' => $labels->toArray(),
             'datasets' => [
                 [
                     'label' => 'Pemasukan',
                     'data' => $pemasukan->toArray(),
-                    'backgroundColor' => 'rgba(75, 192, 192, 0.5)',
-                    'borderColor' => 'rgba(75, 192, 192, 1)',
+                    'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
+                    'borderColor' => 'rgba(54, 162, 235, 1)',
+                    'tension' => 0.4,
+                    'fill' => true,
                 ],
                 [
                     'label' => 'Pengeluaran',
                     'data' => $pengeluaran->toArray(),
-                    'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
+                    'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
                     'borderColor' => 'rgba(255, 99, 132, 1)',
+                    'tension' => 0.4,
+                    'fill' => true,
                 ],
             ],
         ];
