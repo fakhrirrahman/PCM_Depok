@@ -3,6 +3,17 @@
 
     <div class="container">
         <div class="row gy-4">
+            <form method="GET" action="{{ route('kegiatan') }}" class="mb-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="input-group shadow-sm">
+                            <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nama..."
+                                value="{{ request('search') }}">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
             @foreach ( $kegiatans as $blog )
 
             <div class="col-lg-4">

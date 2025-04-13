@@ -12,10 +12,13 @@ class KegiatanController extends Controller
         $kegiatans = Kegiatan::with('anggota')->latest()->take(3)->get();
         return view('pages.index', compact('kegiatans'));
     }
-    public function kegiatan()
+    public function kegiatan(Request $request)
     {
-        $kegiatans = Kegiatan::with('anggota')->paginate(9);
-
+        $query = Kegiatan::query();
+        if ($request->has('search')) {
+            $query->where('nama_kegiatan', 'like', '%' . $request->search . '%');
+        }
+        $kegiatans = $query->with('anggota')->latest()->paginate(10)->appends(['search' => $request->search]);
         return view('pages.kegiatan', compact('kegiatans'));
     }
 
