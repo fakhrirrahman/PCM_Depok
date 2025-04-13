@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Anggota')
+@section('title', 'SIPIMDepok')
 
 @section('content')
 @include('components.page-title', ['title' => 'Anggota', 'current' => 'Anggota'])

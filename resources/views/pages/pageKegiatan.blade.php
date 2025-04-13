@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $kegiatan->nama_kegiatan)
+@section('title', 'SIPIMDepok')
 
 @section('content')
 

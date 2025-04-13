@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak')
+@section('title', 'SIPIMDepok')
 
 @section('content')
 
