@@ -4,7 +4,7 @@
 
 @section('content')
 @include('components.page-title', ['title' => 'Anggota', 'current' => 'Anggota'])
-@include('components.member-table')
+@include('components.img-section')
 
 
 @endsection
