@@ -1,14 +1,19 @@
 <section class="bg-white text-black py-5">
     <div class="container">
-        <h2 class="mb-4 fw-bold">Galeri Unggulan</h2>
         <div class="row g-4">
 
+            @foreach ($galeri as $gambar)
             <div class="col-md-4">
-                <div class="card shadow-sm rounded-4 overflow-hidden">
-                    <img src="https://png.pngtree.com/png-vector/20230531/ourmid/pngtree-character-standing-with-his-eyes-open-and-looking-up-vector-png-image_6791864.png"
-                        class="card-img-top" alt="Galeri 1">
+                <div class="position-relative shadow rounded-4 overflow-hidden" style="height: 300px;">
+                    @foreach ($gambar->mediaUrls as $mediaUrl)
+                    <img src="{{ $mediaUrl }}" alt="Galeri" class="w-100 h-100 object-fit-cover">
+                    @endforeach
+
+
                 </div>
             </div>
+            @endforeach
+
         </div>
     </div>
 </section>

@@ -40,12 +40,16 @@ class GaleriResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make(Galeri::MEDIA_COLLECTION)
-                    ->collection(Galeri::MEDIA_COLLECTION)
-                    ->label('Gambar')
-                    ->size(60)
-                    ->defaultImageUrl(asset('storage/default.png')),
+                Tables\Columns\Layout\Split::make([
+                    SpatieMediaLibraryImageColumn::make(Galeri::MEDIA_COLLECTION)
+                        ->label('Gambar')
+                        ->collection(Galeri::MEDIA_COLLECTION)
+                        ->size(120)
+                        ->extraImgAttributes(['class' => 'rounded-lg shadow-md object-cover'])
+                        ->defaultImageUrl(asset('storage/default.png')),
+                ])
             ])
+
             ->actions([
                 EditAction::make()->label('Edit'),
                 DeleteAction::make()->label('Hapus'),

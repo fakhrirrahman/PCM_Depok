@@ -12,14 +12,13 @@
                         <span>Tentang Kami</span>
                     </a>
                 </li>
-                <li><a href="{{ url('/anggota') }}" class="{{ request()->is('anggota') ? 'active' : '' }}">Galeri</a>
+                <li><a href="{{ url('/galeri') }}" class="{{ request()->is('galeri') ? 'active' : '' }}">Galeri</a>
                 </li>
                 <li><a href="{{ url('/struktur-organisasi') }}"
                         class="{{ request()->is('struktur-organisasi') ? 'active' : '' }}">Struktur
                         Organisasi</a>
                 </li>
-                {{-- <li><a href="{{ url('/presensi') }}"
-                        class="{{ request()->is('presensi') ? 'active' : '' }}">presensi</a> --}}
+
                 </li>
                 <li><a href="{{ url('/kegiatan') }}"
                         class="{{ request()->is('kegiatan') ? 'active' : '' }}">Kegiatan</a></li>
