@@ -21,4 +21,8 @@ class Keuangan extends Model
         'saldo_awal',
         'saldo_akhir',
     ];
+
+    protected $casts = [
+        'tanggal_transaksi' => 'date',
+    ];
 }

@@ -4,7 +4,6 @@
 
 @section('content')
 
-{{-- @include('components.page-title', ['title' => 'Halaman Utama', 'current' => 'Halaman Utama']) --}}
 @include('components.index-section')
 @include('components.support-section')
 @include('components.sipim-section')

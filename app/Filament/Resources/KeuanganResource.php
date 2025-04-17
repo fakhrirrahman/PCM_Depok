@@ -10,14 +10,10 @@ use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Actions\Action;
-use Filament\Forms\Components\FileUpload;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\KeuanganImport;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
-
+use Filament\Notifications\Notification;
 
 class KeuanganResource extends Resource
 {
@@ -67,11 +63,9 @@ class KeuanganResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('tanggal_transaksi')
-                    ->date(),
-                TextColumn::make('tipe')
-                    ->sortable(),
+                    ->date()->sortable(),
+                TextColumn::make('tipe'),
                 TextColumn::make('kategori')
-                    ->sortable()
                     ->searchable(),
                 TextColumn::make('jumlah')
                     ->sortable()
@@ -84,14 +78,60 @@ class KeuanganResource extends Resource
                     ->money('IDR'),
             ])
             ->filters([
-                //
+                SelectFilter::make('tipe')
+                    ->options([
+                        'saldo' => 'Saldo',
+                        'pemasukan' => 'Pemasukan',
+                        'pengeluaran' => 'Pengeluaran',
+                    ])
+                    ->label('Tipe Transaksi'),
+
+                SelectFilter::make('kategori')
+                    ->options(fn() => Keuangan::query()
+                        ->select('kategori')
+                        ->distinct()
+                        ->pluck('kategori', 'kategori')
+                        ->toArray())
+                    ->label('Kategori'),
+
+                \Filament\Tables\Filters\Filter::make('tanggal_transaksi')
+                    ->form([
+                        Forms\Components\DatePicker::make('from')->label('Dari'),
+                        Forms\Components\DatePicker::make('until')->label('Sampai'),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query
+                            ->when($data['from'], fn($q) => $q->whereDate('tanggal_transaksi', '>=', $data['from']))
+                            ->when($data['until'], fn($q) => $q->whereDate('tanggal_transaksi', '<=', $data['until']));
+                    }),
             ])
             ->actions([
                 EditAction::make(),
-                DeleteAction::make(),
+                DeleteAction::make()
+                    ->modalHeading('Konfirmasi Hapus')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                    ->modalButton('Ya, Hapus')
+                    ->action(function (Keuangan $record) {
+                        $record->delete();
+                        Notification::make()
+                            ->title('Data berhasil dihapus.')
+                            ->success()
+                            ->send();
+                    })
+                    ->Label('Hapus')
             ])
             ->bulkActions([
-                DeleteBulkAction::make(),
+                DeleteBulkAction::make()->modalHeading('Konfirmasi Hapus')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                    ->modalButton('Ya, Hapus')
+                    ->action(function (array $records) {
+                        Keuangan::destroy($records);
+                        Notification::make()
+                            ->title('Data berhasil dihapus.')
+                            ->success()
+                            ->send();
+                    })
+                    ->Label('Hapus Terpilih')
             ]);
     }
 

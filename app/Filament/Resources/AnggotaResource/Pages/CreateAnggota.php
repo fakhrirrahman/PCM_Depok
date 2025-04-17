@@ -13,7 +13,7 @@ class CreateAnggota extends CreateRecord
     protected static string $resource = AnggotaResource::class;
     public function getTitle(): string|\Illuminate\Contracts\Support\Htmlable
     {
-        return 'Tambah Anggota'; // Ubah teks di sini
+        return 'Tambah Anggota'; 
     }
 
     public function getBreadcrumbs(): array
@@ -26,7 +26,7 @@ class CreateAnggota extends CreateRecord
     protected function getCreateFormAction(): \Filament\Actions\Action
     {
         return parent::getCreateFormAction()
-            ->label('Simpan'); // Tombol utama
+            ->label('Simpan'); 
     }
 
     protected function getCreateAnotherFormAction(): \Filament\Actions\Action

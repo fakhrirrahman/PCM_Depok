@@ -2,8 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\Keuangan;
 use Filament\Pages\Page;
 use Filament\Actions\Action;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\DatePicker;
 
 class CustomDashboard extends Page
 {
@@ -12,19 +15,27 @@ class CustomDashboard extends Page
     protected static ?string $navigationLabel = 'Dashboard Utama';
     protected static ?string $title = '🎯 Dashboard Kinerja';
 
-    protected function getHeaderActions(): array
+    public function getHeaderActions(): array
     {
         return [
-            Action::make('refresh')
-                ->label('Refresh Data')
-                ->icon('heroicon-m-arrow-path')
-                ->color('success')
-                ->action(fn() => $this->refreshPage())
-                ->tooltip('Klik untuk memperbarui data terbaru'),
+            Action::make('filter')
+                ->label('Filter Tanggal')
+                ->icon('heroicon-o-calendar-days')
+                ->modalHeading('Filter Berdasarkan Tanggal')
+                ->modalSubmitActionLabel('Terapkan Filter')
+                ->modalCancelActionLabel('Batal')
+                ->modalWidth('sm')
+                ->form([
+                    DatePicker::make('from')->label('Dari Tanggal'),
+                    DatePicker::make('until')->label('Sampai Tanggal'),
+                ])
+                ->action(function (array $data): void {
+                    session([
+                        'dashboard_filters' => $data,
+                    ]);
+
+                    $this->redirect(request()->header('Referer'));
+                }),
         ];
-    }
-    protected function refreshPage()
-    {
-        $this->dispatch('refreshData');
     }
 }
