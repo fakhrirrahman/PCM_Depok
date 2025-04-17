@@ -2,11 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Galeri extends Model
+class Galeri extends Model implements HasMedia
 {
+    use HasFactory, InteractsWithMedia;
+
+    protected $table = 'galeri';
+
     const MEDIA_COLLECTION = 'galeri';
+
+    protected $fillable = [];
 
     public function getFirstMediaUrlAttribute(): string
     {

@@ -3,27 +3,36 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GaleriResource\Pages;
-use App\Filament\Resources\GaleriResource\RelationManagers;
 use App\Models\Galeri;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
 class GaleriResource extends Resource
 {
     protected static ?string $model = Galeri::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $pluralModelLabel = 'Galeri';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                SpatieMediaLibraryFileUpload::make(Galeri::MEDIA_COLLECTION)
+                    ->label('Unggah Gambar')
+                    ->collection(Galeri::MEDIA_COLLECTION)
+                    ->multiple()
+                    ->required()
+                    ->image()
+                    ->maxSize(10240)
+                    ->helperText('Upload gambar untuk galeri (maks 10MB).'),
             ]);
     }
 
@@ -31,26 +40,21 @@ class GaleriResource extends Resource
     {
         return $table
             ->columns([
-                //
-            ])
-            ->filters([
-                //
+                SpatieMediaLibraryImageColumn::make(Galeri::MEDIA_COLLECTION)
+                    ->collection(Galeri::MEDIA_COLLECTION)
+                    ->label('Gambar')
+                    ->size(60)
+                    ->defaultImageUrl(asset('storage/default.png')),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                EditAction::make()->label('Edit'),
+                DeleteAction::make()->label('Hapus'),
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
