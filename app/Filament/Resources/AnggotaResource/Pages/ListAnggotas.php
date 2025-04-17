@@ -17,4 +17,12 @@ class ListAnggotas extends ListRecords
                 ->label('Tambah Anggota'),
         ];
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            AnggotaResource::getUrl() => 'Anggota',
+            url()->current() => 'Data Anggota',
+        ];
+    }
 }

@@ -13,17 +13,19 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\AnggotaImport;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Storage;
 use App\Exports\AnggotaExport;
+use PhpParser\Node\Stmt\Label;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Filament\Notifications\Notification;
+
 
 class AnggotaResource extends Resource
 {
@@ -40,26 +42,24 @@ class AnggotaResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama')->placeholder('Masukkan nama lengkap'),
-                TextInput::make('tempat_lahir')->placeholder('Masukkan tempat lahir'),
-                DatePicker::make('tanggal_lahir')->label('Tanggal Lahir'),
-                TextInput::make('nbm_depan')->placeholder('Masukkan NBM depan'),
-                TextInput::make('nbm')->placeholder('Masukkan NBM'),
-                TextInput::make('tahun_pembuatan')->placeholder('Masukkan tahun pembuatan'),
-                Select::make('cabang')
-                    ->options([
-                        'Depok' => 'Depok',
-                    ])
-                    ->searchable()
-                    ->placeholder('Pilih cabang'),
-                TextInput::make('pdm')->placeholder('Masukkan PDM'),
-                TextInput::make('pwm')->placeholder('Masukkan PWM'),
-                TextInput::make('alamat')->placeholder('Masukkan alamat lengkap'),
-                TextInput::make('kabupaten_tinggal')->placeholder('Masukkan kabupaten'),
-                TextInput::make('provinsi_tinggal')->placeholder('Masukkan provinsi'),
-                TextInput::make('kelurahan')->placeholder('Masukkan kelurahan'),
-                TextInput::make('profesi')->placeholder('Masukkan profesi'),
-                TextInput::make('no_hp')->tel()->placeholder('Masukkan No. HP'),
+                TextInput::make('nama')->placeholder('Masukkan nama lengkap')->required(),
+                TextInput::make('tempat_lahir')->placeholder('Masukkan tempat lahir')->required(),
+                DatePicker::make('tanggal_lahir')->label('Tanggal Lahir')->required(),
+                TextInput::make('nbm_depan')->placeholder('Masukkan NBM depan')->required()->label('NBM Depan'),
+                TextInput::make('nbm')->placeholder('Masukkan NBM')->required()->label('NBM'),
+                TextInput::make('tahun_pembuatan')->placeholder('Masukkan tahun pembuatan')->required(),
+                Hidden::make('cabang')
+                    ->default('Depok')->required(),
+                Hidden::make('pdm')
+                    ->default('Kab Sleman')->required(),
+                Hidden::make('pdm')
+                    ->default('Daerah Istimewa Yogyakarta')->required(),
+                TextInput::make('alamat')->placeholder('Masukkan alamat lengkap')->required(),
+                TextInput::make('kabupaten_tinggal')->placeholder('Masukkan kabupaten')->required(),
+                TextInput::make('provinsi_tinggal')->placeholder('Masukkan provinsi')->required(),
+                TextInput::make('kelurahan')->placeholder('Masukkan kelurahan')->required(),
+                TextInput::make('profesi')->placeholder('Masukkan profesi')->required(),
+                TextInput::make('no_hp')->tel()->placeholder('Masukkan No. HP')->required(),
                 TextInput::make('email')->email()->placeholder('Masukkan email'),
             ]);
     }
@@ -71,12 +71,12 @@ class AnggotaResource extends Resource
                 TextColumn::make('tempat_lahir')->sortable()->searchable(),
                 TextColumn::make('tanggal_lahir')->sortable()->searchable(),
                 TextColumn::make('provinsi_tinggal')->sortable()->searchable(),
-                TextColumn::make('nbm_depan')->sortable()->searchable(),
-                TextColumn::make('nbm')->sortable()->searchable(),
+                TextColumn::make('nbm_depan')->sortable()->searchable()->label('NBM Depan'),
+                TextColumn::make('nbm')->sortable()->searchable()->label('NBM'),
                 TextColumn::make('tahun_pembuatan')->sortable()->searchable(),
                 TextColumn::make('cabang')->sortable()->searchable(),
-                TextColumn::make('pdm')->sortable(),
-                TextColumn::make('pwm')->sortable(),
+                TextColumn::make('pdm')->sortable()->label('PDM'),
+                TextColumn::make('pwm')->sortable()->label('PWM'),
                 TextColumn::make('alamat')->sortable(),
                 TextColumn::make('kabupaten_tinggal')->sortable(),
                 TextColumn::make('provinsi_tinggal')->sortable(),
@@ -86,13 +86,28 @@ class AnggotaResource extends Resource
                 TextColumn::make('email')->sortable(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()->label('Edit'),
+                Tables\Actions\DeleteAction::make()->label('Hapus')
+                    ->modalHeading('Konfirmasi Hapus')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                    ->modalButton('Ya, Hapus')
+                    ->action(function (Anggota $record) {
+                        $record->delete();
+                        Notification::make()
+                            ->title('Data berhasil dihapus.')
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->label('Hapus Terpilih')
+                        ->modalHeading('Konfirmasi Hapus')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                        ->modalButton('Ya, Hapus'),
+                ])
+                    ->Label('Aksi Massal')
             ])
             ->headerActions([
                 Action::make('import')
