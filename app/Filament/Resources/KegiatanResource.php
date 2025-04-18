@@ -70,7 +70,7 @@ class KegiatanResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama_kegiatan')->sortable()->searchable(),
+                TextColumn::make('nama_kegiatan')->searchable(),
                 TextColumn::make('deskripsi'),
                 TextColumn::make('lokasi'),
                 SpatieMediaLibraryImageColumn::make(Kegiatan::MEDIA_COLLECTION)
@@ -82,7 +82,7 @@ class KegiatanResource extends Resource
                     ->label('Anggota')
                     ->badge()
                     ->separator(', '),
-                TextColumn::make('tanggal')->date(),
+                TextColumn::make('tanggal')->date()->sortable(),
             ])
             ->filters([])
             ->actions([

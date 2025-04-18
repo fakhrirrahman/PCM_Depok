@@ -25,6 +25,7 @@ class StrukturOrganisasiResource extends Resource
     public static function form(Forms\Form $form): Forms\Form
     {
         return $form
+        ->emptyStateHeading('Belum ada struktur organisasi')
             ->schema([
                 Forms\Components\TextInput::make('nama')
                     ->required()

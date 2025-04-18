@@ -50,6 +50,7 @@ class ContactResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->emptyStateHeading('Belum ada pesan')
             ->columns([
                 TextColumn::make('name')
                     ->searchable()
@@ -69,7 +70,7 @@ class ContactResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()->label('Hapus'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

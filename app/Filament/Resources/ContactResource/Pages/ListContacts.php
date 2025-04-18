@@ -10,11 +10,4 @@ class ListContacts extends ListRecords
 {
     protected static string $resource = ContactResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\CreateAction::make()
-                ->label('Tambah Pesan'),
-        ];
-    }
 }

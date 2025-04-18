@@ -65,6 +65,7 @@ class AnggotaResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->emptyStateHeading('Belum ada anggota')
             ->columns([
                 TextColumn::make('nama')->sortable()->searchable(),
                 TextColumn::make('tempat_lahir')->sortable()->searchable(),

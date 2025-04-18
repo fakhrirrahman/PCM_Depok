@@ -15,6 +15,7 @@ use Filament\Tables\Actions\DeleteAction;
 use App\Filament\Resources\GaleriResource\Pages;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\TextColumn;
 
 class GaleriResource extends Resource
 {
@@ -22,6 +23,12 @@ class GaleriResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $pluralModelLabel = 'Galeri';
+    
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Manajemen Organisasi';
+    }
+
 
     public static function form(Form $form): Form
     {
@@ -42,6 +49,7 @@ class GaleriResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->emptyStateHeading('Belum ada galeri')
         ->columns([
             Tables\Columns\Layout\Grid::make(2)
                 ->schema([
@@ -58,17 +66,17 @@ class GaleriResource extends Resource
                     'class' => 'gap-6 p-4 bg-gray-900 rounded-xl',
                 ]),
 
-            Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                 ->label('Tanggal Dibuat')
                 ->formatStateUsing(
                     fn($state) =>
-                    \Carbon\Carbon::parse($state)->locale('id_ID')->diffForHumans()
+                        \Carbon\Carbon::parse($state)->locale('id_ID')->diffForHumans()
                 )
                 ->sortable()
-                ->toggleable()
                 ->extraAttributes([
                     'class' => 'text-gray-500',
-                ]),
+                ])
+                ->searchable()
 
         ])
         ->actions([

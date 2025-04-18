@@ -46,6 +46,7 @@ class VisiMisiResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Belum ada visi misi')
             ->columns([
                 Tables\Columns\TextColumn::make('visi')
                     ->label('Visi')

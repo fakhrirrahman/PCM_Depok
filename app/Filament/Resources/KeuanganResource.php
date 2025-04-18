@@ -62,6 +62,7 @@ class KeuanganResource extends Resource
     {
         return $table
         ->defaultSort('id', 'desc')
+        ->emptyStateHeading('Belum ada data keuangan')
             ->columns([
                 TextColumn::make('tanggal_transaksi')
                     ->date()->sortable(),
