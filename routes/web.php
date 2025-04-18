@@ -2,6 +2,7 @@
 
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KegiatanController;
@@ -15,5 +16,6 @@ Route::get('/kegiatan/{id}', [KegiatanController::class, 'show'])->name('kegiata
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
 Route::post('/contact/submit', [ContactController::class, 'submitForm'])->name('contact.submit');
+Route::get('/tentang-kami', [AboutController::class, 'index'])->name('tentang-kami');
 
 Route::get('/struktur-organisasi', [StrukturOrganisasiController::class, 'index'])->name('struktur-organisasi');

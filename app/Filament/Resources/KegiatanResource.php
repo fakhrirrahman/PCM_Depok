@@ -2,19 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KegiatanResource\Pages;
-use App\Models\Kegiatan;
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Kegiatan;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
 use Illuminate\Support\HtmlString;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Grid;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\ImageColumn;
+use App\Filament\Resources\KegiatanResource\Pages;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use PhpParser\Node\Stmt\Label;
 
 class KegiatanResource extends Resource
 {
@@ -56,12 +58,17 @@ class KegiatanResource extends Resource
 
                     SpatieMediaLibraryFileUpload::make(Kegiatan::MEDIA_COLLECTION)
                         ->collection(Kegiatan::MEDIA_COLLECTION)
+                        ->label('Foto Kegiatan')
+                        ->multiple()
                         ->maxFiles(5)
                         ->maxSize(1024)
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
                         ->downloadable()
                         ->columnSpan(1)
-                        ->reorderable(),
+                        ->reorderable()
+                        ->required(),
+
+
                 ]),
         ]);
     }
@@ -88,11 +95,21 @@ class KegiatanResource extends Resource
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()->label('Hapus'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->label('Hapus')
+                        ->action(function (array $records) {
+                            Kegiatan::destroy($records);
+                            Notification::make()
+                                ->title('Data berhasil dihapus.')
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                ->label('Aksi'),
             ]);
     }
 

@@ -12,6 +12,7 @@ class Kegiatan extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     const MEDIA_COLLECTION = 'gambar_kegiatan';
+    
     protected $table = 'kegiatan';
     protected $fillable = [
         'nama_kegiatan',

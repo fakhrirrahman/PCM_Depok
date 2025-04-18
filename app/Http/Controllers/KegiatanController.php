@@ -24,8 +24,18 @@ class KegiatanController extends Controller
 
     public function show($id)
     {
-        $kegiatan = Kegiatan::with('anggota')->find($id);
-
-        return view('pages.pageKegiatan', compact('kegiatan'));
+        $kegiatan = Kegiatan::with(['anggota', 'media'])->findOrFail($id);
+        $mediaUrls = $kegiatan->media->pluck('url')->toArray();
+        $kegiatan->mediaUrls = $mediaUrls;
+        
+        $semuaKegiatan = Kegiatan::with('media')
+            ->where('id', '!=', $id)
+            ->latest()
+            ->get();
+            
+        return view('pages.pageKegiatan', [
+            'kegiatan' => $kegiatan,
+            'semuaKegiatan' => $semuaKegiatan
+        ]);
     }
 }
