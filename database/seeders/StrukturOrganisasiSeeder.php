@@ -9,6 +9,9 @@ use Illuminate\Support\Str;
 
 class StrukturOrganisasiSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
         StrukturOrganisasi::insert([
