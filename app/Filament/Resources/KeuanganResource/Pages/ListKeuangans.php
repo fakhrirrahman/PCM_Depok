@@ -17,4 +17,12 @@ class ListKeuangans extends ListRecords
                 ->label('Tambah Keuangan'),
         ];
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            KeuanganResource::getUrl() => 'Keuangan',
+            url()->current() => 'Data Keuangan',
+        ];
+    }
 }

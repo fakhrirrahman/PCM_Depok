@@ -17,4 +17,12 @@ class ListVisiMisis extends ListRecords
                 ->label('Tambah Visi Misi'),
         ];
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            VisiMisiResource::getUrl() => 'Visi Misi',
+            url()->current() => 'Data Visi Misi',
+        ];
+    }
 }

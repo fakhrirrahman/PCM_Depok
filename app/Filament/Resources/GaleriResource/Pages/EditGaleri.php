@@ -22,7 +22,7 @@ class EditGaleri extends EditRecord
     {
         return Notification::make()
             ->title('Berhasil')
-            ->body('Data anggota berhasil diperbarui.')
+            ->body('Data galeri berhasil diperbarui.')
             ->success();
     }
 }

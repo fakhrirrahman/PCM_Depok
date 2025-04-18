@@ -17,4 +17,11 @@ class ListStrukturOrganisasis extends ListRecords
                 ->label('Tambah Sturktur Organisasi'),
         ];
     }
+    public function getBreadcrumbs(): array
+    {
+        return [
+            StrukturOrganisasiResource::getUrl() => 'Struktur Organisasi',
+            url()->current() => 'Data Struktur Organisasi',
+        ];
+    }
 }

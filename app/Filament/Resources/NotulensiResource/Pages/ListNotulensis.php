@@ -17,4 +17,11 @@ class ListNotulensis extends ListRecords
                 ->label('Tambah Notulensi'),
         ];
     }
+    public function getBreadcrumbs(): array
+    {
+        return [
+            NotulensiResource::getUrl() => 'Notulensi',
+            url()->current() => 'Data Notulensi',
+        ];
+    }
 }

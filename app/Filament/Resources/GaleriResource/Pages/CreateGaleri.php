@@ -51,7 +51,7 @@ class CreateGaleri extends CreateRecord
     {
         return Notification::make()
             ->title('Berhasil')
-            ->body('Data anggota berhasil disimpan.')
+            ->body('Data galeri berhasil disimpan.')
             ->success();
     }
 }

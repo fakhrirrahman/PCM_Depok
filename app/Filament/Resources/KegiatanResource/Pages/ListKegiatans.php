@@ -17,4 +17,12 @@ class ListKegiatans extends ListRecords
             ->label('Tambah Kegiatan'),
         ];
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            KegiatanResource::getUrl() => 'Kegiatan',
+            url()->current() => 'Data Kegiatan',
+        ];
+    }
 }
