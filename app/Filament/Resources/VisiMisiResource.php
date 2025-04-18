@@ -58,6 +58,15 @@ class VisiMisiResource extends Resource
                     ->label('Misi')
                     ->limit(100) // Memperbesar batas karakter
                     ->wrap(),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat pada')
+                    ->dateTime()
+                    ->sortable()
+                    ->searchable()
+                    ->formatStateUsing(function ($state) {
+                        return $state->translatedFormat('d F Y');
+                    }),
             ])
             ->filters([
                 //

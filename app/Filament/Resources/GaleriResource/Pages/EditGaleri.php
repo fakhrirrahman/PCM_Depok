@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\GaleriResource\Pages;
 
-use App\Filament\Resources\GaleriResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\GaleriResource;
 
 class EditGaleri extends EditRecord
 {
@@ -13,7 +14,15 @@ class EditGaleri extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()->label('Hapus Galeri'),
         ];
+    }
+
+    protected function getSavedNotification(): Notification
+    {
+        return Notification::make()
+            ->title('Berhasil')
+            ->body('Data anggota berhasil diperbarui.')
+            ->success();
     }
 }

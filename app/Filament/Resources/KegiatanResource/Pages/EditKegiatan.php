@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\KegiatanResource\Pages;
 
-use App\Filament\Resources\KegiatanResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\KegiatanResource;
 
 class EditKegiatan extends EditRecord
 {
@@ -16,5 +17,31 @@ class EditKegiatan extends EditRecord
             Actions\DeleteAction::make()
             ->label('Hapus'),
         ];
+    }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            KegiatanResource::getUrl() => 'Kegiatan',
+            url()->current() => 'Edit Kegiatan',
+        ];
+    }
+    protected function getSaveFormAction(): \Filament\Actions\Action
+    {
+        return parent::getSaveFormAction()
+            ->label('Simpan Perubahan');
+    }
+
+    protected function getCancelFormAction(): \Filament\Actions\Action
+    {
+        return parent::getCancelFormAction()
+            ->label('Batal');
+    }
+    protected function getSavedNotification(): Notification
+    {
+        return Notification::make()
+            ->title('Berhasil')
+            ->body('Data kegiatan berhasil diperbarui.')
+            ->success();
     }
 }

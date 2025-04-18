@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\NotulensiResource\Pages;
 
-use App\Filament\Resources\NotulensiResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\NotulensiResource;
 
 class EditNotulensi extends EditRecord
 {
@@ -16,5 +17,30 @@ class EditNotulensi extends EditRecord
             Actions\DeleteAction::make()
             ->label('Hapus'),
         ];
+    }
+    public function getBreadcrumbs(): array
+    {
+        return [
+            NotulensiResource::getUrl() => 'Notulensi',
+            url()->current() => 'Edit Notulensi',
+        ];
+    }
+    protected function getSaveFormAction(): \Filament\Actions\Action
+    {
+        return parent::getSaveFormAction()
+            ->label('Simpan Perubahan');
+    }
+
+    protected function getCancelFormAction(): \Filament\Actions\Action
+    {
+        return parent::getCancelFormAction()
+            ->label('Batal');
+    }
+    protected function getSavedNotification(): Notification
+    {
+        return Notification::make()
+            ->title('Berhasil')
+            ->body('Data keuangan berhasil diperbarui.')
+            ->success();
     }
 }

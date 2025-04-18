@@ -69,6 +69,7 @@ class KegiatanResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('Belum ada kegiatan')
             ->columns([
                 TextColumn::make('nama_kegiatan')->searchable(),
                 TextColumn::make('deskripsi'),
