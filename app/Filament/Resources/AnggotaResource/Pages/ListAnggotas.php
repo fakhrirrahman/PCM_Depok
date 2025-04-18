@@ -17,6 +17,8 @@ class ListAnggotas extends ListRecords
                 ->label('Tambah Anggota'),
         ];
     }
+    //make no data table
+  
 
     public function getBreadcrumbs(): array
     {

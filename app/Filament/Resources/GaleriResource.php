@@ -2,17 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GaleriResource\Pages;
-use App\Models\Galeri;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Galeri;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Filament\Tables\Actions\DeleteAction;
+use Doctrine\DBAL\Schema\View;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Actions\EditAction;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Actions\DeleteAction;
+use App\Filament\Resources\GaleriResource\Pages;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class GaleriResource extends Resource
 {
@@ -28,9 +30,10 @@ class GaleriResource extends Resource
                 SpatieMediaLibraryFileUpload::make(Galeri::MEDIA_COLLECTION)
                     ->label('Unggah Gambar')
                     ->collection(Galeri::MEDIA_COLLECTION)
-                    ->multiple()
                     ->required()
                     ->image()
+                    ->downloadable()
+                    ->columnSpanFull()
                     ->maxSize(10240)
                     ->helperText('Upload gambar untuk galeri (maks 10MB).'),
             ]);
@@ -39,21 +42,40 @@ class GaleriResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                Tables\Columns\Layout\Split::make([
+        ->columns([
+            Tables\Columns\Layout\Grid::make(2)
+                ->schema([
                     SpatieMediaLibraryImageColumn::make(Galeri::MEDIA_COLLECTION)
                         ->label('Gambar')
                         ->collection(Galeri::MEDIA_COLLECTION)
                         ->size(120)
-                        ->extraImgAttributes(['class' => 'rounded-lg shadow-md object-cover'])
+                        ->extraImgAttributes([
+                            'class' => 'rounded-xl shadow-lg object-cover aspect-square w-full h-auto',
+                        ])
                         ->defaultImageUrl(asset('storage/default.png')),
                 ])
-            ])
+                ->extraAttributes([
+                    'class' => 'gap-6 p-4 bg-gray-900 rounded-xl',
+                ]),
 
-            ->actions([
-                EditAction::make()->label('Edit'),
-                DeleteAction::make()->label('Hapus'),
-            ]);
+            Tables\Columns\TextColumn::make('created_at')
+                ->label('Tanggal Dibuat')
+                ->formatStateUsing(
+                    fn($state) =>
+                    \Carbon\Carbon::parse($state)->locale('id_ID')->diffForHumans()
+                )
+                ->sortable()
+                ->toggleable()
+                ->extraAttributes([
+                    'class' => 'text-gray-500',
+                ]),
+
+        ])
+        ->actions([
+            ViewAction::make()->label('Lihat'),
+            EditAction::make()->label('Edit'),
+            DeleteAction::make()->label('Hapus'),
+        ]);
     }
 
     public static function getRelations(): array

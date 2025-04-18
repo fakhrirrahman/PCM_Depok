@@ -30,7 +30,6 @@ use Filament\Notifications\Notification;
 class AnggotaResource extends Resource
 {
     protected static ?string $model = Anggota::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $pluralModelLabel = 'Anggota';
     public static function getNavigationGroup(): ?string
