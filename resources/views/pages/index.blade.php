@@ -4,8 +4,8 @@
 
 @section('content')
 
-@include('components.index-section')
 @include('components.support-section')
+@include('components.index-section')
 @include('components.sipim-section')
 
 @include('components.blog-post-section-index')
