@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\VisiMisiResource\Pages;
-use App\Filament\Resources\VisiMisiResource\RelationManagers;
-use App\Models\VisiMisi;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\VisiMisi;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\VisiMisiResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\VisiMisiResource\RelationManagers;
 
 class VisiMisiResource extends Resource
 {
@@ -50,13 +51,13 @@ class VisiMisiResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('visi')
                     ->label('Visi')
-                    ->limit(100) // Memperbesar batas karakter yang ditampilkan
-                    ->wrap() // Agar teks bisa turun ke bawah jika panjang
+                    ->limit(100) 
+                    ->wrap() 
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('misi')
                     ->label('Misi')
-                    ->limit(100) // Memperbesar batas karakter
+                    ->limit(100) 
                     ->wrap(),
 
                 Tables\Columns\TextColumn::make('created_at')
@@ -74,12 +75,36 @@ class VisiMisiResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->label('Hapus')
+                    ->modalHeading('Konfirmasi Hapus')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus visi misi ini?')
+                    ->modalButton('Hapus')
+                    ->color('danger')
+                    ->action(function (VisiMisi $record) {
+                        $record->delete();
+                        Notification::make()
+                            ->title('Visi Misi dihapus')
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->label('Hapus')
+                        ->modalHeading('Konfirmasi Hapus')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus visi misi ini?')
+                        ->modalButton('Hapus')
+                        ->color('danger')
+                        ->action(function (array $records) {
+                            VisiMisi::destroy($records);
+                            Notification::make()
+                                ->title('Visi Misi dihapus')
+                                ->success()
+                                ->send();
+                        }),
+                ])->label('Aksi')
             ]);
     }
 

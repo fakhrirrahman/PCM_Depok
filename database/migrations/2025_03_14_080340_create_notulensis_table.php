@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notulensi', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+            $table->id();
             $table->string('judul');
             $table->text('notulensi');
             $table->timestamps();

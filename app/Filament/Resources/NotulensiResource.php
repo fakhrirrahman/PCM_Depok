@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\NotulensiResource\Pages;
-use App\Filament\Resources\NotulensiResource\RelationManagers;
-use App\Models\Notulensi;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Notulensi;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\NotulensiResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\NotulensiResource\RelationManagers;
 
 class NotulensiResource extends Resource
 {
@@ -30,6 +32,13 @@ class NotulensiResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('judul')->required()->placeholder('Masukkan judul notulensi'),
                 Forms\Components\Textarea::make('notulensi')->required()->placeholder('Masukkan notulensi'),
+                DatePicker::make('created_at')
+                ->label('Tanggal Notulensi')
+                ->required()
+                ->displayFormat('d/m/Y') 
+                ->native(false)
+                ->placeholder('dd/mm/yyyy')
+                ->closeOnDateSelection() 
             ]);
     }
 
@@ -40,18 +49,40 @@ class NotulensiResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('judul')->searchable(),
                 Tables\Columns\TextColumn::make('notulensi'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Tanggal Notulensi')
+                    ->dateTime('d/m/Y')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()->label('Hapus')
+                    ->action(function (Notulensi $record) {
+                        $record->delete();
+                        Notification::make()
+                            ->title('Notulensi berhasil dihapus')
+                            ->success()
+                            ->send();
+                    }), 
+                
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->action(function (array $records) {
+                            Notulensi::destroy($records);
+                            Notification::make()
+                                ->title('Notulensi berhasil dihapus')
+                                ->success()
+                                ->send();
+                        })
+                        ->label('Hapus')
+                ])
+                ->label('Aksi')
             ]);
     }
 

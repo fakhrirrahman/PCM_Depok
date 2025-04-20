@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use Filament\Resources\Resource;
+use App\Models\StrukturOrganisasi;
+use Filament\Notifications\Notification;
 use App\Filament\Resources\StrukturOrganisasiResource\Pages;
 use App\Filament\Resources\StrukturOrganisasiResource\RelationManagers\ChildrenRelationManager;
-use App\Models\StrukturOrganisasi;
-use Filament\Forms;
-use Filament\Resources\Resource;
-use Filament\Tables;
+use PhpParser\Node\Stmt\Label;
 
 class StrukturOrganisasiResource extends Resource
 {
@@ -46,10 +48,36 @@ class StrukturOrganisasiResource extends Resource
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->label('Hapus')
+                    ->modalHeading('Konfirmasi Hapus')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus anggota ini?')
+                    ->modalButton('Hapus')
+                    ->color('danger')
+                    ->action(function (StrukturOrganisasi $record) {
+                        $record->delete();
+                        Notification::make()
+                            ->title('Anggota dihapus')
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make()
+                    ->label('Hapus')
+                    ->modalHeading('Konfirmasi Hapus')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus anggota ini?')
+                    ->modalButton('Hapus')
+                    ->color('danger')
+                    ->action(function (array $records) {
+                        StrukturOrganisasi::destroy($records);
+                        Notification::make()
+                            ->title('Anggota dihapus')
+                            ->success()
+                            ->send();
+                    })
+                    ->label('Hapus terpilih'),
+                    
             ]);
     }
 

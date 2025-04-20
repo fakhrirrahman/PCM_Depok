@@ -9,13 +9,14 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Doctrine\DBAL\Schema\View;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Notifications\Notification;
 use Filament\Tables\Actions\DeleteAction;
 use App\Filament\Resources\GaleriResource\Pages;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Tables\Columns\TextColumn;
 
 class GaleriResource extends Resource
 {
@@ -82,7 +83,18 @@ class GaleriResource extends Resource
         ->actions([
             ViewAction::make()->label('Lihat'),
             EditAction::make()->label('Edit'),
-            DeleteAction::make()->label('Hapus'),
+            Tables\Actions\DeleteAction::make()->label('Hapus')
+                    ->modalHeading('Konfirmasi Hapus')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                    ->modalButton('Ya, Hapus')
+                    ->action(function (Galeri $record) {
+                        $record->delete();
+                        Notification::make()
+                            ->title('Data berhasil dihapus.')
+                            ->success()
+                            ->send();
+                    }),
+            
         ]);
     }
 

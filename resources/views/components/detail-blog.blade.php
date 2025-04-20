@@ -99,7 +99,7 @@
 
                     @if($semuaKegiatan->count() > 1)
                     <div class="text-center mt-3">
-                        <a href="{{ route('kegiatan.semua') }}" class="btn btn-outline-primary btn-sm">Lihat Semua
+                        <a href="{{ route('kegiatan') }}" class="btn btn-outline-primary btn-sm">Lihat Semua
                             Kegiatan</a>
                     </div>
                     @endif

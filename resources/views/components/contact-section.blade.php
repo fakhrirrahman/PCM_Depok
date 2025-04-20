@@ -50,9 +50,9 @@
 
                     <!-- Nama -->
                     <div class="form-group">
-                        <label for="name">Nama Kamu</label>
+                        <label for="name">Nama</label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            id="name" placeholder="Nama Kamu" value="{{ old('name') }}" required minlength="3"
+                            id="name" placeholder="Nama" value="{{ old('name') }}" required minlength="3"
                             maxlength="100">
                         @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -61,9 +61,9 @@
 
                     <!-- Email -->
                     <div class="form-group mt-3">
-                        <label for="email">Email Kamu</label>
+                        <label for="email">Email</label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            id="email" placeholder="Email Kamul" value="{{ old('email') }}" required>
+                            id="email" placeholder="Email" value="{{ old('email') }}" required>
                         @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -71,9 +71,9 @@
 
                     <!-- Subject -->
                     <div class="form-group mt-3">
-                        <label for="subject">Subject</label>
+                        <label for="subject">Topik</label>
                         <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject"
-                            id="subject" placeholder="Subject" value="{{ old('subject') }}" required>
+                            id="subject" placeholder="Topik" value="{{ old('subject') }}" required>
                         @error('subject')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -81,9 +81,9 @@
 
                     <!-- Pesan -->
                     <div class="form-group mt-3">
-                        <label for="message">Pesan</label>
+                        <label for="message">Isi Topik</label>
                         <textarea class="form-control @error('message') is-invalid @enderror" name="message"
-                            id="message" placeholder="Pesan" required>{{ old('message') }}</textarea>
+                            id="message" placeholder="Isi Topik" required>{{ old('message') }}</textarea>
                         @error('message')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
