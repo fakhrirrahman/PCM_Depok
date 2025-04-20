@@ -10,4 +10,13 @@ class ListContacts extends ListRecords
 {
     protected static string $resource = ContactResource::class;
 
+  
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            ContactResource::getUrl() => 'Pesan',
+            url()->current() => 'Data Pesan',
+        ];
+    }
 }

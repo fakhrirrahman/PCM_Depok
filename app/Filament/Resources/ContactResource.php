@@ -21,7 +21,11 @@ class ContactResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left';
 
-    protected static ?string $navigationGroup = 'Komunikasi';
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Manajemen Organisasi';
+    }
+
     protected static ?string $pluralModelLabel = 'Pesan';
 
 

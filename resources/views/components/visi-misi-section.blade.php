@@ -1,3 +1,29 @@
+<section id="tentang-kami" class="py-5 bg-white">
+    <div class="container" data-aos="fade-up">
+        <div class="shadow-lg rounded-4 p-5 bg-light">
+            <div class="section-title text-center ">
+                <h2 class="fw-bold">Tentang Kami</h2>
+                <p class="text-muted">Profil Singkat Pimpinan Cabang Muhammadiyah Depok</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <p class="text-muted fs-5">
+                        Pimpinan Cabang Muhammadiyah (PCM) Depok merupakan bagian dari organisasi Muhammadiyah yang
+                        bergerak dalam bidang keagamaan, pendidikan, sosial, dan kemasyarakatan di wilayah Depok.
+                        Dengan berlandaskan pada nilai-nilai Islam yang berkemajuan, PCM Depok berkomitmen untuk
+                        memberikan kontribusi nyata dalam pembangunan umat dan bangsa melalui berbagai program
+                        strategis.
+                    </p>
+                    <p class="text-muted fs-5">
+                        Melalui kolaborasi antar amal usaha Muhammadiyah, kader, dan masyarakat luas, kami terus
+                        mengembangkan dakwah dan pemberdayaan masyarakat secara berkelanjutan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="visi-misi" class="py-5 bg-light">
     <div class="container" data-aos="fade-up">
         <div class="shadow-lg rounded-4 p-5 bg-white">

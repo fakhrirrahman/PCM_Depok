@@ -9,7 +9,10 @@
                     <img src="{{ $mediaUrl }}" alt="Galeri" class="w-100 h-100 object-fit-cover">
                     @endforeach
 
-
+                    <!-- Teks waktu upload -->
+                    <div class="position-absolute bottom-0 start-0 bg-dark bg-opacity-50 text-white px-3 py-2 w-100">
+                        <small>Terakhir diupload: {{ $gambar->created_at->format('d M Y, H:i') }}</small>
+                    </div>
                 </div>
             </div>
             @endforeach
