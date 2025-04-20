@@ -44,4 +44,10 @@ class EditKegiatan extends EditRecord
             ->body('Data kegiatan berhasil diperbarui.')
             ->success();
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['updated_by'] = auth()->id(); // set user yang melakukan update
+        return $data;
+    }
 }

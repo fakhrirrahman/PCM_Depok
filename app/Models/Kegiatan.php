@@ -46,4 +46,9 @@ class Kegiatan extends Model implements HasMedia
     {
         $this->addMediaCollection(self::MEDIA_COLLECTION);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,);
+    }
 }

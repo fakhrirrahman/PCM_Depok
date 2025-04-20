@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->date('tanggal');
             $table->string('lokasi');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

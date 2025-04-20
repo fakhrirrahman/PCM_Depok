@@ -4,7 +4,7 @@
             <!-- Kiri: Teks Penjelasan -->
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <h2 class="fw-bold mb-3">
-                    Apa Itu <span class="text-danger">Pimpinanan Cabang Muhammadiyah</span>?
+                    Apa Itu <span class="text-success">Pimpinanan Cabang Muhammadiyah</span>?
                 </h2>
                 <p class="fs-5 text-muted">
                     <strong>PCM</strong> adalah Pimpinan Cabang Muhammadiyah yang berperan sebagai struktur

@@ -53,4 +53,9 @@ class CreateKegiatan extends CreateRecord
             ->body('Data kegiatan berhasil disimpan.')
             ->success();
     }
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['created_by'] = auth()->id(); // ambil user yang login
+        return $data;
+    }
 }

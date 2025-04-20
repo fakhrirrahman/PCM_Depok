@@ -23,7 +23,8 @@ return [
         'enabled' => true,
         'name' => 'super_admin',
         'define_via_gate' => false,
-        'intercept_gate' => 'before', // after
+        'intercept_gate' => 'before', 
+        'default_role_name' => 'user',
     ],
 
     'panel_user' => [

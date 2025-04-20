@@ -5,7 +5,7 @@
         <!-- Kriteria 1 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
-                <div class="mb-3 text-danger">
+                <div class="mb-3 text-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                         class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
                         <path
@@ -22,7 +22,7 @@
         <!-- Kriteria 2 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
-                <div class="mb-3 text-danger">
+                <div class="mb-3 text-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                         class="bi bi-heart-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -37,7 +37,7 @@
         <!-- Kriteria 3 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
-                <div class="mb-3 text-danger">
+                <div class="mb-3 text-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                         class="bi bi-bank" viewBox="0 0 16 16">
                         <path
@@ -52,7 +52,7 @@
         <!-- Kriteria 4 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
-                <div class="mb-3 text-danger">
+                <div class="mb-3 text-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                         class="bi bi-people-fill" viewBox="0 0 16 16">
                         <path
@@ -67,7 +67,7 @@
         <!-- Kriteria 5 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
-                <div class="mb-3 text-danger">
+                <div class="mb-3 text-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                         class="bi bi-infinity" viewBox="0 0 16 16">
                         <path
@@ -82,7 +82,7 @@
         <!-- Kriteria 6 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
-                <div class="mb-3 text-danger">
+                <div class="mb-3 text-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                         class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
                         <path

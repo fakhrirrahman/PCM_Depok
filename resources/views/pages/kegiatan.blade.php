@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('components.page-title', ['title' => 'Kegiatan', 'current' => 'Kegiatan'])
+{{-- @include('components.page-title', ['title' => 'Kegiatan', 'current' => 'Kegiatan']) --}}
 @include('components.blog-section')
 
 @endsection

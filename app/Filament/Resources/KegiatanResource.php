@@ -8,15 +8,14 @@ use App\Models\Kegiatan;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Illuminate\Support\HtmlString;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Hidden;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Notifications\Notification;
-use Filament\Tables\Columns\ImageColumn;
+use Filament\Infolists\Components\Livewire;
 use App\Filament\Resources\KegiatanResource\Pages;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use PhpParser\Node\Stmt\Label;
 
 class KegiatanResource extends Resource
 {
@@ -68,8 +67,14 @@ class KegiatanResource extends Resource
                         ->reorderable()
                         ->required(),
 
+                    Hidden::make('created_by')
+                        ->default(auth()->id())
+                        ->visible(fn (Forms\Get $get, Livewire $livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord),
 
-                ]),
+                   Hidden::make('updated_by')
+                        ->default(auth()->id())
+                        ->visible(fn (Forms\Get $get, Livewire $livewire) => $livewire instanceof \Filament\Resources\Pages\EditRecord),
+                     ]),
         ]);
     }
 

@@ -2,7 +2,7 @@
 <section id="blog-posts" class="blog-posts section py-5 bg-white text-black">
     <div class="container">
         <!-- Wrapper besar dengan shadow -->
-        <div class="shadow-lg rounded-4 p-4" style="background-color: #f9f9f9;">
+        <div class="" style="background-color: #f9f9f9;">
             <div class="section-title text-center mb-4">
                 <h2>Kegiatan Terbaru Kami</h2>
                 <p>Kami melakukan banyak kegiatan. Selengkapnya pada halaman kegiatan.</p>
@@ -11,7 +11,7 @@
             <div class="row gy-4">
                 @foreach ($kegiatans as $blog)
                 <div class="col-lg-4">
-                    <article class="position-relative rounded-3 overflow-hidden h-100 bg-white p-3 shadow-sm">
+                    <article class="position-relative rounded-3 overflow-hidden h-70 bg-white p-3 shadow-sm">
                         <div class="post-img position-relative overflow-hidden rounded-3" style="height: 250px;">
                             @foreach ($blog->mediaUrls as $mediaUrl)
                             <img src="{{ $mediaUrl }}" class="img-fluid w-100 h-100 object-fit-cover"
@@ -28,7 +28,7 @@
 
                             <div class="meta d-flex align-items-center mb-2">
                                 <div class="d-flex align-items-center">
-                                    <i class="bi bi-person"></i> <span class="ps-2">Admin</span>
+                                    <i class="bi bi-person"></i> <span class="ps-2">{{auth()->user()}}</span>
                                 </div>
                                 <span class="px-3 text-black-50">/</span>
                                 <div class="d-flex align-items-center">
