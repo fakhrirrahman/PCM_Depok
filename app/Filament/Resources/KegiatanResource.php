@@ -66,15 +66,15 @@ class KegiatanResource extends Resource
                         ->columnSpan(1)
                         ->reorderable()
                         ->required(),
+                        Hidden::make('created_by')
+                            ->default(auth()->id())
+                            ->visible(fn ($get, $livewire) => $livewire instanceof \App\Filament\Resources\KegiatanResource\Pages\CreateKegiatan),
 
-                    Hidden::make('created_by')
-                        ->default(auth()->id())
-                        ->visible(fn (Forms\Get $get, Livewire $livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord),
+                        Hidden::make('updated_by')
+                            ->default(auth()->id())
+                            ->visible(fn ($get, $livewire) => $livewire instanceof \App\Filament\Resources\KegiatanResource\Pages\EditKegiatan),
 
-                   Hidden::make('updated_by')
-                        ->default(auth()->id())
-                        ->visible(fn (Forms\Get $get, Livewire $livewire) => $livewire instanceof \Filament\Resources\Pages\EditRecord),
-                     ]),
+                ]),
         ]);
     }
 
@@ -96,6 +96,16 @@ class KegiatanResource extends Resource
                     ->badge()
                     ->separator(', '),
                 TextColumn::make('tanggal')->date()->sortable(),
+                TextColumn::make('created_by')
+                    ->label('Dibuat Oleh')
+                    ->getStateUsing(function (Kegiatan $record) {
+                        return $record->creator?->name ?? 'Tidak diketahui';
+                    }),
+                TextColumn::make('updated_by')
+                    ->label('Diperbarui Oleh')
+                    ->getStateUsing(function (Kegiatan $record) {
+                        return $record->editor?->name ?? 'Tidak diketahui';
+                    }),
             ])
             ->filters([])
             ->actions([

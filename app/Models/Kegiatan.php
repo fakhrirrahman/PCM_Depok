@@ -19,6 +19,8 @@ class Kegiatan extends Model implements HasMedia
         'tanggal',
         'deskripsi',
         'lokasi',
+        'created_by',
+        'updated_by',
     ];
 
     public function anggotaKegiatans()
@@ -47,8 +49,12 @@ class Kegiatan extends Model implements HasMedia
         $this->addMediaCollection(self::MEDIA_COLLECTION);
     }
 
-    public function user()
+    public function creator()
     {
-        return $this->belongsTo(User::class,);
+        return $this->belongsTo(User::class, 'created_by')->select('id', 'name');
+    }
+    public function editor()
+    {
+        return $this->belongsTo(User::class, 'updated_by')->select('id', 'name');
     }
 }

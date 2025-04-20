@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Kegiatan;
 
@@ -10,12 +9,8 @@ class KegiatanController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
         $kegiatans = Kegiatan::with('anggota')->latest()->take(3)->get();
-        
-        $data['kegiatans'] = $kegiatans;
-        $data['user'] = $user;
-        return view('pages.index', $data);
+        return view('pages.index', compact('kegiatans'));
     }
     public function kegiatan(Request $request)
     {

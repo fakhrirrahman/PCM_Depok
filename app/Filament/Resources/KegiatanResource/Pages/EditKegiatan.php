@@ -44,6 +44,10 @@ class EditKegiatan extends EditRecord
             ->body('Data kegiatan berhasil diperbarui.')
             ->success();
     }
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl();
+    }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {

@@ -34,7 +34,9 @@
 
                         <div class="meta d-flex align-items-center">
                             <div class="d-flex align-items-center">
-                                <i class="bi bi-person"></i> <span class="ps-2">Admin</span>
+                                <i class="bi bi-person"></i> <span class="ps-2">{{$blog->creator->name ?? 'Tidak
+                                    diketahui'}}</span>
+
                             </div>
                             <span class="px-3 text-black-50">/</span>
                             <div class="d-flex align-items-center">

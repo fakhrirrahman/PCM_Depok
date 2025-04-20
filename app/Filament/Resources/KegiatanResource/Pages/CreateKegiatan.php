@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\KegiatanResource\Pages;
 
-use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\KegiatanResource;
@@ -55,7 +54,7 @@ class CreateKegiatan extends CreateRecord
     }
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['created_by'] = auth()->id(); // ambil user yang login
+        $data['created_by'] = auth()->id();
         return $data;
     }
 }
