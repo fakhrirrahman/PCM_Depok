@@ -81,6 +81,7 @@ class UsersResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
+                    ->date('j M Y')
                     ->searchable(),
             ])->filters([])
             ->actions([

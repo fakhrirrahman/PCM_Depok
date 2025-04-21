@@ -30,8 +30,6 @@ class KegiatanResource extends Resource
         return 'Manajemen Organisasi';
     }
 
-    const STATUS_KEGIATAN = ['berjalan', 'selesai', 'dibatalkan'];
-
     public static function form(Form $form): Form
     {
         return $form->schema([

@@ -25,8 +25,6 @@ class ContactController extends Controller
 
         Contact::create($request->all());
 
-        Mail::to('pcmdepok@gmail.com')->send(new ContactMail($request->all()));
-
         return redirect()->back()->with('success', 'Pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.');
     }
 }
