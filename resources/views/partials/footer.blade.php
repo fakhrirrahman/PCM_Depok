@@ -5,9 +5,6 @@
             <span>&copy; {{ date('Y') }}</span>
             <strong class="px-1 sitename">Pimpinan Cabang Muhammadiyah Depok</strong>
         </p>
-        {{-- <div class="credits">
-            Designed by <a href="https://www.instagram.com/_fahrir/">Fakhrir Rahman</a>
-        </div> --}}
-    </div>
 
+    </div>
 </footer>

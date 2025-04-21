@@ -10,9 +10,9 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Hidden;
+use Illuminate\Support\Collection;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Notifications\Notification;
-use Filament\Infolists\Components\Livewire;
 use App\Filament\Resources\KegiatanResource\Pages;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -126,8 +126,8 @@ class KegiatanResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()
                         ->label('Hapus')
-                        ->action(function (array $records) {
-                            Kegiatan::destroy($records);
+                        ->action(function (Collection  $records) {
+                            Kegiatan::destroy($records->pluck('id'));
                             Notification::make()
                                 ->title('Data berhasil dihapus.')
                                 ->success()
