@@ -1,7 +1,8 @@
+<!-- Tentang Kami -->
 <section id="tentang-kami" class="py-5 bg-white">
     <div class="container" data-aos="fade-up">
-        <div class="shadow-lg rounded-4 p-5 bg-light">
-            <div class="section-title text-center ">
+        <div class="p-4 bg-light">
+            <div class="section-title text-center">
                 <h2 class="fw-bold">Tentang Kami</h2>
                 <p class="text-muted">Profil Singkat Pimpinan Cabang Muhammadiyah Depok</p>
             </div>
@@ -24,9 +25,32 @@
     </div>
 </section>
 
+<!-- Video Profil -->
+<section id="video-profil" class="py-5 bg-light">
+    <div class="container" data-aos="fade-up">
+        <div class="p-4 bg-white">
+            <div class="section-title text-center mb-4">
+                <h2 class="fw-bold">Video Profil</h2>
+                <p class="text-muted">Saksikan profil singkat PCM Depok dalam video berikut:</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/UnOuI5kht2k" title="Video Profil PCM Depok"
+                            allowfullscreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Visi & Misi -->
 <section id="visi-misi" class="py-5 bg-light">
     <div class="container" data-aos="fade-up">
-        <div class="shadow-lg rounded-4 p-5 bg-white">
+        <div class="p-4 bg-white">
             <div class="section-title text-center mb-5">
                 <h2 class="fw-bold">Visi & Misi</h2>
                 <p class="text-muted">Landasan dan arah gerak organisasi kami</p>
@@ -34,7 +58,7 @@
             <div class="row">
                 <!-- Visi -->
                 <div class="col-md-6 mb-4">
-                    <div class="border rounded-3 p-4 h-100 bg-light-subtle">
+                    <div class="border p-4 h-100">
                         <div class="d-flex align-items-center mb-3">
                             <i class="bi bi-eye-fill fs-4 text-primary me-2"></i>
                             <h4 class="mb-0 fw-semibold">Visi</h4>
@@ -53,7 +77,7 @@
 
                 <!-- Misi -->
                 <div class="col-md-6 mb-4">
-                    <div class="border rounded-3 p-4 h-100 bg-light-subtle">
+                    <div class="border p-4 h-100">
                         <div class="d-flex align-items-center mb-3">
                             <i class="bi bi-bullseye fs-4 text-success me-2"></i>
                             <h4 class="mb-0 fw-semibold">Misi</h4>
