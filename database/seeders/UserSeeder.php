@@ -26,7 +26,6 @@ class UserSeeder extends Seeder
             'guard_name' => $guard,
         ]);
 
-        // Generate permissions jika belum
         $permissions = [
             'view_any_user', 'view_user', 'create_user', 'update_user', 'delete_user',
             'view_any_role', 'view_role', 'create_role', 'update_role', 'delete_role',
