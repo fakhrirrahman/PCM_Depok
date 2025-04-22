@@ -27,7 +27,6 @@ class StrukturOrganisasiResource extends Resource
     public static function form(Forms\Form $form): Forms\Form
     {
         return $form
-        ->emptyStateHeading('Belum ada struktur organisasi')
             ->schema([
                 Forms\Components\TextInput::make('nama')
                     ->required()
@@ -41,6 +40,7 @@ class StrukturOrganisasiResource extends Resource
     public static function table(Tables\Table $table): Tables\Table
     {
         return $table
+        ->emptyStateHeading('Belum ada struktur organisasi')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')->label('Nama')->searchable(),
                 Tables\Columns\TextColumn::make('jabatan')->label('Jabatan'),
