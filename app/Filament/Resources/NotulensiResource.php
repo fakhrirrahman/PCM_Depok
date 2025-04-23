@@ -46,7 +46,11 @@ class NotulensiResource extends Resource
             ->emptyStateHeading('Belum ada notulensi')
             ->columns([
                 Tables\Columns\TextColumn::make('judul')->searchable(),
-                Tables\Columns\TextColumn::make('notulensi'),
+                Tables\Columns\TextColumn::make('notulensi')
+                    ->label('Notulensi')
+                    ->limit(50) 
+                    ->wrap() 
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Tanggal Notulensi')
                     ->dateTime('d/m/Y')
@@ -54,7 +58,20 @@ class NotulensiResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('Tanggal')
+                    ->form([
+                        DatePicker::make('from')
+                            ->label('Dari tanggal')
+                            ->native(false),
+                        DatePicker::make('until')
+                            ->label('Sampai tanggal')
+                            ->native(false),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query
+                            ->when($data['from'], fn ($q) => $q->whereDate('created_at', '>=', $data['from']))
+                            ->when($data['until'], fn ($q) => $q->whereDate('created_at', '<=', $data['until']));
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
