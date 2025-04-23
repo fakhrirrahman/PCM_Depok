@@ -39,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => Color::Orange,
             ])
             ->favicon(url: asset('Company/assets/img/logo.jpeg'))
-            ->brandName('PCM Depok.')
+            ->brandLogo(asset('Company/assets/img/logo.jpeg'))
             ->colors([
                 'primary' => Color::Green,
 
