@@ -14,6 +14,14 @@ class CreateUsers extends CreateRecord
     {
         return 'Tambah Pengguna'; // Ubah teks di sini
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            UsersResource::getUrl() => 'Pengguna',
+            url()->current() => 'Tambah Pengguna',
+        ];
+    }
     protected function getCreateFormAction(): \Filament\Actions\Action
     {
         return parent::getCreateFormAction()

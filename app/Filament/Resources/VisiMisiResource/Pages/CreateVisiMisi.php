@@ -15,6 +15,14 @@ class CreateVisiMisi extends CreateRecord
     {
         return 'Tambah Visi Misi'; // Ubah teks di sini
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            VisiMisiResource::getUrl() => 'Visi Misi',
+            url()->current() => 'Tambah Visi Misi',
+        ];
+    }
     protected function getCreateFormAction(): \Filament\Actions\Action
     {
         return parent::getCreateFormAction()

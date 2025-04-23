@@ -38,8 +38,10 @@ class KegiatanResource extends Resource
                     Forms\Components\TextInput::make('nama_kegiatan')
                         ->required(),
 
-                    Forms\Components\Textarea::make('deskripsi')
-                        ->required(),
+                        Forms\Components\Textarea::make('deskripsi')
+                        ->label('Deskripsi')
+                        ->rows(3)
+                        ->columnSpanFull(),
 
                     Forms\Components\TextInput::make('lokasi')
                         ->required(),
@@ -47,6 +49,7 @@ class KegiatanResource extends Resource
                     Forms\Components\Select::make('anggotas')
                         ->label('Anggota')
                         ->relationship('anggota', 'nama')
+                        ->placeholder('Pilih Anggota')
                         ->multiple(),
 
                     Forms\Components\DatePicker::make('tanggal')
@@ -81,44 +84,66 @@ class KegiatanResource extends Resource
         return $table
             ->emptyStateHeading('Belum ada kegiatan')
             ->columns([
-                TextColumn::make('nama_kegiatan')->searchable(),
-                TextColumn::make('deskripsi'),
-                TextColumn::make('lokasi'),
+                TextColumn::make('nama_kegiatan')
+                    ->label('Nama Kegiatan')
+                    ->searchable()
+                    ->wrap(),
+    
+                    TextColumn::make('deskripsi')
+                    ->label('Deskripsi')
+                    ->limit(100)  // Batasi 100 karakter di tabel
+                    ->wrap(),
+    
+                TextColumn::make('lokasi')
+                    ->label('Lokasi')
+                    ->wrap()
+                    ->tooltip(fn ($state) => $state),
+    
                 SpatieMediaLibraryImageColumn::make(Kegiatan::MEDIA_COLLECTION)
                     ->collection(Kegiatan::MEDIA_COLLECTION)
                     ->label('Gambar')
                     ->size(60)
                     ->defaultImageUrl(asset('storage/default.png')),
+    
                 TextColumn::make('anggota.nama')
-                    ->label('Anggota')
+                    ->label('Anggota Terlibat')
                     ->badge()
-                    ->separator(', '),
-                TextColumn::make('tanggal')->date()->sortable(),
+                    ->separator(', ')
+                    ->tooltip('Daftar anggota yang terlibat'),
+    
+                TextColumn::make('tanggal')
+                    ->label('Tanggal Kegiatan')
+                    ->date('d M Y')
+                    ->sortable()
+                    ->tooltip('Tanggal pelaksanaan kegiatan'),
+    
                 TextColumn::make('created_by')
                     ->label('Dibuat Oleh')
-                    ->getStateUsing(function (Kegiatan $record) {
-                        return $record->creator?->name ?? 'Tidak diketahui';
-                    }),
+                    ->getStateUsing(fn (Kegiatan $record) => $record->creator?->name ?? 'Tidak diketahui')
+                    ->badge()
+                    ->color('success'),
+    
                 TextColumn::make('updated_by')
                     ->label('Diperbarui Oleh')
-                    ->getStateUsing(function (Kegiatan $record) {
-                        return $record->editor?->name ?? 'Tidak diketahui';
-                    }),
+                    ->getStateUsing(fn (Kegiatan $record) => $record->editor?->name ?? 'Tidak diketahui')
+                    ->badge()
+                    ->color('warning'),
             ])
             ->filters([])
             ->actions([
+                Tables\Actions\ViewAction::make()->label('Lihat'),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->label('Hapus')
-                ->modalHeading('Konfirmasi Hapus')
-                ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
-                ->modalButton('Ya, Hapus')
-                ->action(function (Kegiatan $record) {
-                    $record->delete();
-                    Notification::make()
-                        ->title('Data berhasil dihapus.')
-                        ->success()
-                        ->send();
-                }),
+                    ->modalHeading('Konfirmasi Hapus')
+                    ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                    ->modalButton('Ya, Hapus')
+                    ->action(function (Kegiatan $record) {
+                        $record->delete();
+                        Notification::make()
+                            ->title('Data berhasil dihapus.')
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -131,11 +156,10 @@ class KegiatanResource extends Resource
                                 ->success()
                                 ->send();
                         }),
-                ])
-                ->label('Aksi'),
+                ])->label('Aksi'),
             ]);
     }
-
+    
     public static function getRelations(): array
     {
         return [];

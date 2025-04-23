@@ -81,6 +81,7 @@ class KeuanganResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('tipe')
+                ->placeholder('semua')
                     ->options([
                         'saldo' => 'Saldo',
                         'pemasukan' => 'Pemasukan',
@@ -89,6 +90,7 @@ class KeuanganResource extends Resource
                     ->label('Tipe Transaksi'),
 
                 SelectFilter::make('kategori')
+                ->placeholder('Semua')
                     ->options(fn() => Keuangan::query()
                         ->select('kategori')
                         ->distinct()

@@ -18,7 +18,6 @@ class CustomDashboard extends Page
         return [
             Action::make('filter')
                 ->label('Filter Tanggal')
-                ->color('success')
                 ->icon('heroicon-o-calendar-days')
                 ->modalHeading('Filter Berdasarkan Tanggal')
                 ->modalSubmitActionLabel('Terapkan Filter')

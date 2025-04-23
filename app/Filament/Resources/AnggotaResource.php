@@ -43,7 +43,7 @@ class AnggotaResource extends Resource
                     ->default('Depok')->required(),
                 Hidden::make('pdm')
                     ->default('Kab Sleman')->required(),
-                Hidden::make('pdm')
+                Hidden::make('pwm')
                     ->default('Daerah Istimewa Yogyakarta')->required(),
                 TextInput::make('alamat')->placeholder('Masukkan alamat lengkap')->required(),
                 TextInput::make('kabupaten_tinggal')->placeholder('Masukkan kabupaten')->required(),
@@ -79,15 +79,24 @@ class AnggotaResource extends Resource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('profesi')
-                    ->label('Filter Profesi')
-                    ->options(fn () => Anggota::query()
-                        ->select('profesi')
-                        ->distinct()
-                        ->orderBy('profesi')
-                        ->pluck('profesi', 'profesi')
-                        ->filter()
-                        ->toArray()),
+                ->label('Filter Profesi')
+                ->placeholder('Semua')
+                ->options(function () {
+                    return cache()->remember('profesi-options', 3600, function () {
+                        return Anggota::query()
+                            ->whereNotNull('profesi')
+                            ->where('profesi', '!=', '')
+                            ->distinct()
+                            ->orderBy('profesi')
+                            ->pluck('profesi')
+                            ->filter() 
+                            ->mapWithKeys(fn ($value) => [$value => $value])
+                            ->toArray();
+                    });
+                    
+                }),
             ])
+            
             ->actions([
                 Tables\Actions\EditAction::make()->label('Edit'),
                 Tables\Actions\DeleteAction::make()->label('Hapus')
@@ -115,7 +124,6 @@ class AnggotaResource extends Resource
             ->headerActions([
                 Action::make('import')
                     ->label('Import Anggota')
-                    ->color('success')
                     ->icon('heroicon-m-arrow-up-tray')
                     ->form([
                         FileUpload::make('file')
@@ -136,7 +144,6 @@ class AnggotaResource extends Resource
 
                 Action::make('export')
                     ->label('Export Anggota')
-                    ->color('success')
                     ->icon('heroicon-m-arrow-down-tray')
                     ->action(function () {
                         return Excel::download(new AnggotaExport, 'anggota.xlsx');

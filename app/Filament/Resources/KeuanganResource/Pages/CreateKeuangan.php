@@ -14,6 +14,14 @@ class CreateKeuangan extends CreateRecord
     {
         return 'Tambah Keuangan'; // Ubah teks di sini
     }
+    
+    public function getBreadcrumbs(): array
+    {
+        return [
+            KeuanganResource::getUrl() => 'Keuangan',
+            url()->current() => 'Tambah Keuangan',
+        ];
+    }
     protected function getCreateFormAction(): \Filament\Actions\Action
     {
         return parent::getCreateFormAction()

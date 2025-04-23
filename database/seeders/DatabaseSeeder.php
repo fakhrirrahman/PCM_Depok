@@ -14,5 +14,11 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(StrukturOrganisasiSeeder::class);
         $this->call(KeuanganSeeder::class);
+        $this->call(KegiatanSeeder::class);
+        $this->call(GaleriSeeder::class);
+        $this->call(NotulensiSeeder::class);
+        $this->call(PesanSeeder::class);
+        $this->call(VisiMisiSeeder::class);
+        
     }
 }

@@ -41,7 +41,8 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(url: asset('Company/assets/img/logo.jpeg'))
             ->brandName('PCM Depok.')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Green,
+
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

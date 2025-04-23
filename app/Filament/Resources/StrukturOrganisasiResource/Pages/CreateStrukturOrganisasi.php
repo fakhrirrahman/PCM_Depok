@@ -15,6 +15,14 @@ class CreateStrukturOrganisasi extends CreateRecord
     {
         return 'Tambah Struktur Organisasi'; // Ubah teks di sini
     }
+    
+    public function getBreadcrumbs(): array
+    {
+        return [
+            StrukturOrganisasiResource::getUrl() => 'Struktur Organisasi',
+            url()->current() => 'Tambah Struktur Organisasi',
+        ];
+    }
 
     protected function getCreateFormAction(): \Filament\Actions\Action
     {

@@ -15,6 +15,14 @@ class CreateNotulensi extends CreateRecord
     {
         return 'Tambah Notulensi'; // Ubah teks di sini
     }
+    
+    public function getBreadcrumbs(): array
+    {
+        return [
+            NotulensiResource::getUrl() => 'Notulensi',
+            url()->current() => 'Tambah Notulensi',
+        ];
+    }
     protected function getCreateFormAction(): \Filament\Actions\Action
     {
         return parent::getCreateFormAction()

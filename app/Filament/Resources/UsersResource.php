@@ -35,6 +35,7 @@ class UsersResource extends Resource
                     ->label('Role')
                     ->multiple()
                     ->relationship('roles', 'name')
+                    ->placeholder('Pilih role')
                     ->preload()
                     ->required(),
                 Forms\Components\TextInput::make('email')
