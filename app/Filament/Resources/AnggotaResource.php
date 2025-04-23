@@ -3,15 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AnggotaResource\Pages;
-use App\Filament\Resources\AnggotaResource\RelationManagers;
 use App\Models\Anggota;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
@@ -20,10 +16,7 @@ use Filament\Forms\Components\Hidden;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\AnggotaImport;
 use Filament\Tables\Actions\Action;
-use Illuminate\Support\Facades\Storage;
 use App\Exports\AnggotaExport;
-use PhpParser\Node\Stmt\Label;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Filament\Notifications\Notification;
 
 
@@ -36,7 +29,6 @@ class AnggotaResource extends Resource
     {
         return 'Manajemen Organisasi';
     }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -84,6 +76,17 @@ class AnggotaResource extends Resource
                 TextColumn::make('profesi')->sortable(),
                 TextColumn::make('no_hp')->sortable(),
                 TextColumn::make('email')->sortable(),
+            ])
+            ->filters([
+                Tables\Filters\SelectFilter::make('profesi')
+                    ->label('Filter Profesi')
+                    ->options(fn () => Anggota::query()
+                        ->select('profesi')
+                        ->distinct()
+                        ->orderBy('profesi')
+                        ->pluck('profesi', 'profesi')
+                        ->filter()
+                        ->toArray()),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Edit'),

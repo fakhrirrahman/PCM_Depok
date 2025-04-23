@@ -31,6 +31,7 @@ class AnggotaCountWidget extends BaseWidget
 
         $totalPengeluaran = (clone $keuanganQuery)->where('tipe', 'pengeluaran')->sum('jumlah');
         $totalPemasukan = (clone $keuanganQuery)->where('tipe', 'pemasukan')->sum('jumlah');
+        $totalSaldoAkhir = $totalPemasukan - $totalPengeluaran;
 
         return [
             Stat::make('Total Anggota', Anggota::count())
@@ -51,7 +52,12 @@ class AnggotaCountWidget extends BaseWidget
             Stat::make('Total Pemasukan', 'Rp ' . number_format($totalPemasukan, 0, ',', '.'))
                 ->description('Total semua pemasukan (berdasarkan filter)')
                 ->color('success')
-                ->icon('heroicon-m-arrow-trending-up')
+                ->icon('heroicon-m-arrow-trending-up'),
+
+            Stat::make('Saldo Akhir', 'Rp ' . number_format($totalSaldoAkhir, 0, ',', '.'))
+                ->description('Saldo akhir berdasarkan pemasukan & pengeluaran (berdasarkan filter)')
+                ->color('success')
+                ->icon('heroicon-m-banknotes'),
         ];
     }
 }
