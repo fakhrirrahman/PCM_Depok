@@ -70,6 +70,7 @@ class ContactResource extends Resource
                     ->searchable()
                     ->sortable(),
             ])
+            ->searchPlaceholder('Cari pesan...')
             ->filters([
                 //
             ])

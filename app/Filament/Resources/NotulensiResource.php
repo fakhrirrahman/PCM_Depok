@@ -73,6 +73,7 @@ class NotulensiResource extends Resource
                             ->when($data['until'], fn ($q) => $q->whereDate('created_at', '<=', $data['until']));
                     }),
             ])
+            ->searchPlaceholder('Cari notulensi...')
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->label('Hapus')

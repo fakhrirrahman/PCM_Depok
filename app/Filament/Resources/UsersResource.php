@@ -84,7 +84,9 @@ class UsersResource extends Resource
                     ->sortable()
                     ->date('j M Y')
                     ->searchable(),
-            ])->filters([])
+            ])
+            ->searchPlaceholder('Cari pengguna...')
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Edit'),
                 Tables\Actions\DeleteAction::make()->label('Hapus')

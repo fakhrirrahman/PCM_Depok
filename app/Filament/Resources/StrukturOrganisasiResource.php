@@ -45,6 +45,8 @@ class StrukturOrganisasiResource extends Resource
                 Tables\Columns\TextColumn::make('nama')->label('Nama')->searchable(),
                 Tables\Columns\TextColumn::make('jabatan')->label('Jabatan'),
             ])
+        ->searchPlaceholder('Cari struktur organisasi...')
+
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),

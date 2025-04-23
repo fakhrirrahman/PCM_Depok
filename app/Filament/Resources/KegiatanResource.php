@@ -117,6 +117,8 @@ class KegiatanResource extends Resource
                     ->badge()
                     ->color('warning'),
             ])
+        ->searchPlaceholder('Cari kegiatan...')
+
             ->filters([
                 Tables\Filters\Filter::make('tanggal')
                     ->form([

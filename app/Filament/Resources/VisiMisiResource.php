@@ -69,6 +69,7 @@ class VisiMisiResource extends Resource
                         return $state->translatedFormat('d F Y');
                     }),
             ])
+        ->searchPlaceholder('Cari visi misi...')
             ->filters([
                 //
             ])

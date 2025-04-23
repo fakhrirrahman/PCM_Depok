@@ -77,7 +77,6 @@ class GaleriResource extends Resource
                 ->extraAttributes([
                     'class' => 'text-gray-500',
                 ])
-                ->searchable()
 
         ])
         ->actions([

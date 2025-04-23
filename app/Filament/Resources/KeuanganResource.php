@@ -109,6 +109,7 @@ class KeuanganResource extends Resource
                             ->when($data['until'], fn($q) => $q->whereDate('tanggal_transaksi', '<=', $data['until']));
                     }),
             ])
+            ->searchPlaceholder('Cari data keuangan...')
             ->actions([
                 EditAction::make(),
                 DeleteAction::make()

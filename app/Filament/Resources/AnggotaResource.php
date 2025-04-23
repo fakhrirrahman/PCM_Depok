@@ -2,22 +2,23 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AnggotaResource\Pages;
+use Filament\Tables;
 use App\Models\Anggota;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\DatePicker;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Hidden;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\AnggotaImport;
-use Filament\Tables\Actions\Action;
 use App\Exports\AnggotaExport;
+use App\Imports\AnggotaImport;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
+use Maatwebsite\Excel\Facades\Excel;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use App\Filament\Resources\AnggotaResource\Pages;
 
 
 class AnggotaResource extends Resource
@@ -49,7 +50,25 @@ class AnggotaResource extends Resource
                 TextInput::make('kabupaten_tinggal')->placeholder('Masukkan kabupaten')->required(),
                 TextInput::make('provinsi_tinggal')->placeholder('Masukkan provinsi')->required(),
                 TextInput::make('kelurahan')->placeholder('Masukkan kelurahan')->required(),
-                TextInput::make('profesi')->placeholder('Masukkan profesi')->required(),
+                Select::make('profesi')
+                ->label('Profesi')
+                ->options([
+                    'mahasiswa' => 'Mahasiswa',
+                    'pelajar' => 'Pelajar',
+                    'guru' => 'Guru',
+                    'dosen' => 'Dosen',
+                    'dokter' => 'Dokter',
+                    'perawat' => 'Perawat',
+                    'pengusaha' => 'Pengusaha',
+                    'petani' => 'Petani',
+                    'nelayan' => 'Nelayan',
+                    'buruh' => 'Buruh',
+                    'pengangguran' => 'Belum/Tidak Bekerja',
+                    'lainnya' => 'Lainnya',
+                ])
+                ->placeholder('Pilih profesi')
+                ->searchable()
+                ->required(),
                 TextInput::make('no_hp')->tel()->placeholder('Masukkan No. HP')->required(),
                 TextInput::make('email')->email()->placeholder('Masukkan email'),
             ]);
@@ -77,6 +96,7 @@ class AnggotaResource extends Resource
                 TextColumn::make('no_hp')->sortable(),
                 TextColumn::make('email')->sortable(),
             ])
+            ->searchPlaceholder('Cari anggota...')
             ->filters([
                 Tables\Filters\SelectFilter::make('profesi')
                 ->label('Filter Profesi')
@@ -123,7 +143,7 @@ class AnggotaResource extends Resource
             ])
             ->headerActions([
                 Action::make('import')
-                    ->label('Import Anggota')
+                    ->label('Impor Anggota')
                     ->icon('heroicon-m-arrow-up-tray')
                     ->form([
                         FileUpload::make('file')
@@ -143,7 +163,7 @@ class AnggotaResource extends Resource
                     ->modalButton('Import'),
 
                 Action::make('export')
-                    ->label('Export Anggota')
+                    ->label('Ekspor Anggota')
                     ->icon('heroicon-m-arrow-down-tray')
                     ->action(function () {
                         return Excel::download(new AnggotaExport, 'anggota.xlsx');
