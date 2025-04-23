@@ -7,7 +7,7 @@
                     Apa Itu <span class="text-success">Pimpinanan Cabang Muhammadiyah</span>?
                 </h2>
                 <p class="fs-5 text-muted">
-                    <strong>PCM</strong> adalah Pimpinan Cabang Muhammadiyah yang berperan sebagai struktur
+                    <strong>Pimpinan Cabang Muhammadiyah</strong> yang berperan sebagai struktur
                     organisasi tingkat cabang dalam gerakan Muhammadiyah. PCM menjadi penggerak utama kegiatan dakwah,
                     pendidikan, sosial, dan ekonomi umat di tingkat lokal.
                 </p>

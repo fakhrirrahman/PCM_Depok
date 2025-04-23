@@ -46,12 +46,6 @@ class KegiatanResource extends Resource
                     Forms\Components\TextInput::make('lokasi')
                         ->required(),
 
-                    Forms\Components\Select::make('anggotas')
-                        ->label('Anggota')
-                        ->relationship('anggota', 'nama')
-                        ->placeholder('Pilih Anggota')
-                        ->multiple(),
-
                     Forms\Components\DatePicker::make('tanggal')
                         ->label('Tanggal')
                         ->required(),
@@ -105,12 +99,6 @@ class KegiatanResource extends Resource
                     ->size(60)
                     ->defaultImageUrl(asset('storage/default.png')),
     
-                TextColumn::make('anggota.nama')
-                    ->label('Anggota Terlibat')
-                    ->badge()
-                    ->separator(', ')
-                    ->tooltip('Daftar anggota yang terlibat'),
-    
                 TextColumn::make('tanggal')
                     ->label('Tanggal Kegiatan')
                     ->date('d M Y')
@@ -129,7 +117,19 @@ class KegiatanResource extends Resource
                     ->badge()
                     ->color('warning'),
             ])
-            ->filters([])
+            ->filters([
+                Tables\Filters\Filter::make('tanggal')
+                    ->form([
+                        Forms\Components\DatePicker::make('from')->label('Dari Tanggal'),
+                        Forms\Components\DatePicker::make('until')->label('Sampai Tanggal'),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query
+                            ->when($data['from'], fn ($query, $date) => $query->whereDate('tanggal', '>=', $date))
+                            ->when($data['until'], fn ($query, $date) => $query->whereDate('tanggal', '<=', $date));
+                    })
+                    ->label('Filter Tanggal')
+            ])
             ->actions([
                 Tables\Actions\ViewAction::make()->label('Lihat'),
                 Tables\Actions\EditAction::make(),
