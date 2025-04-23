@@ -15,7 +15,6 @@ class ListVisiMisis extends ListRecords
         return [
             Actions\CreateAction::make()
                 ->label('Tambah Visi Misi')
-                ->color('success'),
         ];
     }
 
