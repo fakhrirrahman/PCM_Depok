@@ -14,7 +14,8 @@ class ListKegiatans extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->label('Tambah Kegiatan'),
+            ->label('Tambah Kegiatan')
+            ->color('success'),
         ];
     }
 

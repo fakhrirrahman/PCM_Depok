@@ -14,7 +14,8 @@ class ListAnggotas extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-                ->label('Tambah Anggota'),
+                ->label('Tambah Anggota')
+                ->color('success'),
         ];
     }
     //make no data table

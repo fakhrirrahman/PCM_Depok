@@ -14,7 +14,8 @@ class ListStrukturOrganisasis extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-                ->label('Tambah Sturktur Organisasi'),
+                ->label('Tambah Sturktur Organisasi')
+                ->color('success'),
         ];
     }
     public function getBreadcrumbs(): array

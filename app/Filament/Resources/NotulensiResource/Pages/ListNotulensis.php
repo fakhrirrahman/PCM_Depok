@@ -14,7 +14,8 @@ class ListNotulensis extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-                ->label('Tambah Notulensi'),
+                ->label('Tambah Notulensi')
+                ->color('success'),
         ];
     }
     public function getBreadcrumbs(): array

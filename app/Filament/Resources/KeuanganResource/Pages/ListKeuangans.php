@@ -14,7 +14,8 @@ class ListKeuangans extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-                ->label('Tambah Keuangan'),
+                ->label('Tambah Keuangan')
+                ->color('success'),
         ];
     }
 

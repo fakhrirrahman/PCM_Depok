@@ -112,6 +112,7 @@ class AnggotaResource extends Resource
             ->headerActions([
                 Action::make('import')
                     ->label('Import Anggota')
+                    ->color('success')
                     ->icon('heroicon-m-arrow-up-tray')
                     ->form([
                         FileUpload::make('file')
@@ -132,6 +133,7 @@ class AnggotaResource extends Resource
 
                 Action::make('export')
                     ->label('Export Anggota')
+                    ->color('success')
                     ->icon('heroicon-m-arrow-down-tray')
                     ->action(function () {
                         return Excel::download(new AnggotaExport, 'anggota.xlsx');
