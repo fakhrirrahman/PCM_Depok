@@ -40,9 +40,10 @@ class KeuanganResource extends Resource
                 Forms\Components\Select::make('tipe')
                     ->options([
                         'saldo' => 'Saldo',
-                        'pemasukan' => 'Pemasukan',
-                        'pengeluaran' => 'Pengeluaran',
+                        'Pemasukan' => 'Pemasukan',
+                        'Pengeluaran' => 'Pengeluaran',
                     ])
+                    ->placeholder('Pilih Tipe Transaksi')
                     ->required(),
                 Forms\Components\TextInput::make('kategori')
                     ->required(),
@@ -84,8 +85,8 @@ class KeuanganResource extends Resource
                 ->placeholder('semua')
                     ->options([
                         'saldo' => 'Saldo',
-                        'pemasukan' => 'Pemasukan',
-                        'pengeluaran' => 'Pengeluaran',
+                        'Pemasukan' => 'Pemasukan',
+                        'Pengeluaran' => 'Pengeluaran',
                     ])
                     ->label('Tipe Transaksi'),
 

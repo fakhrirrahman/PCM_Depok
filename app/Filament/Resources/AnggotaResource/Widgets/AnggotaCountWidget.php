@@ -43,16 +43,18 @@ class AnggotaCountWidget extends BaseWidget
                 ->description('Jumlah kegiatan saat ini')
                 ->color('primary')
                 ->icon('heroicon-m-clipboard-document-list'),
+                
+                Stat::make('Total Pemasukan', 'Rp ' . number_format($totalPemasukan, 0, ',', '.'))
+                ->description('Total semua pemasukan (berdasarkan filter)')
+                ->color('success')
+                ->icon('heroicon-m-arrow-trending-up'),
 
             Stat::make('Total Pengeluaran', 'Rp ' . number_format($totalPengeluaran, 0, ',', '.'))
                 ->description('Total semua pengeluaran (berdasarkan filter)')
                 ->color('danger')
                 ->icon('heroicon-m-arrow-trending-down'),
 
-            Stat::make('Total Pemasukan', 'Rp ' . number_format($totalPemasukan, 0, ',', '.'))
-                ->description('Total semua pemasukan (berdasarkan filter)')
-                ->color('success')
-                ->icon('heroicon-m-arrow-trending-up'),
+        
 
             Stat::make('Saldo Akhir', 'Rp ' . number_format($totalSaldoAkhir, 0, ',', '.'))
                 ->description('Saldo akhir berdasarkan pemasukan & pengeluaran (berdasarkan filter)')

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('keuangan', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->date('tanggal_transaksi');
-            $table->enum('tipe', ['saldo', 'pemasukan', 'pengeluaran']);
+            $table->enum('tipe', ['Saldo', 'Pemasukan', 'Pengeluaran']);
             $table->string('kategori');
             $table->bigInteger('jumlah');
             $table->bigInteger('saldo_awal')->nullable();

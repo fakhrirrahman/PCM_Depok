@@ -54,7 +54,6 @@ class AnggotaResource extends Resource
                 ->label('Profesi')
                 ->options([
                     'mahasiswa' => 'Mahasiswa',
-                    'pelajar' => 'Pelajar',
                     'guru' => 'Guru',
                     'dosen' => 'Dosen',
                     'dokter' => 'Dokter',
@@ -102,7 +101,6 @@ class AnggotaResource extends Resource
                 ->label('Filter Profesi')
                 ->placeholder('Semua')
                 ->options(function () {
-                    return cache()->remember('profesi-options', 3600, function () {
                         return Anggota::query()
                             ->whereNotNull('profesi')
                             ->where('profesi', '!=', '')
@@ -110,10 +108,7 @@ class AnggotaResource extends Resource
                             ->orderBy('profesi')
                             ->pluck('profesi')
                             ->filter() 
-                            ->mapWithKeys(fn ($value) => [$value => $value])
-                            ->toArray();
-                    });
-                    
+                            ->mapWithKeys(fn ($value) => [$value => $value]);
                 }),
             ])
             
