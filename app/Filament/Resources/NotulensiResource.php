@@ -55,15 +55,12 @@ class NotulensiResource extends Resource
                         ->limit(50) 
                         ->wrap() 
                         ->searchable(),
+                    Tables\Columns\TextColumn::make('kehadiran')
+                        ->label('Kehadiran Anggota')
+                        ->wrap() 
+                        ->searchable(),
                     Tables\Columns\TextColumn::make('created_at')
                         ->label('Tanggal Notulensi')
-                        ->formatStateUsing(function ($state) {
-                            return $state->translatedFormat('d F Y');
-                        })
-                        ->sortable()
-                        ->searchable(),
-                        Tables\Columns\TextColumn::make('Kehadiran')
-                        ->label('Kehadiran')
                         ->formatStateUsing(function ($state) {
                             return $state->translatedFormat('d F Y');
                         })
@@ -89,15 +86,19 @@ class NotulensiResource extends Resource
             ])
             ->searchPlaceholder('Cari notulensi...')
             ->actions([
+                Tables\Actions\ViewAction::make()->label('Lihat'),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->label('Hapus')
-                    ->action(function (Notulensi $record) {
-                        $record->delete();
-                        Notification::make()
-                            ->title('Notulensi berhasil dihapus')
-                            ->success()
-                            ->send();
-                    }), 
+                ->modalHeading('Konfirmasi Hapus')
+                ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                ->modalButton('Ya, Hapus')
+                ->action(function (Notulensi $record) {
+                    $record->delete();
+                    Notification::make()
+                        ->title('Data berhasil dihapus.')
+                        ->success()
+                        ->send();
+                }),
                 
             ])
             ->bulkActions([
