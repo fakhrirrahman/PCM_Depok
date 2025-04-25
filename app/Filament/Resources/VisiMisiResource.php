@@ -34,11 +34,13 @@ class VisiMisiResource extends Resource
                 Forms\Components\Textarea::make('visi')
                     ->label('Visi')
                     ->rows(3)
+                    ->required()
                     ->columnSpanFull(),
 
                 Forms\Components\Textarea::make('misi')
                     ->label('Misi')
                     ->rows(3)
+                    ->required()
                     ->columnSpanFull(),
 
             ]);

@@ -40,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->favicon(url: asset('Company/assets/img/logo.jpeg'))
             ->brandLogo(asset('Company/assets/img/logo.jpeg'))
+            ->brandLogoHeight('60px')
             ->colors([
                 'primary' => Color::Green,
 

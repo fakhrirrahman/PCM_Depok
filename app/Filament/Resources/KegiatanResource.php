@@ -86,7 +86,7 @@ class KegiatanResource extends Resource
     
                     TextColumn::make('deskripsi')
                     ->label('Deskripsi')
-                    ->limit(100)  // Batasi 100 karakter di tabel
+                    ->limit(100)  
                     ->wrap(),
     
                 TextColumn::make('lokasi')

@@ -2,12 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use Dom\Text;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\Notulensi;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Forms\Components\DatePicker;
 use App\Filament\Resources\NotulensiResource\Pages;
@@ -24,41 +27,50 @@ class NotulensiResource extends Resource
         return 'Manajemen Organisasi';
     }
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('judul')->required()->placeholder('Masukkan judul notulensi'),
-                Forms\Components\Textarea::make('notulensi')->required()->placeholder('Masukkan notulensi'),
-                DatePicker::make('created_at')
-                ->label('Tanggal Notulensi')
-                ->required()
-                ->displayFormat('d/m/Y') 
-                ->native(false)
-                ->placeholder('dd/mm/yyyy')
-                ->closeOnDateSelection() 
-            ]);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->emptyStateHeading('Belum ada notulensi')
-            ->columns([
-                Tables\Columns\TextColumn::make('judul')->searchable(),
-                Tables\Columns\TextColumn::make('notulensi')
-                    ->label('Notulensi')
-                    ->limit(50) 
-                    ->wrap() 
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+        public static function form(Form $form): Form
+        {
+            return $form
+                ->schema([
+                    TextInput::make('judul')->required()->placeholder('Masukkan judul notulensi'),
+                    Textarea::make('notulensi')->required()->placeholder('Masukkan notulensi'),
+                    DatePicker::make('created_at')
                     ->label('Tanggal Notulensi')
-                    ->formatStateUsing(function ($state) {
-                        return $state->translatedFormat('d F Y');
-                    })
-                    ->sortable()
-                    ->searchable(),
-            ])
+                    ->required()
+                    ->displayFormat('d/m/Y') 
+                    ->native(false)
+                    ->placeholder('dd/mm/yyyy')
+                    ->closeOnDateSelection(),
+                    TextInput::make('kehadiran')->required()->placeholder('Anggota Yang Hadir'),            
+                ]);
+        }
+
+        public static function table(Table $table): Table
+        {
+            return $table
+                ->emptyStateHeading('Belum ada notulensi')
+                ->columns([
+                    Tables\Columns\TextColumn::make('judul')->searchable(),
+                    Tables\Columns\TextColumn::make('notulensi')
+                        ->label('Notulensi')
+                        ->limit(50) 
+                        ->wrap() 
+                        ->searchable(),
+                    Tables\Columns\TextColumn::make('created_at')
+                        ->label('Tanggal Notulensi')
+                        ->formatStateUsing(function ($state) {
+                            return $state->translatedFormat('d F Y');
+                        })
+                        ->sortable()
+                        ->searchable(),
+                        Tables\Columns\TextColumn::make('Kehadiran')
+                        ->label('Kehadiran')
+                        ->formatStateUsing(function ($state) {
+                            return $state->translatedFormat('d F Y');
+                        })
+                        ->sortable()
+                        ->searchable(),
+
+                ])
             ->filters([
                 Tables\Filters\Filter::make('Tanggal')
                     ->form([

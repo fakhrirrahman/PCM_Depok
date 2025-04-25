@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('notulensi');
+            $table->string('kehadiran');
             $table->timestamps();
         });
     }
