@@ -58,6 +58,7 @@ class AnggotaResource extends Resource
                     'dosen' => 'Dosen',
                     'dokter' => 'Dokter',
                     'perawat' => 'Perawat',
+                    'Advokat' => 'Advokat',
                     'PNS'=> 'PNS',
                     'Karyawan Swasta'=>'Karyawan Swasta',
                     'Wiraswasta'=>'Wiraswasta',

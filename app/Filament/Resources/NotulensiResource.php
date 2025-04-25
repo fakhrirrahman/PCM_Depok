@@ -86,7 +86,7 @@ class NotulensiResource extends Resource
             ])
             ->searchPlaceholder('Cari notulensi...')
             ->actions([
-                Tables\Actions\ViewAction::make()->label('Lihat'),
+                // Tables\Actions\ViewAction::make()->label('Lihat'),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->label('Hapus')
                 ->modalHeading('Konfirmasi Hapus')
