@@ -72,17 +72,23 @@ class UsersResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->sortable()
+                    ->label('ID')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()
+                    ->label('Nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->sortable()
+                    ->label('Email')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
+                    ->label('Dibuat pada')
                     ->sortable()
-                    ->date('j M Y')
+                    ->formatStateUsing(function ($state) {
+                        return $state->translatedFormat('d F Y');
+                    })
                     ->searchable(),
             ])
             ->searchPlaceholder('Cari pengguna...')

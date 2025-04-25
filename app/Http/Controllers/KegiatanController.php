@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kegiatan;
+use Carbon\Carbon;
 
 class KegiatanController extends Controller
 {
     public function index()
     {
-        $kegiatans = Kegiatan::with('anggota')->latest()->take(3)->get();
+        $kegiatans = Kegiatan::whereDate('tanggal', '<=', Carbon::today())
+        ->orderBy('tanggal', 'desc') 
+        ->take(3)
+        ->get();
         return view('pages.index', compact('kegiatans'));
     }
     public function kegiatan(Request $request)

@@ -53,7 +53,9 @@ class NotulensiResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Tanggal Notulensi')
-                    ->dateTime('d/m/Y')
+                    ->formatStateUsing(function ($state) {
+                        return $state->translatedFormat('d F Y');
+                    })
                     ->sortable()
                     ->searchable(),
             ])

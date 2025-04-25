@@ -45,8 +45,18 @@ class KeuanganResource extends Resource
                     ])
                     ->placeholder('Pilih Tipe Transaksi')
                     ->required(),
-                Forms\Components\TextInput::make('kategori')
-                    ->required(),
+                Forms\Components\Select::make('kategori')
+                ->options([
+                    'Infaq' => 'Infaq',
+                    'Iuran Anggota' => 'Iuran Anggota',
+                    'UIG dan UIS'=>'UIG dan UIS',
+                    'Bantuan Kegiatan' => 'Bantuan Kegiatan',
+                    'Hibah' => 'Hibah',
+                    'Hasil Usaha'=>'Hasil Usaha',
+                    'Sponsor'=>'Sponsor',
+                ])
+                    ->required()
+                    ->placeholder('Pilih Kategori'),
                 Forms\Components\TextInput::make('jumlah')
                     ->numeric()
                     ->required(),

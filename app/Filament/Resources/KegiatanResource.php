@@ -2,15 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Kegiatan;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Illuminate\Support\Collection;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Hidden;
-use Illuminate\Support\Collection;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Notifications\Notification;
 use App\Filament\Resources\KegiatanResource\Pages;
@@ -99,9 +100,9 @@ class KegiatanResource extends Resource
                     ->size(60)
                     ->defaultImageUrl(asset('storage/default.png')),
     
-                TextColumn::make('tanggal')
+                    TextColumn::make('tanggal')
                     ->label('Tanggal Kegiatan')
-                    ->date('d M Y')
+                    ->formatStateUsing(fn ($state) => Carbon::parse($state)->translatedFormat('d F Y'))
                     ->sortable()
                     ->tooltip('Tanggal pelaksanaan kegiatan'),
     
