@@ -11,5 +11,5 @@ class Notulensi extends Model
 {
     use HasFactory;
     protected $table = 'notulensi';
-    protected $fillable = ['judul', 'notulensi'];
+    protected $fillable = ['judul', 'notulensi','kehadiran'];
 }
