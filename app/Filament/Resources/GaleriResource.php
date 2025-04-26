@@ -80,7 +80,13 @@ class GaleriResource extends Resource
 
         ])
         ->actions([
-            ViewAction::make()->label('Lihat'),
+            Tables\Actions\ViewAction::make()
+            ->label('Lihat')
+            ->modalFooterActions([
+                Tables\Actions\Action::make('close')
+                    ->label('Tutup')
+                    ->action(fn ($record, $livewire) => $livewire->closeModal()),
+            ]),
             EditAction::make()->label('Edit'),
             Tables\Actions\DeleteAction::make()->label('Hapus')
                     ->modalHeading('Konfirmasi Hapus')
