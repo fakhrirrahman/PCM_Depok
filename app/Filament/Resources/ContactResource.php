@@ -75,7 +75,6 @@ class ContactResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->label('Hapus')
                 ->modalHeading('Konfirmasi Hapus')
                 ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')

@@ -65,6 +65,7 @@ class AssetResource extends Resource
                 ->collection(Asset::MEDIA_COLLECTION)
                 ->required()
                 ->image()
+                ->placeholder('Unggah gambar untuk galeri')
                 ->downloadable()
                 ->maxSize(10240)
                 ->helperText('Upload gambar untuk galeri (maks 10MB).'),
@@ -77,23 +78,19 @@ class AssetResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama Aset')
-                    ->sortable()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('tipe')
                     ->label('Jenis Aset')
-                    ->sortable()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('alamat')
                     ->label('Alamat')
-                    ->sortable()
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
-                    ->sortable()
-                    ->searchable(),
+                    ->sortable(),
 
                 SpatieMediaLibraryImageColumn::make(Asset::MEDIA_COLLECTION)
                     ->collection(Asset::MEDIA_COLLECTION)
@@ -108,7 +105,15 @@ class AssetResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                // Filter sesuai kebutuhan
+                Tables\Filters\SelectFilter::make('tipe')
+                    ->label('Filter Jenis Aset')
+                    ->options(Asset::TYPE)
+                    ->placeholder('Semua Jenis'),
+            
+                Tables\Filters\SelectFilter::make('status')
+                    ->label('Filter Status')
+                    ->options(Asset::STATUS)
+                    ->placeholder('Semua Status'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
