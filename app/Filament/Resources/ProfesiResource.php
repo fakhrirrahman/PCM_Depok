@@ -21,7 +21,7 @@ class ProfesiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $pluralModelLabel = 'Profesi';
+    protected static ?string $pluralModelLabel = 'Profesi Anggota';
 
 
     public static function getNavigationGroup(): ?string

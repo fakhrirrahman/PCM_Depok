@@ -13,7 +13,18 @@ class ListKategoriAsets extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Tambah Kategori Aset')
+        ];
+    }
+    //make no data table
+  
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            KategoriAsetResource::getUrl() => 'Kategori Aset',
+            url()->current() => 'Data Kategori Aset',
         ];
     }
 }

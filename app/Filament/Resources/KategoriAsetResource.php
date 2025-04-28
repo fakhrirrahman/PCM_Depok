@@ -19,6 +19,14 @@ class KategoriAsetResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $pluralModelLabel = 'Kategori Aset';
+
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Manajemen Data';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
