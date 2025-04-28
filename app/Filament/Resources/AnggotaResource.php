@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Tables;
 use App\Models\Anggota;
+use App\Models\Profesi;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Exports\AnggotaExport;
@@ -50,8 +51,8 @@ class AnggotaResource extends Resource
                 TextInput::make('kabupaten_tinggal')->placeholder('Masukkan kabupaten')->required(),
                 TextInput::make('provinsi_tinggal')->placeholder('Masukkan provinsi')->required(),
                 TextInput::make('kelurahan')->placeholder('Masukkan kelurahan')->required(),
-                Select::make('profesi_id')
-                ->relationship('profesi', 'nama')
+                Select::make('profesi')
+                ->options(Profesi::pluck('nama', 'nama'))
                 ->label('Profesi')
                 ->searchable()
                 ->searchPrompt('Cari Profesi...')
