@@ -29,10 +29,10 @@ class ListAnggotas extends ListRecords
         ];
     }
 
-    protected function getHeaderWidgets(): array
-    {
-        return [
-            AnggotaProfesiPieChart::class, // <- Tambahkan widget kamu disini
-        ];
-    }
+    // protected function getHeaderWidgets(): array
+    // {
+    //     return [
+    //         AnggotaProfesiPieChart::class, // <- Tambahkan widget kamu disini
+    //     ];
+    // }
 }

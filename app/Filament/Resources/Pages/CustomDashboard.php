@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Resources\KeuanganResource\Widgets\KeuanganChart;
 use Filament\Pages\Page;
 use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
@@ -18,6 +19,7 @@ class CustomDashboard extends Page
     {
         return [
             AnggotaProfesiPieChart::class,
+            KeuanganChart::class,
         ];
     }
 
