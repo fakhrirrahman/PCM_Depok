@@ -56,4 +56,9 @@ class Asset extends Model implements HasMedia
     {
         $this->addMediaCollection(self::MEDIA_COLLECTION);
     }
+
+    public function kategoriAset()
+    {
+        return $this->belongsTo(KategoriAset::class);
+    }
 }

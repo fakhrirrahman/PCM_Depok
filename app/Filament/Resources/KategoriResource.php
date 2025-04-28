@@ -17,7 +17,7 @@ class KategoriResource extends Resource
 {
     protected static ?string $model = Kategori::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     protected static ?string $pluralModelLabel = 'Kategori Keuangan';
 
@@ -43,6 +43,7 @@ class KategoriResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->emptyStateHeading('Belum ada kategori keuangan yang ditambahkan')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->sortable()

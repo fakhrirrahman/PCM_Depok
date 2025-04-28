@@ -9,11 +9,19 @@ use Filament\Resources\Pages\ListRecords;
 class ListKategoris extends ListRecords
 {
     protected static string $resource = KategoriResource::class;
-
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Tambah Kategori Aset')
+        ];
+    }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            KategoriResource::getUrl() => 'Kategori Aset',
+            url()->current() => 'Data Kategori Aset',
         ];
     }
 }

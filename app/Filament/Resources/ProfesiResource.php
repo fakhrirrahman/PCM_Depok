@@ -18,8 +18,7 @@ use App\Filament\Resources\ProfesiResource\RelationManagers;
 class ProfesiResource extends Resource
 {
     protected static ?string $model = Profesi::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     protected static ?string $pluralModelLabel = 'Profesi Anggota';
 

@@ -17,7 +17,7 @@ class KategoriAsetResource extends Resource
 {
     protected static ?string $model = KategoriAset::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     protected static ?string $pluralModelLabel = 'Kategori Aset';
 
@@ -43,6 +43,7 @@ class KategoriAsetResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->emptyStateHeading('Belum ada kategori aset yang ditambahkan')
             ->columns([
                 Tables\Columns\TextColumn::make('jenis')
                     ->sortable()

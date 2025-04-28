@@ -13,7 +13,16 @@ class ListProfesis extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Tambah Profesi')
+        ];
+    }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            ProfesiResource::getUrl() => 'Profesi',
+            url()->current() => 'Data Profesi',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Models\KategoriAset;
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Tables;
@@ -44,21 +45,36 @@ class AssetResource extends Resource
                 ->required()
                 ->maxLength(255),
 
-            Select::make('tipe')
-                ->label('Jenis Aset')
-                ->options(Asset::TYPE)
+                Select::make('tipe')
+                ->label('Tipe')
+                ->options(fn () => KategoriAset::query()
+                    ->select('jenis')
+                    ->distinct()
+                    ->pluck('jenis', 'jenis') // Memastikan kolom 'jenis' diambil dengan benar
+                )
                 ->placeholder('Pilih Jenis Aset')
-                ->required(),
+                ->required()
+                ->reactive(),
 
             Textarea::make('alamat')
                 ->label('Alamat')
                 ->rows(3),
 
-            Select::make('status')
+                Select::make('status')
                 ->label('Status')
                 ->placeholder('Pilih Status')
-                ->options(Asset::STATUS)
-                ->required(),
+                ->options(function (callable $get) {
+                    $jenis = $get('tipe'); 
+                    if (!$jenis) {
+                        return [];
+                    }
+                    return KategoriAset::query()
+                        ->where('jenis', $jenis) 
+                        ->pluck('status', 'id'); 
+                })
+                ->required()
+                ->reactive()
+                ->disabled(fn (callable $get) => !$get('tipe')),
 
             SpatieMediaLibraryFileUpload::make(Asset::MEDIA_COLLECTION)
                 ->label('Unggah Gambar')
@@ -75,6 +91,7 @@ class AssetResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->emptyStateHeading('Belum ada aset')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama Aset')
