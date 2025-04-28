@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NotulensiSeeder::class);
         $this->call(PesanSeeder::class);
         $this->call(VisiMisiSeeder::class);
+        $this->call(ProfesiSeeder::class);
 
     }
 }

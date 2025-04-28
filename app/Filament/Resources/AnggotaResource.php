@@ -50,29 +50,12 @@ class AnggotaResource extends Resource
                 TextInput::make('kabupaten_tinggal')->placeholder('Masukkan kabupaten')->required(),
                 TextInput::make('provinsi_tinggal')->placeholder('Masukkan provinsi')->required(),
                 TextInput::make('kelurahan')->placeholder('Masukkan kelurahan')->required(),
-                Select::make('profesi')
+                Select::make('profesi_id')
+                ->relationship('profesi', 'nama')
                 ->label('Profesi')
-                ->options([
-                    'mahasiswa' => 'Mahasiswa',
-                    'guru' => 'Guru',
-                    'dosen' => 'Dosen',
-                    'dokter' => 'Dokter',
-                    'perawat' => 'Perawat',
-                    'Advokat' => 'Advokat',
-                    'PNS'=> 'PNS',
-                    'Karyawan Swasta'=>'Karyawan Swasta',
-                    'Wiraswasta'=>'Wiraswasta',
-                    'Seniman' => 'Seniman',
-                    'Atlit' => 'Atlit',
-                    'pengusaha' => 'Pengusaha',
-                    'petani' => 'Petani',
-                    'nelayan' => 'Nelayan',
-                    'buruh' => 'Buruh',
-                    'pengangguran' => 'Belum/Tidak Bekerja',
-                    'lainnya' => 'Lainnya',
-                ])
-                ->placeholder('Pilih profesi')
                 ->searchable()
+                ->searchPrompt('Cari Profesi...')
+                ->preload()
                 ->required(),
                 TextInput::make('no_hp')->tel()->placeholder('Masukkan No. HP')->required(),
                 TextInput::make('email')->email()->placeholder('Masukkan email'),

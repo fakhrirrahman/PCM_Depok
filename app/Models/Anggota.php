@@ -45,4 +45,9 @@ class Anggota extends Model
     {
         return $this->hasMany(AnggotaKegiatan::class, 'anggota_id', 'id');
     }
+
+    public function profesi()
+    {
+        return $this->belongsTo(Profesi::class);
+    }
 }
