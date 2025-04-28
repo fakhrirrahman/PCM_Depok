@@ -21,7 +21,7 @@ class KeuanganChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Total Keuangan',
+                    'label' => 'Ringkasan Keuangan',
                     'data' => array_values($data),
                 ],
             ],
@@ -32,6 +32,6 @@ class KeuanganChart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'bar'; 
+        return 'pie'; 
     }
 }

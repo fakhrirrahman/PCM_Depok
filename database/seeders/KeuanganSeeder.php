@@ -4,170 +4,158 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Keuangan;
+use App\Models\Kategori;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 
 class KeuanganSeeder extends Seeder
 {
     public function run()
     {
+        // Mapping nama kategori ke id kategori
+        $kategoriMap = Kategori::pluck('id', 'nama')->toArray();
+
         $data = [
+            // Saldo Awal
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-01',
                 'tipe' => 'saldo',
                 'kategori' => 'Saldo Awal',
                 'jumlah' => 59346370,
                 'saldo_awal' => 59346370
             ],
+
+            // Pemasukan
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-03',
                 'tipe' => 'pemasukan',
-                'kategori' => 'Infak Pengajian Ahad 3',
+                'kategori' => 'Infaq',
                 'jumlah' => 1235000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-03',
                 'tipe' => 'pemasukan',
-                'kategori' => 'UIG, UIK',
+                'kategori' => 'UIG dan UIS',
                 'jumlah' => 3049200
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-03',
                 'tipe' => 'pemasukan',
-                'kategori' => 'UIS',
+                'kategori' => 'UIG dan UIS',
                 'jumlah' => 120876000
             ],
+
+            // Pengeluaran
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Rapat Rutin',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 4824500
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Pengajian Ahad 3',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 2121000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Pengajian PDM',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 600000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Pembinaan dan pengajian di AUM',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 3903700
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Muspimcab/Muspimsus',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 2274000
             ],
-
-
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Bantuan Ortom, AUM dan Masjid',
+                'kategori' => 'Bantuan',
                 'jumlah' => 850000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Beasiswa',
+                'kategori' => 'Pelatihan',
                 'jumlah' => 3700000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Kesekretariatan',
+                'kategori' => 'Administrasi',
                 'jumlah' => 1571000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Listrik',
+                'kategori' => 'Administrasi',
                 'jumlah' => 639900
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Bisaroh pemateri Pengajian / pelatihan',
+                'kategori' => 'Pelatihan',
                 'jumlah' => 1000000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Longmarch Kokam',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 1950000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Pelantikan PCM',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 6712500
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Cetak kaos gebyar musycab',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 24000000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Perbaikan dan pemeliharaan inventaris',
+                'kategori' => 'Perawatan dan Pemeliharaan',
                 'jumlah' => 1050000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Setor Majelis Dikdas PCM (UIS SDM CC)',
+                'kategori' => 'Kegiatan',
                 'jumlah' => 19893000
             ],
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'pengeluaran',
-                'kategori' => 'Majelis ZIS',
+                'kategori' => 'Bantuan',
                 'jumlah' => 5200000
             ],
+
+            // Saldo Akhir
             [
-                'id' => strtolower((string) Str::ulid()),
                 'tanggal_transaksi' => '2016-04-10',
                 'tipe' => 'saldo',
-                'kategori' => 'saldo akhir',
+                'kategori' => 'Saldo Akhir',
                 'jumlah' => 104216970,
                 'saldo_akhir' => 104216970,
             ],
         ];
 
+        // Tambahkan field lainnya
         foreach ($data as &$entry) {
             $entry['saldo_awal'] = $entry['saldo_awal'] ?? null;
-            $entry['saldo_akhir'] =  $entry['saldo_akhir'] ?? null;
+            $entry['saldo_akhir'] = $entry['saldo_akhir'] ?? null;
             $entry['created_at'] = Carbon::now();
             $entry['updated_at'] = Carbon::now();
         }
