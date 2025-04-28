@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\AnggotaResource\Pages;
 
-use App\Filament\Resources\AnggotaResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\AnggotaResource;
+use App\Filament\Resources\AnggotaResource\Widgets\AnggotaProfesiPieChart;
 
 class ListAnggotas extends ListRecords
 {
@@ -25,6 +26,13 @@ class ListAnggotas extends ListRecords
         return [
             AnggotaResource::getUrl() => 'Anggota',
             url()->current() => 'Data Anggota',
+        ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            AnggotaProfesiPieChart::class, // <- Tambahkan widget kamu disini
         ];
     }
 }

@@ -1,5 +1,7 @@
 <x-filament::page>
-    <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
-        @livewire(\App\Filament\Resources\AnggotaResource\Widgets\AnggotaCountWidget::class)
-        @livewire(\App\Filament\Resources\AnggotaResource\Widgets\AnggotaProfesiPieChart::class)</div>
+    <div class="grid grid-cols-1 gap-4">
+        @foreach (static::getWidgets() as $widget)
+        @livewire($widget)
+        @endforeach
+    </div>
 </x-filament::page>

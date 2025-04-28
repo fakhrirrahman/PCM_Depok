@@ -60,6 +60,12 @@ class AnggotaCountWidget extends BaseWidget
                 ->color('success')
                 ->icon('heroicon-m-banknotes'),
         ];
-    }
 
+    }
+    public static function getWidgets(): array
+    {
+        return [
+            AnggotaProfesiPieChart::class,
+        ];
+    }
 }

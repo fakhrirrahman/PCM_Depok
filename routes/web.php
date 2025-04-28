@@ -6,6 +6,7 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\StrukturOrganisasiController;
+use App\Filament\pages\CustomDashboard;
 
 Route::get('/', [KegiatanController::class, 'index'])->name('home');
 Route::get('/kegiatan', [KegiatanController::class, 'kegiatan'])->name('kegiatan');

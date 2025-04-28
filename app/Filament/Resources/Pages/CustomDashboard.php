@@ -5,16 +5,24 @@ namespace App\Filament\Pages;
 use Filament\Pages\Page;
 use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
+use App\Filament\Resources\AnggotaResource\Widgets\AnggotaProfesiPieChart;
 
 class CustomDashboard extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-home';
     protected static ?string $navigationLabel = 'Dashboard Utama';
-    protected static ?string $title = '🎯 Dashboard Kinerja';
+    protected static ?string $title = '🎯 Dashboard Utama';
     protected static string $view = 'filament.pages.custom-dashboard';
 
-    public function getHeaderActions(): array
-    {        
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            AnggotaProfesiPieChart::class,
+        ];
+    }
+
+    public function getActions(): array
+    {
         return [
             Action::make('filter')
                 ->label('Filter Tanggal')
@@ -31,16 +39,8 @@ class CustomDashboard extends Page
                     session([
                         'dashboard_filters' => $data,
                     ]);
-
                     $this->redirect(request()->header('Referer'));
                 }),
-        ];
-    }
-    public static function getWidgets(): array
-    {
-        return [
-            \App\Filament\Resources\AnggotaResource\Widgets\AnggotaCountWidget::class,
-            \App\Filament\Resources\AnggotaResource\Widgets\AnggotaProfesiPieChart::class,
         ];
     }
 }

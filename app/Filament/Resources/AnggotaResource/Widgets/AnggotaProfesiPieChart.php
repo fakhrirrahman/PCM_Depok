@@ -11,11 +11,12 @@ class AnggotaProfesiPieChart extends ChartWidget
 
     protected function getData(): array
     {
-        $data = Anggota::selectRaw('COUNT(*) as total, (SELECT nama FROM profesi WHERE profesi.id = anggota.profesi_id) as nama_profesi')
-            ->groupBy('profesi_id')
-            ->pluck('total', 'nama_profesi')
-            ->toArray();
-
+        $data = Anggota::selectRaw('profesi as nama_profesi, COUNT(*) as total')
+        ->groupBy('profesi')
+        ->pluck('total', 'nama_profesi')
+        ->toArray();
+    
+    
         return [
             'datasets' => [
                 [
@@ -26,9 +27,10 @@ class AnggotaProfesiPieChart extends ChartWidget
             'labels' => array_keys($data),
         ];
     }
+    
 
     protected function getType(): string
     {
-        return 'pie'; // pie chart
+        return 'bar'; 
     }
 }
