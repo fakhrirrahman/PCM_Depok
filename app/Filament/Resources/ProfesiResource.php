@@ -44,30 +44,30 @@ class ProfesiResource extends Resource
                 Tables\Columns\TextColumn::make('nama')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('created_at') 
+                ->label('Tanggal Dibuat')
                 ->formatStateUsing(fn ($state) => Carbon::parse($state)
                 ->translatedFormat('d F Y'))
                 ->sortable()
                
             ])
+            ->searchPlaceholder('Cari profesi...')
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()->label('Hapus')
-                    ->modalHeading('Konfirmasi Hapus')
-                    ->modalSubheading('Apakah Anda yakin ingin menghapus profesi ini?')
-                    ->modalButton('Hapus')
-                    ->color('danger')
-                    ->action(function (Profesi $record) {
-                        $record->delete();
-                        Notification::make()
-                            ->title('Berhasil')
-                            ->body('Profesi berhasil dihapus.')
-                            ->success()
-                            ->send();
-                    }),
+                ->modalHeading('Konfirmasi Hapus')
+                ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                ->modalButton('Ya, Hapus')
+                ->action(function (Profesi $record) {
+                    $record->delete();
+                    Notification::make()
+                        ->title('Data berhasil dihapus.')
+                        ->success()
+                        ->send();
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

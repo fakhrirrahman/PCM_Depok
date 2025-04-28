@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KategoriAsetResource\Pages;
-use App\Filament\Resources\KategoriAsetResource\RelationManagers;
-use App\Models\KategoriAset;
+use Carbon\Carbon;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\KategoriAset;
+use Filament\Resources\Resource;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\KategoriAsetResource\Pages;
+use App\Filament\Resources\KategoriAsetResource\RelationManagers;
 
 class KategoriAsetResource extends Resource
 {
@@ -54,14 +56,28 @@ class KategoriAsetResource extends Resource
                     ->searchable()
                     ->label('Status Aset'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->label('Tanggal Dibuat'),
+                    ->label('Tanggal Dibuat')
+                    ->formatStateUsing(fn ($state) => Carbon::parse($state)
+                    ->translatedFormat('d F Y'))
             ])
+            ->searchPlaceholder('Cari kategori...')
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()->label('Hapus')
+                ->modalHeading('Konfirmasi Hapus')
+                ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                ->modalButton('Ya, Hapus')
+                ->action(function (KategoriAset $record) {
+                    $record->delete();
+                    Notification::make()
+                        ->title('Data berhasil dihapus.')
+                        ->success()
+                        ->send();
+                }),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

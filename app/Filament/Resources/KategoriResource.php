@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KategoriResource\Pages;
-use App\Filament\Resources\KategoriResource\RelationManagers;
-use App\Models\Kategori;
+use Carbon\Carbon;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Kategori;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\KategoriResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\KategoriResource\RelationManagers;
 
 class KategoriResource extends Resource
 {
@@ -55,13 +57,27 @@ class KategoriResource extends Resource
                     ->label('Jenis Kategori'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
-                    ->label('Tanggal Dibuat'),
+                    ->label('Tanggal Dibuat')
+                    ->formatStateUsing(fn ($state) => Carbon::parse($state)
+                    ->translatedFormat('d F Y')),
             ])
+            ->searchPlaceholder('Cari kategori...')
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()->label('Hapus')
+                ->modalHeading('Konfirmasi Hapus')
+                ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
+                ->modalButton('Ya, Hapus')
+                ->action(function (Kategori $record) {
+                    $record->delete();
+                    Notification::make()
+                        ->title('Data berhasil dihapus.')
+                        ->success()
+                        ->send();
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
