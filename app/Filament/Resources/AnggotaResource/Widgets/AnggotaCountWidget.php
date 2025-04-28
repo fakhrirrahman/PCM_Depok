@@ -12,7 +12,7 @@ class AnggotaCountWidget extends BaseWidget
 {
     protected function getColumns(): int
     {
-        return 2;
+        return 4;
     }
 
     protected function getStats(): array
@@ -44,7 +44,7 @@ class AnggotaCountWidget extends BaseWidget
                 ->color('primary')
                 ->icon('heroicon-m-clipboard-document-list'),
                 
-                Stat::make('Total Pemasukan', 'Rp ' . number_format($totalPemasukan, 0, ',', '.'))
+            Stat::make('Total Pemasukan', 'Rp ' . number_format($totalPemasukan, 0, ',', '.'))
                 ->description('Total semua pemasukan (berdasarkan filter)')
                 ->color('success')
                 ->icon('heroicon-m-arrow-trending-up'),
@@ -54,7 +54,6 @@ class AnggotaCountWidget extends BaseWidget
                 ->color('danger')
                 ->icon('heroicon-m-arrow-trending-down'),
 
-        
 
             Stat::make('Saldo Akhir', 'Rp ' . number_format($totalSaldoAkhir, 0, ',', '.'))
                 ->description('Saldo akhir berdasarkan pemasukan & pengeluaran (berdasarkan filter)')
@@ -62,4 +61,5 @@ class AnggotaCountWidget extends BaseWidget
                 ->icon('heroicon-m-banknotes'),
         ];
     }
+
 }

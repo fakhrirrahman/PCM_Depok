@@ -9,12 +9,12 @@ use Filament\Forms\Components\DatePicker;
 class CustomDashboard extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-home';
-    protected static string $view = 'filament.pages.custom-dashboard';
     protected static ?string $navigationLabel = 'Dashboard Utama';
     protected static ?string $title = '🎯 Dashboard Kinerja';
+    protected static string $view = 'filament.pages.custom-dashboard';
 
     public function getHeaderActions(): array
-    {
+    {        
         return [
             Action::make('filter')
                 ->label('Filter Tanggal')
@@ -34,6 +34,13 @@ class CustomDashboard extends Page
 
                     $this->redirect(request()->header('Referer'));
                 }),
+        ];
+    }
+    public static function getWidgets(): array
+    {
+        return [
+            \App\Filament\Resources\AnggotaResource\Widgets\AnggotaCountWidget::class,
+            \App\Filament\Resources\AnggotaResource\Widgets\AnggotaProfesiPieChart::class,
         ];
     }
 }
