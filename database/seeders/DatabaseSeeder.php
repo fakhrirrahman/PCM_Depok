@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PesanSeeder::class);
         $this->call(VisiMisiSeeder::class);
         $this->call(ProfesiSeeder::class);
-
+        $this->call(KategoriSeeder::class);
     }
 }

@@ -2,18 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KeuanganResource\Pages;
-use App\Models\Keuangan;
 use Filament\Forms;
+use App\Models\Kategori;
+use App\Models\Keuangan;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Actions\DeleteBulkAction;
+use App\Filament\Resources\KeuanganResource\Pages;
 
 class KeuanganResource extends Resource
 {
@@ -35,35 +39,42 @@ class KeuanganResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\DatePicker::make('tanggal_transaksi')
+                DatePicker::make('tanggal_transaksi')
                     ->required(),
-                Forms\Components\Select::make('tipe')
-                    ->options([
-                        'saldo' => 'Saldo',
-                        'Pemasukan' => 'Pemasukan',
-                        'Pengeluaran' => 'Pengeluaran',
-                    ])
-                    ->placeholder('Pilih Tipe Transaksi')
-                    ->required(),
-                Forms\Components\Select::make('kategori')
-                ->options([
-                    'Infaq' => 'Infaq',
-                    'Iuran Anggota' => 'Iuran Anggota',
-                    'UIG dan UIS'=>'UIG dan UIS',
-                    'Bantuan Kegiatan' => 'Bantuan Kegiatan',
-                    'Hibah' => 'Hibah',
-                    'Hasil Usaha'=>'Hasil Usaha',
-                    'Sponsor'=>'Sponsor',
-                ])
+                    Select::make('tipe')
+                    ->label('Tipe')
+                    ->options(fn () => Kategori::query()
+                        ->select('jenis')
+                        ->distinct()
+                        ->pluck('jenis', 'jenis')
+                    )
+                    ->placeholder('Pilih tipe')
                     ->required()
-                    ->placeholder('Pilih Kategori'),
-                Forms\Components\TextInput::make('jumlah')
+                    ->reactive(), 
+                Select::make('kategori')
+                    ->label('Kategori')
+                    ->placeholder('Pilih kategori')
+                    ->options(function (callable $get) {
+                        $tipe = $get('tipe');
+                
+                        if (!$tipe) {
+                            return [];
+                        }
+                
+                        return Kategori::query()
+                            ->where('jenis', $tipe)
+                            ->pluck('nama', 'id');
+                    })
+                    ->required()
+                    ->reactive()
+                    ->disabled(fn (callable $get) => !$get('tipe')),
+                TextInput::make('jumlah')
                     ->numeric()
                     ->required(),
-                Forms\Components\TextInput::make('saldo_awal')
+                TextInput::make('saldo_awal')
                     ->numeric()
                     ->nullable(),
-                Forms\Components\TextInput::make('saldo_akhir')
+                TextInput::make('saldo_akhir')
                     ->numeric()
                     ->nullable(),
             ]);
