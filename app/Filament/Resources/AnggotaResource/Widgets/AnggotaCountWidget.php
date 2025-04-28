@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\AnggotaResource\Widgets;
 
+use App\Models\Asset;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use App\Models\Anggota;
@@ -12,7 +13,7 @@ class AnggotaCountWidget extends BaseWidget
 {
     protected function getColumns(): int
     {
-        return 4;
+        return 3;
     }
 
     protected function getStats(): array
@@ -43,6 +44,13 @@ class AnggotaCountWidget extends BaseWidget
                 ->description('Jumlah kegiatan saat ini')
                 ->color('primary')
                 ->icon('heroicon-m-clipboard-document-list'),
+
+
+                Stat::make('Total Data Aset', Asset::count())
+                ->description('Jumlah aset saat ini')
+                ->color('primary')
+                ->icon('heroicon-m-clipboard-document-list'),
+                
                 
             Stat::make('Total Pemasukan', 'Rp ' . number_format($totalPemasukan, 0, ',', '.'))
                 ->description('Total semua pemasukan (berdasarkan filter)')
