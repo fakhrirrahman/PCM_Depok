@@ -50,7 +50,7 @@ class AssetResource extends Resource
                 ->options(fn () => KategoriAset::query()
                     ->select('jenis')
                     ->distinct()
-                    ->pluck('jenis', 'jenis') // Memastikan kolom 'jenis' diambil dengan benar
+                    ->pluck('jenis', 'jenis')
                 )
                 ->placeholder('Pilih Jenis Aset')
                 ->required()
@@ -64,17 +64,19 @@ class AssetResource extends Resource
                 ->label('Status')
                 ->placeholder('Pilih Status')
                 ->options(function (callable $get) {
-                    $jenis = $get('tipe'); 
+                    $jenis = $get('tipe');
                     if (!$jenis) {
                         return [];
                     }
+            
                     return KategoriAset::query()
-                        ->where('jenis', $jenis) 
-                        ->pluck('status', 'id'); 
+                        ->where('jenis', $jenis)
+                        ->pluck('status', 'status'); // Perhatikan: pakai 'status', bukan 'id' jika kamu tidak butuh id-nya
                 })
                 ->required()
                 ->reactive()
                 ->disabled(fn (callable $get) => !$get('tipe')),
+            
 
             SpatieMediaLibraryFileUpload::make(Asset::MEDIA_COLLECTION)
                 ->label('Unggah Gambar')
@@ -124,12 +126,22 @@ class AssetResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('tipe')
                     ->label('Filter Jenis Aset')
-                    ->options(Asset::TYPE)
+                    ->options(
+                        fn () => KategoriAset::query()
+                            ->select('jenis')
+                            ->distinct()
+                            ->pluck('jenis', 'jenis')
+                    )
                     ->placeholder('Semua Jenis'),
             
                 Tables\Filters\SelectFilter::make('status')
                     ->label('Filter Status')
-                    ->options(Asset::STATUS)
+                    ->options(
+                        fn () => KategoriAset::query()
+                            ->select('status')
+                            ->distinct()
+                            ->pluck('status', 'status')
+                    )
                     ->placeholder('Semua Status'),
             ])
             ->actions([

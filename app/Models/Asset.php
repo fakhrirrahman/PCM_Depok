@@ -14,25 +14,6 @@ class Asset extends Model implements HasMedia
     protected $table = 'aset';
 
     const MEDIA_COLLECTION = 'gambar';
-    const STATUS = [
-       'wakaf' => 'Wakaf',
-       'hibah' => 'Hibah',
-       'pembelian aset' => 'Pembelian Aset',
-    ];
-
-    const TYPE = [
-        'Sekolah' => 'Sekolah',
-        'Masjid' => 'Masjid',
-        'Tanah' => 'Tanah',
-        'Rumah Sakit' => 'Rumah Sakit',
-        'Klinik' => 'Klinik',
-        'Panti Asuhan' => 'Panti Asuhan',
-        'Perguruan Tinggi' => 'Perguruan Tinggi',
-        'Gedung Serba Guna' => 'Gedung Serba Guna',
-        'Kendaraan' => 'Kendaraan',
-        'Lainnya' => 'Lainnya',
-    ];
-
     protected $fillable = [
         'nama',
         'tipe',
