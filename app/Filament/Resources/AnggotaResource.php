@@ -19,6 +19,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\AnggotaResource\Pages;
 
 
@@ -117,15 +119,21 @@ class AnggotaResource extends Resource
                     }),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
                         ->label('Hapus Terpilih')
                         ->modalHeading('Konfirmasi Hapus')
                         ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
-                        ->modalButton('Ya, Hapus'),
+                        ->modalButton('Ya, Hapus')
+                        ->after(function () {
+                            Notification::make()
+                                ->title('Data berhasil dihapus.')
+                                ->success()
+                                ->send();
+                        }),
                 ])
-                    ->Label('Aksi Massal')
-            ])
+                ->label('Aksi Massal'),
+                    ])
             ->headerActions([
                 Action::make('import')
                     ->label('Impor Anggota')

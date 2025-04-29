@@ -14,6 +14,8 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\GaleriResource\Pages;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -100,7 +102,23 @@ class GaleriResource extends Resource
                             ->send();
                     }),
             
-        ]);
+                ])
+                ->bulkActions([
+                    BulkActionGroup::make([
+                        DeleteBulkAction::make()
+                            ->label('Hapus Terpilih')
+                            ->modalHeading('Konfirmasi Hapus')
+                            ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                            ->modalButton('Ya, Hapus')
+                            ->after(function () {
+                                Notification::make()
+                                    ->title('Data berhasil dihapus.')
+                                    ->success()
+                                    ->send();
+                            }),
+                    ])
+                    ->label('Aksi Massal'),
+                        ]);
     }
 
     public static function getRelations(): array

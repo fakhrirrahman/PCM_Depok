@@ -11,6 +11,8 @@ use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\ContactResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ContactResource\RelationManagers;
@@ -88,10 +90,21 @@ class ContactResource extends Resource
                 }),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->label('Hapus Terpilih')
+                        ->modalHeading('Konfirmasi Hapus')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                        ->modalButton('Ya, Hapus')
+                        ->after(function () {
+                            Notification::make()
+                                ->title('Data berhasil dihapus.')
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                ->label('Aksi Massal'),
+                    ]);
     }
 
     public static function getRelations(): array

@@ -2,20 +2,23 @@
 
 namespace BezhanSalleh\FilamentShield\Resources;
 
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
+use Filament\Forms;
+use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Facades\Filament;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use Filament\Notifications\Notification;
+use Illuminate\Contracts\Support\Arrayable;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use BezhanSalleh\FilamentShield\Support\Utils;
 use BezhanSalleh\FilamentShield\Forms\ShieldSelectAllToggle;
 use BezhanSalleh\FilamentShield\Resources\RoleResource\Pages;
-use BezhanSalleh\FilamentShield\Support\Utils;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
-use Filament\Facades\Filament;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
 
 class RoleResource extends Resource implements HasShieldPermissions
 {
@@ -132,8 +135,21 @@ class RoleResource extends Resource implements HasShieldPermissions
                 Tables\Actions\DeleteAction::make()->label('Hapus'),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make()->label('Hapus terpilih'),
-            ]);
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->label('Hapus Terpilih')
+                        ->modalHeading('Konfirmasi Hapus')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                        ->modalButton('Ya, Hapus')
+                        ->after(function () {
+                            Notification::make()
+                                ->title('Data berhasil dihapus.')
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                ->label('Aksi Massal'),
+                    ]);
     }
 
     public static function getRelations(): array

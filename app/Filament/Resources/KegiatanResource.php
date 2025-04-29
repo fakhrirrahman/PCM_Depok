@@ -165,7 +165,7 @@ class KegiatanResource extends Resource
                                 ->success()
                                 ->send();
                         }),
-                ])->label('Aksi'),
+                ])->label('Aksi Masal'),
             ]);
     }
     

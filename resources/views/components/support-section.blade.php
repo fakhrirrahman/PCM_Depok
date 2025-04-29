@@ -19,9 +19,15 @@
 
             <!-- Kanan: Ilustrasi -->
             <div class="col-lg-6 text-center">
+                <!-- Gambar untuk layar besar -->
                 <img src="https://i.pinimg.com/originals/ff/9b/5a/ff9b5a6f1ab633c56d1fb9dfb20780be.png"
-                    alt="PCM Muhammadiyah" class="img-fluid" style="max-height: 360px;">
+                    alt="PCM Muhammadiyah" class="img-fluid d-none d-sm-inline" style="max-height: 360px;">
+
+                <!-- Gambar untuk layar kecil -->
+                <img src="https://i.pinimg.com/originals/ff/9b/5a/ff9b5a6f1ab633c56d1fb9dfb20780be.png"
+                    alt="PCM Muhammadiyah" class="img-fluid d-inline d-sm-none" style="max-height: 200px;">
             </div>
+
         </div>
     </div>
 </section>

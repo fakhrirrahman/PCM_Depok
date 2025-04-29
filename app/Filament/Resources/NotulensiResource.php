@@ -13,6 +13,8 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\NotulensiResource\Pages;
 
 
@@ -102,19 +104,21 @@ class NotulensiResource extends Resource
                 
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
-                        ->action(function (array $records) {
-                            Notulensi::destroy($records);
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->label('Hapus Terpilih')
+                        ->modalHeading('Konfirmasi Hapus')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                        ->modalButton('Ya, Hapus')
+                        ->after(function () {
                             Notification::make()
-                                ->title('Notulensi berhasil dihapus')
+                                ->title('Data berhasil dihapus.')
                                 ->success()
                                 ->send();
-                        })
-                        ->label('Hapus')
+                        }),
                 ])
-                ->label('Aksi')
-            ]);
+                ->label('Aksi Massal'),
+                    ]);
     }
 
     public static function getRelations(): array

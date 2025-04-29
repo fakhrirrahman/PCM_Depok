@@ -4,12 +4,14 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use PhpParser\Node\Stmt\Label;
 use Filament\Resources\Resource;
 use App\Models\StrukturOrganisasi;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\StrukturOrganisasiResource\Pages;
 use App\Filament\Resources\StrukturOrganisasiResource\RelationManagers\ChildrenRelationManager;
-use PhpParser\Node\Stmt\Label;
 
 class StrukturOrganisasiResource extends Resource
 {
@@ -65,22 +67,21 @@ class StrukturOrganisasiResource extends Resource
                     }),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make()
-                    ->label('Hapus')
-                    ->modalHeading('Konfirmasi Hapus')
-                    ->modalSubheading('Apakah Anda yakin ingin menghapus anggota ini?')
-                    ->modalButton('Hapus')
-                    ->color('danger')
-                    ->action(function (array $records) {
-                        StrukturOrganisasi::destroy($records);
-                        Notification::make()
-                            ->title('Anggota dihapus')
-                            ->success()
-                            ->send();
-                    })
-                    ->label('Hapus terpilih'),
-                    
-            ]);
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->label('Hapus Terpilih')
+                        ->modalHeading('Konfirmasi Hapus')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                        ->modalButton('Ya, Hapus')
+                        ->after(function () {
+                            Notification::make()
+                                ->title('Data berhasil dihapus.')
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                ->label('Aksi Massal'),
+                    ]);
     }
 
     public static function getRelations(): array

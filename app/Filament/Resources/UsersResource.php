@@ -9,6 +9,8 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\UsersResource\Pages;
 
 class UsersResource extends Resource
@@ -99,11 +101,27 @@ class UsersResource extends Resource
                     ->action(function (array $data): void {
                         User::destroy($data['record']->id);
                         Notification::make()
-                            ->title('User deleted successfully')
+                            ->title('Data berhasil dihapus.')
                             ->success()
                             ->send();
                     }),
-                ]);
+                ])
+                ->bulkActions([
+                    BulkActionGroup::make([
+                        DeleteBulkAction::make()
+                            ->label('Hapus Terpilih')
+                            ->modalHeading('Konfirmasi Hapus')
+                            ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                            ->modalButton('Ya, Hapus')
+                            ->after(function () {
+                                Notification::make()
+                                    ->title('Data berhasil dihapus.')
+                                    ->success()
+                                    ->send();
+                            }),
+                    ])
+                    ->label('Aksi Massal'),
+                        ]);
     }
 
     public static function getRelations(): array

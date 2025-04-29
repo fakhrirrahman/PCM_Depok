@@ -16,6 +16,7 @@ use Filament\Notifications\Notification;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\KeuanganResource\Pages;
 
@@ -135,6 +136,7 @@ class KeuanganResource extends Resource
             ->actions([
                 EditAction::make(),
                 DeleteAction::make()
+                    ->label('Hapus')
                     ->modalHeading('Konfirmasi Hapus')
                     ->modalSubheading('Apakah Anda yakin ingin menghapus data ini?')
                     ->modalButton('Ya, Hapus')
@@ -144,23 +146,26 @@ class KeuanganResource extends Resource
                             ->title('Data berhasil dihapus.')
                             ->success()
                             ->send();
-                    })
-                    ->Label('Hapus')
+                    }),
             ])
             ->bulkActions([
-                DeleteBulkAction::make()->modalHeading('Konfirmasi Hapus')
-                    ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
-                    ->modalButton('Ya, Hapus')
-                    ->action(function (array $records) {
-                        Keuangan::destroy($records);
-                        Notification::make()
-                            ->title('Data berhasil dihapus.')
-                            ->success()
-                            ->send();
-                    })
-                    ->Label('Hapus Terpilih')
-            ]);
-    }
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->label('Hapus Terpilih')
+                        ->modalHeading('Konfirmasi Hapus')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                        ->modalButton('Ya, Hapus')
+                        ->after(function () {
+                            Notification::make()
+                                ->title('Data berhasil dihapus.')
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                ->label('Aksi Massal'),
+                ]);
+                    
+        }            
 
     public static function getPages(): array
     {

@@ -10,6 +10,8 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\VisiMisiResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\VisiMisiResource\RelationManagers;
@@ -93,22 +95,21 @@ class VisiMisiResource extends Resource
                     }),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
-                        ->label('Hapus')
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->label('Hapus Terpilih')
                         ->modalHeading('Konfirmasi Hapus')
-                        ->modalSubheading('Apakah Anda yakin ingin menghapus visi misi ini?')
-                        ->modalButton('Hapus')
-                        ->color('danger')
-                        ->action(function (array $records) {
-                            VisiMisi::destroy($records);
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                        ->modalButton('Ya, Hapus')
+                        ->after(function () {
                             Notification::make()
-                                ->title('Visi Misi dihapus')
+                                ->title('Data berhasil dihapus.')
                                 ->success()
                                 ->send();
                         }),
-                ])->label('Aksi')
-            ]);
+                ])
+                ->label('Aksi Massal'),
+                    ]);
     }
 
     public static function getRelations(): array

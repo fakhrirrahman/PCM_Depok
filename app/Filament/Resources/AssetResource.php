@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\KategoriAset;
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Asset;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\KategoriAset;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -17,6 +17,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ViewField;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\AssetResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -164,19 +165,23 @@ class AssetResource extends Resource
                     ->success()
                     ->send();
             }),
-            ]) ->bulkActions([
-                DeleteBulkAction::make()->modalHeading('Konfirmasi Hapus')
-                    ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
-                    ->modalButton('Ya, Hapus')
-                    ->action(function (array $records) {
-                        Asset::destroy($records);
-                        Notification::make()
-                            ->title('Data berhasil dihapus.')
-                            ->success()
-                            ->send();
-                    })
-                    ->Label('Hapus Terpilih')
-            ]);
+            ])  
+            ->bulkActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->label('Hapus Terpilih')
+                        ->modalHeading('Konfirmasi Hapus')
+                        ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
+                        ->modalButton('Ya, Hapus')
+                        ->after(function () {
+                            Notification::make()
+                                ->title('Data berhasil dihapus.')
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                ->label('Aksi Massal'),
+                    ]);
     }
          
 

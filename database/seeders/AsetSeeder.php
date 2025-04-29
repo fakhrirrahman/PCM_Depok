@@ -59,12 +59,24 @@ class AsetSeeder extends Seeder
             ]);
 
             if ($gambar) {
-                $path = public_path("images/aset/{$gambar}");
-                if (file_exists($path)) {
-                    $asset->addMedia($path)
+                $sourcePath = public_path("images/aset/{$gambar}");
+                $tempDir = storage_path('app/temp');
+                $copyPath = "{$tempDir}/{$gambar}";
+            
+                if (file_exists($sourcePath)) {
+                    // Pastikan direktori temp ada
+                    if (!file_exists($tempDir)) {
+                        mkdir($tempDir, 0755, true);
+                    }
+            
+                    // Salin file dari public ke storage/temp
+                    copy($sourcePath, $copyPath);
+            
+                    $asset->addMedia($copyPath)
                         ->toMediaCollection(Asset::MEDIA_COLLECTION);
                 }
             }
+            
         }
     }
 }
