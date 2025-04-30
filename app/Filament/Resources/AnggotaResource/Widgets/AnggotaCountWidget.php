@@ -20,6 +20,7 @@ class AnggotaCountWidget extends BaseWidget
     {
         $filters = session('dashboard_filters', []);
 
+      // Tetap gunakan filter tanggal untuk pemasukan dan pengeluaran
         $keuanganQuery = Keuangan::query();
 
         if (!empty($filters['from'])) {
@@ -30,9 +31,19 @@ class AnggotaCountWidget extends BaseWidget
             $keuanganQuery->whereDate('tanggal_transaksi', '<=', $filters['until']);
         }
 
-        $totalPengeluaran = (clone $keuanganQuery)->where('tipe', 'pengeluaran')->sum('jumlah');
+        // SALDO AWAL seharusnya tidak ikut difilter
+        $saldoawal = Keuangan::where('saldo_awal')->sum('jumlah');
+
         $totalPemasukan = (clone $keuanganQuery)->where('tipe', 'pemasukan')->sum('jumlah');
-        $totalSaldoAkhir = $totalPemasukan - $totalPengeluaran;
+        $totalPengeluaran = (clone $keuanganQuery)->where('tipe', 'pengeluaran')->sum('jumlah');
+        $totalSaldoAkhir = $saldoawal + $totalPemasukan - $totalPengeluaran;
+
+        // dd([
+        //     'saldo_awal' => $saldoawal,
+        //     'total_pemasukan' => $totalPemasukan,
+        //     'total_pengeluaran' => $totalPengeluaran,
+        //     'total_saldo_akhir' => $totalSaldoAkhir,
+        // ]);
 
         return [
             Stat::make('Total Anggota', Anggota::count())

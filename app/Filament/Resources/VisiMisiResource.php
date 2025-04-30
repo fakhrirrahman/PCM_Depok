@@ -101,6 +101,7 @@ class VisiMisiResource extends Resource
                         ->modalHeading('Konfirmasi Hapus')
                         ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
                         ->modalButton('Ya, Hapus')
+                        ->successNotification(null) 
                         ->after(function () {
                             Notification::make()
                                 ->title('Data berhasil dihapus.')
@@ -109,7 +110,7 @@ class VisiMisiResource extends Resource
                         }),
                 ])
                 ->label('Aksi Massal'),
-                    ]);
+                    ]);   
     }
 
     public static function getRelations(): array

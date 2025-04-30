@@ -158,6 +158,7 @@ class KegiatanResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()
                         ->label('Hapus')
+                        ->successNotification(null) 
                         ->action(function (Collection  $records) {
                             Kegiatan::destroy($records->pluck('id'));
                             Notification::make()
@@ -168,7 +169,6 @@ class KegiatanResource extends Resource
                 ])->label('Aksi Masal'),
             ]);
     }
-    
     public static function getRelations(): array
     {
         return [];

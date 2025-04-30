@@ -22,13 +22,13 @@ class KegiatanController extends Controller
         if ($request->has('search')) {
             $query->where('nama_kegiatan', 'like', '%' . $request->search . '%');
         }
-        $kegiatans = $query->with('anggota')->latest()->paginate(10)->appends(['search' => $request->search]);
+        $kegiatans = $query->latest()->paginate(10)->appends(['search' => $request->search]);
         return view('pages.kegiatan', compact('kegiatans'));
     }
 
     public function show($id)
     {
-        $kegiatan = Kegiatan::with(['anggota', 'media'])->findOrFail($id);
+        $kegiatan = Kegiatan::with('media')->findOrFail($id);
         $mediaUrls = $kegiatan->media->pluck('url')->toArray();
         $kegiatan->mediaUrls = $mediaUrls;
         

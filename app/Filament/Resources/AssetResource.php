@@ -173,6 +173,7 @@ class AssetResource extends Resource
                         ->modalHeading('Konfirmasi Hapus')
                         ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
                         ->modalButton('Ya, Hapus')
+                        ->successNotification(null) 
                         ->after(function () {
                             Notification::make()
                                 ->title('Data berhasil dihapus.')

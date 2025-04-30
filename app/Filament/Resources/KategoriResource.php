@@ -36,11 +36,11 @@ class KategoriResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nama')
-                    ->required()
-                    ->label('Nama Kategori'),
+                    ->label('Nama Kategori')
+                    ->placeholder('Masukkan nama kategori apabila anda menambah kategori baru'),
                 Forms\Components\TextInput::make('jenis')
-                    ->required()
-                    ->label('Jenis Kategori'),
+                    ->label('Jenis Kategori')
+                    ->placeholder('Masukkan jenis kategori apabila anda menambah kategori baru'),
             ]);
     }
 
@@ -88,6 +88,7 @@ class KategoriResource extends Resource
                         ->modalHeading('Konfirmasi Hapus')
                         ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
                         ->modalButton('Ya, Hapus')
+                        ->successNotification(null) 
                         ->after(function () {
                             Notification::make()
                                 ->title('Data berhasil dihapus.')

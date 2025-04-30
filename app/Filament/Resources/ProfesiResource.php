@@ -35,7 +35,9 @@ class ProfesiResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nama')
-                    ->required(),
+                    ->required()
+                    ->label('Nama Profesi')
+                    ->placeholder('Masukkan nama profesi apabila anda menambah profesi baru')
             ]);
     }
 
@@ -78,6 +80,7 @@ class ProfesiResource extends Resource
                         ->modalHeading('Konfirmasi Hapus')
                         ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
                         ->modalButton('Ya, Hapus')
+                        ->successNotification(null) 
                         ->after(function () {
                             Notification::make()
                                 ->title('Data berhasil dihapus.')
@@ -87,6 +90,7 @@ class ProfesiResource extends Resource
                 ])
                 ->label('Aksi Massal'),
                     ]);
+        
     }
 
     public static function getRelations(): array

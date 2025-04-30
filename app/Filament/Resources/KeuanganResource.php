@@ -44,6 +44,7 @@ class KeuanganResource extends Resource
                     ->required(),
                     Select::make('tipe')
                     ->label('Tipe')
+                    ->placeholder('Pilih tipe')
                     ->options(fn () => Kategori::query()
                         ->select('jenis')
                         ->distinct()
@@ -64,19 +65,26 @@ class KeuanganResource extends Resource
                 
                         return Kategori::query()
                             ->where('jenis', $tipe)
-                            ->pluck('nama', 'id');
+                            ->pluck('nama', 'nama');
                     })
                     ->required()
                     ->reactive()
                     ->disabled(fn (callable $get) => !$get('tipe')),
                 TextInput::make('jumlah')
                     ->numeric()
+                    ->placeholder('Jumlah')
                     ->required(),
+                TextInput::make('keterangan')
+                    ->placeholder('Keterangan')
+                    ->maxLength(255)
+                    ->nullable(),
                 TextInput::make('saldo_awal')
                     ->numeric()
+                    ->placeholder('Saldo Awal')
                     ->nullable(),
                 TextInput::make('saldo_akhir')
                     ->numeric()
+                    ->placeholder('Saldo Akhir')
                     ->nullable(),
             ]);
     }
@@ -92,6 +100,7 @@ class KeuanganResource extends Resource
                 TextColumn::make('tipe'),
                 TextColumn::make('kategori')
                     ->searchable(),
+                TextColumn::make('keterangan'),
                 TextColumn::make('jumlah')
                     ->sortable()
                     ->money('IDR'),
@@ -105,11 +114,11 @@ class KeuanganResource extends Resource
             ->filters([
                 SelectFilter::make('tipe')
                 ->placeholder('semua')
-                    ->options([
-                        'saldo' => 'Saldo',
-                        'Pemasukan' => 'Pemasukan',
-                        'Pengeluaran' => 'Pengeluaran',
-                    ])
+                    ->options(fn() => Keuangan::query()
+                        ->select('tipe')
+                        ->distinct()
+                        ->pluck('tipe', 'tipe')
+                        ->toArray())
                     ->label('Tipe Transaksi'),
 
                 SelectFilter::make('kategori')
@@ -155,6 +164,7 @@ class KeuanganResource extends Resource
                         ->modalHeading('Konfirmasi Hapus')
                         ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
                         ->modalButton('Ya, Hapus')
+                        ->successNotification(null) 
                         ->after(function () {
                             Notification::make()
                                 ->title('Data berhasil dihapus.')
@@ -163,7 +173,7 @@ class KeuanganResource extends Resource
                         }),
                 ])
                 ->label('Aksi Massal'),
-                ]);
+                    ]);   
                     
         }            
 

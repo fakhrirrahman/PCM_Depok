@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('tanggal_transaksi');
             $table->enum('tipe', ['Saldo', 'Pemasukan', 'Pengeluaran']);
             $table->string('kategori');
+            $table->string('keterangan')->nullable();
             $table->bigInteger('jumlah');
             $table->bigInteger('saldo_awal')->nullable();
             $table->bigInteger('saldo_akhir')->nullable();

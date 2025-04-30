@@ -36,17 +36,18 @@ class KategoriAsetResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('jenis')
-                    ->required()
-                    ->label('Jenis Aset'),
+                    ->label('Jenis Aset')
+                    ->placeholder('Masukkan jenis aset apabila anda menambah kategori baru'),
                 Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->label('Status Aset'),
+                    ->label('Status Aset')
+                    ->placeholder('Masukkan status aset apabila anda menambah kategori baru'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+        ->defaultSort('id', 'desc')
         ->emptyStateHeading('Belum ada kategori aset yang ditambahkan')
             ->columns([
                 Tables\Columns\TextColumn::make('jenis')
@@ -88,6 +89,7 @@ class KategoriAsetResource extends Resource
                         ->modalHeading('Konfirmasi Hapus')
                         ->modalSubheading('Apakah Anda yakin ingin menghapus data yang dipilih?')
                         ->modalButton('Ya, Hapus')
+                        ->successNotification(null) 
                         ->after(function () {
                             Notification::make()
                                 ->title('Data berhasil dihapus.')
