@@ -9,22 +9,17 @@ class GaleriSeeder extends Seeder
 {
     public function run()
     {
-        // Galeri pertama
         $galeri1 = Galeri::create([]);
         $this->addMediaIfExists($galeri1, 'Company/assets/img/1.jpg');
 
-        // Galeri kedua
         $galeri2 = Galeri::create([]);
         $this->addMediaIfExists($galeri2, 'Company/assets/img/2.webp');
 
-        // Galeri ketiga
         $galeri3 = Galeri::create([]);
         $this->addMediaIfExists($galeri3, 'Company/assets/img/3.webp');
     }
 
-    /**
-     * Menambahkan file media jika file-nya benar-benar ada dan belum ditambahkan.
-     */
+ 
     private function addMediaIfExists(Galeri $galeri, string $relativePath)
     {
         $fullPath = public_path($relativePath);
@@ -34,7 +29,7 @@ class GaleriSeeder extends Seeder
 
             if (!$alreadyExists) {
                 $galeri->addMedia($fullPath)
-                    ->preservingOriginal() // jangan pindahkan file aslinya
+                    ->preservingOriginal() 
                     ->toMediaCollection(Galeri::MEDIA_COLLECTION);
             }
         } else {

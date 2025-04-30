@@ -12,7 +12,6 @@ class KategoriAsetSeeder extends Seeder
      */
     public function run(): void
     {
-        // Daftar jenis dan status aset
         $status = [
             'Wakaf',
             'Hibah',

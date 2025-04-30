@@ -152,7 +152,6 @@ class KeuanganSeeder extends Seeder
             ],
         ];
 
-        // Tambahkan field lainnya
         foreach ($data as &$entry) {
             $entry['saldo_awal'] = $entry['saldo_awal'] ?? null;
             $entry['saldo_akhir'] = $entry['saldo_akhir'] ?? null;

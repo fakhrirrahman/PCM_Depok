@@ -47,7 +47,7 @@ class AsetSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            [$nama, $alamat, $gambar] = array_pad($item, 3, null); // pastikan ada 3 elemen
+            [$nama, $alamat, $gambar] = array_pad($item, 3, null); 
 
             $tipe = str_starts_with($nama, 'Masjid') ? 'Masjid' : 'Sekolah';
 
@@ -64,14 +64,10 @@ class AsetSeeder extends Seeder
                 $copyPath = "{$tempDir}/{$gambar}";
             
                 if (file_exists($sourcePath)) {
-                    // Pastikan direktori temp ada
                     if (!file_exists($tempDir)) {
                         mkdir($tempDir, 0755, true);
                     }
-            
-                    // Salin file dari public ke storage/temp
                     copy($sourcePath, $copyPath);
-            
                     $asset->addMedia($copyPath)
                         ->toMediaCollection(Asset::MEDIA_COLLECTION);
                 }

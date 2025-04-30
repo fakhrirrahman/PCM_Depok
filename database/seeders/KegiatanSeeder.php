@@ -17,12 +17,10 @@ class KegiatanSeeder extends Seeder
      */
         public function run(): void
         {
-            // Buat folder public/images jika belum ada
             if (!File::exists(public_path('images'))) {
                 File::makeDirectory(public_path('images'), 0755, true);
             }
         
-            // Copy file gambar jika belum ada
             $imageMap = [
                 'kegiatan1.jpg' => 'kegiatan-default1.png',
                 'kegiatan2.jpg' => 'kegiatan-default2.png',
@@ -39,7 +37,6 @@ class KegiatanSeeder extends Seeder
         
             $user = \App\Models\User::first();
         
-            // Kegiatan pertama (dengan deskripsi panjang)
             $kegiatan1 = Kegiatan::create([
                 'nama_kegiatan' => 'Hari Bermuhammadiyah, PCM Depok Gelar Apel Akbar',
                 'deskripsi' => 'Hari lahir Muhammadiyah yang bertepatan dengan 18 November disebut juga sebagai hari bermuhammadiyah. Pada hari ini, Senin 18 November 2024 merupakan milad Muhammadiyah yang ke 112 tahun. Bagi warga Muhammadiyah di berbagai penjuru Nusantara, mulai dari Pusat hingga Wilayah, Daerah, Cabang, dan Ranting tentu banyak yang memperingati hari penting Persyarikatan ini.
@@ -62,7 +59,6 @@ class KegiatanSeeder extends Seeder
             ]);
             $kegiatan1->addMedia(public_path('images/kegiatan1.jpg'))->preservingOriginal()->toMediaCollection(Kegiatan::MEDIA_COLLECTION);
         
-            // Kegiatan kedua
             $kegiatan2 = Kegiatan::create([
                 'nama_kegiatan' => 'PCM Depok, Gelar Pengajian Akbar dan Bakti Sosial',
                 'deskripsi' => 'Dalam rangka sambut bulan Ramadhan, pengajian rutin Ahad ketiga PCM Depok digelar lebih meriah daripada biasanya. Kali ini pengajian dilangsungkan di halaman SMP Muhammadiyah 2 Depok pada Ahad, 16/02/2025.
@@ -85,7 +81,6 @@ class KegiatanSeeder extends Seeder
             ]);
             $kegiatan2->addMedia(public_path('images/kegiatan2.jpg'))->preservingOriginal()->toMediaCollection(Kegiatan::MEDIA_COLLECTION);
         
-            // Kegiatan ketiga
             $kegiatan3 = Kegiatan::create([
                 'nama_kegiatan' => 'Lewat Ideopolitor, PCM Depok Kuatkan Kembali Ideologi Muhammadiyah',
                 'deskripsi' => 'Ideolopolitor, kajian diskusi Ideologi Politik dan Organisasi diselenggarakan oleh Pimpinan Cabang Muhammadiyah Aisyiyah Depok, satu bentuk ikhtiar dalam menjaga ideologi anggota dan pimpinan Muhammadiyah. Acara ini mengambil tempat di Aula KH Ahmad Dahlan, SD Muhammadiyah Condongcatur, Sleman pada Ahad (19/1).
