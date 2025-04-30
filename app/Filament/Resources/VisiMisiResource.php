@@ -78,7 +78,6 @@ class VisiMisiResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()->label('Lihat'),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
                     ->label('Hapus')
