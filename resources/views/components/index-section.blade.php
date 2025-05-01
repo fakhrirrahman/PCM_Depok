@@ -5,7 +5,6 @@
             <h2 class="fw-bold text-success">Pimpinan Cabang Muhammadiyah Depok</h2>
         </div>
         <div class="row g-4">
-            <!-- Langkah 1 -->
             <div class="col-md-6 col-lg-3">
                 <div class="border rounded-3 p-4 text-center h-100 position-relative">
                     <div class="mb-3 text-success">
@@ -23,7 +22,6 @@
                 </div>
             </div>
 
-            <!-- Langkah 2 -->
             <div class="col-md-6 col-lg-3">
                 <div class="border rounded-3 p-4 text-center h-100 position-relative">
                     <div class="mb-3 text-success">
@@ -40,7 +38,6 @@
                 </div>
             </div>
 
-            <!-- Langkah 3 -->
             <div class="col-md-6 col-lg-3">
                 <div class="border rounded-3 p-4 text-center h-100 position-relative">
                     <div class="mb-3 text-success">
@@ -57,7 +54,6 @@
                 </div>
             </div>
 
-            <!-- Langkah 4 -->
             <div class="col-md-6 col-lg-3">
                 <div class="border rounded-3 p-4 text-center h-100 position-relative">
                     <div class="mb-3 text-success">
