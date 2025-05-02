@@ -1,10 +1,9 @@
-<!-- Contact Section -->
 <section id="contact" class="contact section">
     <div class="mb-5">
         <iframe style="width: 100%; height: 400px;"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63252.241951403346!2d110.36559026953125!3d-7.761682799999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5929e00f4c75%3A0x9d860bf72f8a7d33!2sPimpinan%20Cabang%20Muhammadiyah%20Depok%20Sleman!5e0!3m2!1sid!2sid!4v1741247849890!5m2!1sid!2sid"
             frameborder="0" allowfullscreen=""></iframe>
-    </div><!-- End Google Maps -->
+    </div>
 
     <div class="container" data-aos="fade">
         <div class="row gy-5 gx-lg-5">
@@ -37,7 +36,7 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <!-- Alert Success -->
+
                 @if(session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Success!</strong> {{ session('success') }}
@@ -48,7 +47,6 @@
                 <form action="{{ route('contact.submit') }}" method="post" class="php-email-form">
                     @csrf
 
-                    <!-- Nama -->
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
@@ -59,7 +57,6 @@
                         @enderror
                     </div>
 
-                    <!-- Email -->
                     <div class="form-group mt-3">
                         <label for="email">Email</label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
@@ -69,7 +66,6 @@
                         @enderror
                     </div>
 
-                    <!-- Subject -->
                     <div class="form-group mt-3">
                         <label for="subject">Topik</label>
                         <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject"
@@ -79,7 +75,6 @@
                         @enderror
                     </div>
 
-                    <!-- Pesan -->
                     <div class="form-group mt-3">
                         <label for="message">Isi Topik</label>
                         <textarea class="form-control @error('message') is-invalid @enderror" name="message"
@@ -89,7 +84,6 @@
                         @enderror
                     </div>
 
-                    <!-- Submit -->
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </div>
@@ -98,4 +92,4 @@
             </div>
         </div>
     </div>
-</section><!-- /Contact Section -->
+</section>
