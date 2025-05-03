@@ -1,4 +1,3 @@
-<!-- Blog Posts Section -->
 <section id="blog-posts" class="blog-posts section">
 
     <div class="container">
@@ -58,7 +57,7 @@
                     </div>
 
                 </article>
-            </div><!-- End post list item -->
+            </div>
 
             @endforeach
 
@@ -68,15 +67,13 @@
         </div>
     </div>
 
-</section><!-- /Blog Posts Section -->
+</section>
 
-<!-- Blog Pagination Section -->
 <section id="blog-pagination" class="blog-pagination section">
     <div class="container">
         <div class="d-flex justify-content-center">
             <nav>
                 <ul class="pagination">
-                    {{-- Tombol Previous --}}
                     @if ($kegiatans->onFirstPage())
                     <li class="page-item disabled">
                         <span class="page-link"><i class="bi bi-chevron-left"></i></span>
@@ -89,7 +86,6 @@
                     </li>
                     @endif
 
-                    {{-- Nomor Halaman --}}
                     @foreach ($kegiatans->links()->elements[0] as $page => $url)
                     @if ($page == $kegiatans->currentPage())
                     <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
@@ -98,7 +94,6 @@
                     @endif
                     @endforeach
 
-                    {{-- Tombol Next --}}
                     @if ($kegiatans->hasMorePages())
                     <li class="page-item">
                         <a class="page-link" href="{{ $kegiatans->nextPageUrl() }}">
@@ -114,4 +109,4 @@
             </nav>
         </div>
     </div>
-</section><!-- /Blog Pagination Section -->
+</section>

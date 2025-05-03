@@ -1,7 +1,5 @@
-<!-- Blog Posts Section -->
 <section id="blog-posts" class="blog-posts section py-5 bg-white text-black">
     <div class="container">
-        <!-- Wrapper besar dengan shadow -->
         <div class="shadow-lg rounded-4 p-4" style="background-color: #f9f9f9;">
             <div class="section-title text-center mb-4">
                 <h2>Kegiatan Terbaru Kami</h2>
