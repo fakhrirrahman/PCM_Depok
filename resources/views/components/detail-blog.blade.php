@@ -1,9 +1,7 @@
 <div class="container py-5">
     <div class="row">
-        <!-- Main Content (8 columns) -->
         <div class="col-lg-8 mb-4 mb-lg-0">
             <div class="card shadow-sm border-0">
-                <!-- Detail Kegiatan Section -->
                 <div class="card-body p-4">
                     <h2 class="card-title mb-3 fw-bold">{{ $kegiatan->nama_kegiatan }}</h2>
                     <ul class="list-unstyled mb-3">
@@ -21,7 +19,6 @@
                     </div>
                 </div>
 
-                <!-- Galeri Foto Kegiatan Section -->
                 <div class="card-body p-4 border-top">
                     <h4 class="mb-3 fw-semibold">
                         <i class="bi bi-images me-2"></i>Galeri Kegiatan
@@ -39,7 +36,6 @@
                             </a>
                         </div>
 
-                        <!-- Modal untuk Zoom Gambar -->
                         <div class="modal fade" id="fotoModal{{ $index }}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
@@ -68,7 +64,6 @@
             </div>
         </div>
 
-        <!-- Sidebar Kegiatan Lainnya (4 columns) -->
         <div class="col-lg-4">
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
