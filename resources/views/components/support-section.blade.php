@@ -1,7 +1,6 @@
 <section class="py-5 bg-light">
     <div class="container">
         <div class="row align-items-center">
-            <!-- Kiri: Teks Penjelasan -->
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <h2 class="fw-bold mb-3">
                     Apa Itu <span class="text-success">Pimpinanan Cabang Muhammadiyah</span>?
@@ -17,7 +16,6 @@
                 </p>
             </div>
 
-            <!-- Kanan: Ilustrasi -->
             <div class="col-lg-6 text-center">
                 <!-- Gambar untuk layar besar -->
                 <img src="https://i.pinimg.com/originals/ff/9b/5a/ff9b5a6f1ab633c56d1fb9dfb20780be.png"
