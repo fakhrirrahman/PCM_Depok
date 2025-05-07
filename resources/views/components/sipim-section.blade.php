@@ -2,7 +2,6 @@
     <h2 class="text-center fw-bold mb-5">Kriteria Inovasi PCM Muhammadiyah Depok</h2>
     <div class="row g-4">
 
-        <!-- Kriteria 1 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
                 <div class="mb-3 text-success">
@@ -19,7 +18,6 @@
             </div>
         </div>
 
-        <!-- Kriteria 2 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
                 <div class="mb-3 text-success">
@@ -34,7 +32,6 @@
             </div>
         </div>
 
-        <!-- Kriteria 3 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
                 <div class="mb-3 text-success">
@@ -49,7 +46,6 @@
             </div>
         </div>
 
-        <!-- Kriteria 4 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
                 <div class="mb-3 text-success">
@@ -64,7 +60,6 @@
             </div>
         </div>
 
-        <!-- Kriteria 5 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
                 <div class="mb-3 text-success">
@@ -79,7 +74,6 @@
             </div>
         </div>
 
-        <!-- Kriteria 6 -->
         <div class="col-md-4">
             <div class="card h-100 text-center shadow-sm border-0 p-4">
                 <div class="mb-3 text-success">
