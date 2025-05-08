@@ -1,4 +1,3 @@
-<!-- Tentang Kami -->
 <section id="tentang-kami" class="py-5 bg-white">
     <div class="container" data-aos="fade-up">
         <div class="p-4 bg-light">
@@ -25,7 +24,6 @@
     </div>
 </section>
 
-<!-- Video Profil -->
 <section id="video-profil" class="py-5 bg-light">
     <div class="container" data-aos="fade-up">
         <div class="p-4 bg-white">
@@ -47,7 +45,6 @@
     </div>
 </section>
 
-<!-- Visi & Misi -->
 <section id="visi-misi" class="py-5 bg-light">
     <div class="container" data-aos="fade-up">
         <div class="p-4 bg-white">
@@ -56,7 +53,6 @@
                 <p class="text-muted">Landasan dan arah gerak organisasi kami</p>
             </div>
             <div class="row">
-                <!-- Visi -->
                 <div class="col-md-6 mb-4">
                     <div class="border p-4 h-100">
                         <div class="d-flex align-items-center mb-3">
@@ -75,7 +71,6 @@
                     </div>
                 </div>
 
-                <!-- Misi -->
                 <div class="col-md-6 mb-4">
                     <div class="border p-4 h-100">
                         <div class="d-flex align-items-center mb-3">
