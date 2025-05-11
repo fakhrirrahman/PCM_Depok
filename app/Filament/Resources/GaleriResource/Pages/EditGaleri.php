@@ -25,4 +25,23 @@ class EditGaleri extends EditRecord
             ->body('Data galeri berhasil diperbarui.')
             ->success();
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            GaleriResource::getUrl() => 'Galeri',
+            url()->current() => 'Edit Galeri',
+        ];
+    }
+    protected function getSaveFormAction(): \Filament\Actions\Action
+    {
+        return parent::getSaveFormAction()
+            ->label('Simpan Perubahan');
+    }
+
+    protected function getCancelFormAction(): \Filament\Actions\Action
+    {
+        return parent::getCancelFormAction()
+            ->label('Batal');
+    }
 }
