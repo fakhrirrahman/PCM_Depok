@@ -52,6 +52,7 @@ class VisiMisiResource extends Resource
     {
         return $table
             ->emptyStateHeading('Belum ada visi misi')
+               ->defaultSort('id', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('visi')
                     ->label('Visi')

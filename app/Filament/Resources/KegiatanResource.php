@@ -78,6 +78,7 @@ class KegiatanResource extends Resource
     {
         return $table
             ->emptyStateHeading('Belum ada kegiatan')
+               ->defaultSort('id', 'desc')
             ->columns([
                 TextColumn::make('nama_kegiatan')
                     ->label('Nama Kegiatan')

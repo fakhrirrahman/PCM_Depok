@@ -48,6 +48,7 @@ class KategoriResource extends Resource
     {
         return $table
         ->emptyStateHeading('Belum ada kategori keuangan yang ditambahkan')
+           ->defaultSort('id', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->sortable()

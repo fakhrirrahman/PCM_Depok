@@ -49,6 +49,7 @@ class NotulensiResource extends Resource
         public static function table(Table $table): Table
         {
             return $table
+               ->defaultSort('id', 'desc')
                 ->emptyStateHeading('Belum ada notulensi')
                 ->columns([
                     Tables\Columns\TextColumn::make('judul')->searchable(),

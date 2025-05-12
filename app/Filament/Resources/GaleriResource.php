@@ -53,6 +53,7 @@ class GaleriResource extends Resource
     {
         return $table
         ->emptyStateHeading('Belum ada galeri')
+           ->defaultSort('id', 'desc')
         ->columns([
             Tables\Columns\Layout\Grid::make(2)
                 ->schema([

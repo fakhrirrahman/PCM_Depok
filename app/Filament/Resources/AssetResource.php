@@ -94,6 +94,7 @@ class AssetResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+           ->defaultSort('id', 'desc')
         ->emptyStateHeading('Belum ada aset')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')

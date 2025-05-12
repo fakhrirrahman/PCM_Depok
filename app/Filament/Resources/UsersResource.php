@@ -71,6 +71,7 @@ class UsersResource extends Resource
     {
         return $table
         ->emptyStateHeading('Belum ada pengguna')
+           ->defaultSort('id', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->sortable()

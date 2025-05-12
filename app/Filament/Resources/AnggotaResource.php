@@ -37,11 +37,23 @@ class AnggotaResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama')->placeholder('Masukkan nama lengkap')->required(),
+               TextInput::make('nama')
+                ->placeholder('Masukkan nama lengkap')
+                ->required()
+                ->rules([
+                    fn ($livewire) => 'unique:anggota,nama,' . ($livewire->record?->id ?? 'NULL'),
+                ])
+                ->validationMessages([
+                    'unique' => 'Nama sudah terdaftar dalam data anggota.',]),
                 TextInput::make('tempat_lahir')->placeholder('Masukkan tempat lahir')->required(),
                 DatePicker::make('tanggal_lahir')->label('Tanggal Lahir')->required(),
                 TextInput::make('nbm_depan')->placeholder('Masukkan NBM depan')->required()->label('NBM Depan'),
-                TextInput::make('nbm')->placeholder('Masukkan NBM')->required()->label('NBM'),
+                TextInput::make('nbm')->placeholder('Masukkan NBM')->required()->label('NBM')
+                ->rules([
+                    fn ($livewire) => 'unique:anggota,nbm,' . ($livewire->record?->id ?? 'NULL'),
+                ])
+                ->validationMessages([
+                    'unique' => 'NBM sudah terdaftar dalam data anggota.',]),
                 TextInput::make('tahun_pembuatan')->placeholder('Masukkan tahun pembuatan')->required(),
                 Hidden::make('cabang')
                     ->default('Depok')->required(),
@@ -68,6 +80,7 @@ class AnggotaResource extends Resource
     {
         return $table
         ->emptyStateHeading('Belum ada anggota')
+           ->defaultSort('id', 'desc')
             ->columns([
                 TextColumn::make('nama')->sortable()->searchable(),
                 TextColumn::make('tempat_lahir')->sortable()->searchable(),

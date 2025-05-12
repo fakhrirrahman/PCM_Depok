@@ -57,6 +57,7 @@ class ContactResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->defaultSort('id', 'desc')
         ->emptyStateHeading('Belum ada pesan')
             ->columns([
                 TextColumn::make('name')

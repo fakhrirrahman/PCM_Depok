@@ -43,6 +43,7 @@ class StrukturOrganisasiResource extends Resource
     {
         return $table
         ->emptyStateHeading('Belum ada struktur organisasi')
+           ->defaultSort('id', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')->label('Nama')->searchable(),
                 Tables\Columns\TextColumn::make('jabatan')->label('Jabatan'),

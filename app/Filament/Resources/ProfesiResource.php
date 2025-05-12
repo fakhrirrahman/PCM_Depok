@@ -45,6 +45,7 @@ class ProfesiResource extends Resource
     {
         return $table
         ->emptyStateHeading('Belum ada profesi')
+           ->defaultSort('id', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->sortable()
