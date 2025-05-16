@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nbm_depan')->nullable();
             $table->string('nbm')->nullable();
             $table->string('cabang')->nullable();
+            $table->string('ranting')->nullable();
             $table->string('pdm')->nullable();
             $table->string('pwm')->nullable();
             $table->text('alamat')->nullable();

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(KategoriSeeder::class);
         $this->call(KategoriAsetSeeder::class);
         $this->call(AsetSeeder::class);
+        $this->call(RantingSeeder::class);
     }
 }

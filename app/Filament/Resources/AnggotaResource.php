@@ -39,12 +39,7 @@ class AnggotaResource extends Resource
             ->schema([
                TextInput::make('nama')
                 ->placeholder('Masukkan nama lengkap')
-                ->required()
-                ->rules([
-                    fn ($livewire) => 'unique:anggota,nama,' . ($livewire->record?->id ?? 'NULL'),
-                ])
-                ->validationMessages([
-                    'unique' => 'Nama sudah terdaftar dalam data anggota.',]),
+                ->required(),
                 TextInput::make('tempat_lahir')->placeholder('Masukkan tempat lahir')->required(),
                 DatePicker::make('tanggal_lahir')->label('Tanggal Lahir')->required(),
                 TextInput::make('nbm_depan')->placeholder('Masukkan NBM depan')->required()->label('NBM Depan'),

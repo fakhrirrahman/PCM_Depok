@@ -45,4 +45,8 @@ class Anggota extends Model
     {
         return $this->belongsTo(Profesi::class);
     }
+    public function ranting()
+    {
+        return $this->belongsTo(Ranting::class);
+    }
 }
