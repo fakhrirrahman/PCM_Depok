@@ -20,7 +20,15 @@ class RantingResource extends Resource
 {
     protected static ?string $model = Ranting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+
+    protected static ?string $pluralModelLabel = 'Kategori Ranting';
+
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Manajemen Data';
+    }
 
     public static function form(Form $form): Form
     {
@@ -38,15 +46,13 @@ class RantingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
+            ->emptyStateHeading('Belum ada data ranting')
             ->columns([
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama Ranting')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Dibuat Pada')
-                    ->dateTime()
-                    ->sortable(),
             ])
             ->filters([
                 //

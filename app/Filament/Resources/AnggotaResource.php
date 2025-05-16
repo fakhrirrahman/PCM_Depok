@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Models\Ranting;
 use Filament\Tables;
 use App\Models\Anggota;
 use App\Models\Profesi;
@@ -54,6 +55,13 @@ class AnggotaResource extends Resource
                     ->default('Depok')->required(),
                 Hidden::make('pdm')
                     ->default('Kab Sleman')->required(),
+                Select::make('ranting')
+                ->options(Ranting::pluck('nama', 'nama'))
+                ->label('Ranting')
+                ->searchable()
+                ->searchPrompt('Cari Ranting...')
+                ->preload()
+                ->required(),
                 Hidden::make('pwm')
                     ->default('Daerah Istimewa Yogyakarta')->required(),
                 TextInput::make('alamat')->placeholder('Masukkan alamat lengkap')->required(),
@@ -85,6 +93,7 @@ class AnggotaResource extends Resource
                 TextColumn::make('nbm')->sortable()->searchable()->label('NBM'),
                 TextColumn::make('tahun_pembuatan')->sortable()->searchable(),
                 TextColumn::make('cabang')->sortable()->searchable(),
+                TextColumn::make('ranting')->sortable()->searchable(),
                 TextColumn::make('pdm')->sortable()->label('PDM'),
                 TextColumn::make('pwm')->sortable()->label('PWM'),
                 TextColumn::make('alamat')->sortable(),
@@ -107,6 +116,19 @@ class AnggotaResource extends Resource
                             ->distinct()
                             ->orderBy('profesi')
                             ->pluck('profesi')
+                            ->filter() 
+                            ->mapWithKeys(fn ($value) => [$value => $value]);
+                }),
+                Tables\Filters\SelectFilter::make('ranting')
+                ->label('Filter Ranting')
+                ->placeholder('Semua')
+                ->options(function () {
+                        return Anggota::query()
+                            ->whereNotNull('ranting')
+                            ->where('ranting', '!=', '')
+                            ->distinct()
+                            ->orderBy('ranting')
+                            ->pluck('ranting')
                             ->filter() 
                             ->mapWithKeys(fn ($value) => [$value => $value]);
                 }),

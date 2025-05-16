@@ -22,6 +22,7 @@ class Anggota extends Model
         'cabang',
         'pdm',
         'pwm',
+        'ranting',
         'alamat',
         'kabupaten_tinggal',
         'provinsi_tinggal',
