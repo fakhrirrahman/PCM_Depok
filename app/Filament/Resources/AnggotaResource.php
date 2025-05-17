@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\Ranting;
 use Filament\Tables;
 use App\Models\Anggota;
 use App\Models\Profesi;
+use App\Models\Ranting;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Exports\AnggotaExport;
@@ -23,6 +23,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\AnggotaResource\Pages;
+use App\Filament\Resources\AnggotaResource\Widgets\AnggotaProfesiPieChart;
 
 
 class AnggotaResource extends Resource
@@ -81,6 +82,7 @@ class AnggotaResource extends Resource
     }
     public static function table(Table $table): Table
     {
+        
         return $table
         ->emptyStateHeading('Belum ada anggota')
            ->defaultSort('id', 'desc')
@@ -132,6 +134,18 @@ class AnggotaResource extends Resource
                             ->filter() 
                             ->mapWithKeys(fn ($value) => [$value => $value]);
                 }),
+                Tables\Filters\Filter::make('tanggal_lahir')
+                    ->form([
+                        DatePicker::make('from')->label('Dari'),
+                        DatePicker::make('until')->label('Sampai'),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query
+                            ->when($data['from'], fn ($q) => $q->whereDate('tanggal_lahir', '>=', $data['from']))
+                            ->when($data['until'], fn ($q) => $q->whereDate('tanggal_lahir', '<=', $data['until']));
+                    })
+                    ->label('Tanggal Lahir')
+
             ])
             
             ->actions([
@@ -195,12 +209,6 @@ class AnggotaResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
 
     public static function getPages(): array
     {

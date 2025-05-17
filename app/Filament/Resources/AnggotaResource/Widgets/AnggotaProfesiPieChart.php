@@ -7,8 +7,7 @@ use App\Models\Anggota;
 
 class AnggotaProfesiPieChart extends ChartWidget
 {
-    protected static ?string $heading = 'Anggota Berdasarkan Profesi';
-
+    protected static ?string $heading = 'Statistik Profesi Anggota';
     protected function getData(): array
     {
         $data = Anggota::selectRaw('profesi as nama_profesi, COUNT(*) as total')
@@ -31,6 +30,6 @@ class AnggotaProfesiPieChart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'bar'; 
+        return 'pie'; 
     }
 }

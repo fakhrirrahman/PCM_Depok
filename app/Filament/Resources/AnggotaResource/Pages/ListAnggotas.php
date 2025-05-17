@@ -5,6 +5,9 @@ namespace App\Filament\Resources\AnggotaResource\Pages;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use App\Filament\Resources\AnggotaResource;
+use App\Filament\Resources\AnggotaResource\Widgets\AnggotaTglPieChart;
+use App\Filament\Resources\AnggotaResource\Widgets\AnggotaStatsOverview;
+use App\Filament\Resources\AnggotaResource\Widgets\AnggotaTahunLineChart;
 use App\Filament\Resources\AnggotaResource\Widgets\AnggotaProfesiPieChart;
 
 class ListAnggotas extends ListRecords
@@ -18,7 +21,15 @@ class ListAnggotas extends ListRecords
                 ->label('Tambah Anggota')
         ];
     }
-    //make no data table
+
+  protected function getHeaderWidgets(): array
+{
+    return [
+        AnggotaStatsOverview::class,
+        AnggotaTglPieChart::class,
+        AnggotaTahunLineChart::class,
+    ];
+}
   
 
     public function getBreadcrumbs(): array
