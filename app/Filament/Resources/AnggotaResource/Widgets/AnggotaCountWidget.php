@@ -38,10 +38,10 @@ class AnggotaCountWidget extends BaseWidget
 
 
         return [
-            Stat::make('Total Anggota', Anggota::count())
-                ->description('Jumlah total anggota saat ini')
-                ->color('primary')
-                ->icon('heroicon-o-users'),
+            // Stat::make('Total Anggota', Anggota::count())
+            //     ->description('Jumlah total anggota saat ini')
+            //     ->color('primary')
+            //     ->icon('heroicon-o-users'),
 
             Stat::make('Total Data Kegiatan', Kegiatan::count())
                 ->description('Jumlah kegiatan saat ini')

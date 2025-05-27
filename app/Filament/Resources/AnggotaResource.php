@@ -76,7 +76,7 @@ class AnggotaResource extends Resource
                 ->searchPrompt('Cari Profesi...')
                 ->preload()
                 ->required(),
-                TextInput::make('no_hp')->tel()->placeholder('Masukkan No. HP')->required(),
+                TextInput::make('no_hp')->tel()->placeholder('Masukkan No. HP'),
                 TextInput::make('email')->email()->placeholder('Masukkan email'),
             ]);
     }

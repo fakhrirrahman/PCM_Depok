@@ -15,7 +15,7 @@ class ListRantings extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-                ->label('Tambah Profesi')
+                ->label('Tambah Ranting')
         ];
     }
 
