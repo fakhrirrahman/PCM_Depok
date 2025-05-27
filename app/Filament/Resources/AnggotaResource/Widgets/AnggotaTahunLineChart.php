@@ -19,16 +19,23 @@ class AnggotaTahunLineChart extends ChartWidget
 
         return [
             'datasets' => [
-                [
-                    'label' => 'Jumlah Anggota',
-                    'data' => $data->values(),
-                    'borderColor' => '#10b981',
-                    'fill' => false,
-                ],
-            ],
+    [
+            'label' => 'Jumlah Anggota',
+            'data' => $data->values(),
+            'borderColor' => '#10b981',
+            'backgroundColor' => '#10b981',
+            'fill' => false,
+            'tension' => 0.3, // agar garis lebih halus
+            'pointRadius' => 4,
+            'pointHoverRadius' => 6,
+        ],
+    ],
+
             'labels' => $data->keys(),
         ];
     }
+
+   
 
     protected function getType(): string
     {
