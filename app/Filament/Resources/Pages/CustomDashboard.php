@@ -7,6 +7,7 @@ use Filament\Pages\Page;
 use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use App\Filament\Resources\AnggotaResource\Widgets\AnggotaProfesiPieChart;
+use Filament\Notifications\Notification;
 
 class CustomDashboard extends Page
 {
@@ -38,12 +39,14 @@ class CustomDashboard extends Page
                     DatePicker::make('until')->label('Sampai Tanggal'),
                 ])
                 ->action(function (array $data): void {
-                    session([
-                        'dashboard_filters' => $data,
-                    ]);
-                    session()->save();
-                    $this->redirect(url()->current());
-                }),
+                session(['dashboard_filters' => $data]);
+                session()->save();
+
+                Notification::make()
+                    ->title('Filter diterapkan.')
+                    ->success()
+                    ->send();
+            }),
         ];
     }
 }
