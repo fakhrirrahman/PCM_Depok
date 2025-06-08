@@ -19,3 +19,14 @@ Route::post('/contact/submit', [ContactController::class, 'submitForm'])->name('
 Route::get('/tentang-kami', [AboutController::class, 'index'])->name('tentang-kami');
 
 Route::get('/struktur-organisasi', [StrukturOrganisasiController::class, 'index'])->name('struktur-organisasi');
+
+
+Route::get('/test-session', function () {
+    session(['dashboard_filters' => ['from' => '2024-01-01']]);
+    session()->save();
+    return 'Session set.';
+});
+
+Route::get('/check-session', function () {
+    return session('dashboard_filters');
+});
