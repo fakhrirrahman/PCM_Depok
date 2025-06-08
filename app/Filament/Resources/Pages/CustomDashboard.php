@@ -41,7 +41,7 @@ class CustomDashboard extends Page
                     session([
                         'dashboard_filters' => $data,
                     ]);
-                    $this->redirect(request()->header('Referer'));
+                    $this->redirect(url()->current());
                 }),
         ];
     }
