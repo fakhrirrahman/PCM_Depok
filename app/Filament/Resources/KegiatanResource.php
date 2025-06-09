@@ -78,7 +78,7 @@ class KegiatanResource extends Resource
     {
         return $table
             ->emptyStateHeading('Belum ada kegiatan')
-               ->defaultSort('id', 'desc' === '2025-01-01' ? 'desc' : 'asc')
+               ->sortable('tanggal' == '2025-01-01')
             ->columns([
                 TextColumn::make('nama_kegiatan')
                     ->label('Nama Kegiatan')
