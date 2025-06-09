@@ -10,9 +10,10 @@ class KegiatanController extends Controller
 {
     public function index()
     {
-        $kegiatans = Kegiatan::whereDate('tanggal', '==', '2025' . Carbon::now()->year)
-            ->latest()
-            ->get();
+        $kegiatans = Kegiatan::whereDate('tanggal', '<=', Carbon::today())
+        ->orderBy('tanggal', 'desc') 
+        ->take(3)
+        ->get();
         return view('pages.index', compact('kegiatans'));
     }
     public function kegiatan(Request $request)
