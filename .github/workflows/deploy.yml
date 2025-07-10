@@ -28,7 +28,7 @@ jobs:
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        key: ${{ secrets.DEPLOY_KEY }}
         source: "./"
         target: "/home/fahri5715/public_html/PCM_Depok"
 
