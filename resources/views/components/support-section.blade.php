@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <h2 class="fw-bold mb-3">
-                    Apa Itu <span class="text-success">Pimpinanan Cabang Muhammadiyah</span>?
+                    Apa Itu <span class="text-success">Pimpinanan Cabang </span>?
                 </h2>
                 <p class="fs-5 text-muted">
                     <strong>Pimpinan Cabang Muhammadiyah</strong> yang berperan sebagai struktur
